@@ -29,6 +29,13 @@ Python 3.10 requerido:
 ```
 <hr>
 
+Django requerido:
+
+*input:*
+```bash
+    pip install Django
+```
+<hr>
 Pipenv requerido:
 
 
