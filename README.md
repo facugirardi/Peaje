@@ -71,5 +71,5 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 >Una vez hayas seguido estos pasos, podrás ejecutar y/o trabajar en el proyecto sin ningún problema.
 
 ## Diagrama Entidad-Relacion del sistema
-![Imagen Diagrama Entidad-Relacion](doc/imagenDiagrama.png)
+![Imagen Diagrama Entidad-Relacion](doc/DiagramaER.jpeg)
 
