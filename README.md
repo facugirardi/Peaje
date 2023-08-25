@@ -9,14 +9,14 @@
 
 
 ## Introduccion
-Es un sistema de gestor y control de peaje. El objetivo principal del proyecto es administrar eficientemente la recaudación de peajes en cada estación todas las rutas de la provinvia de cordoba.
+Este proyecto consiste en implementar un sistema de gestión y control de peaje con el propósito de administrar de manera eficiente la recaudación en todas las estaciones de las rutas de la provincia de Córdoba.
 
 
 ## Instalacion
 
-### Requisitos previos
+### Requisitos Previos
 
-Debes tener python instalado:
+Python 3.10 requerido:
 
 *input:*
 ```bash
@@ -29,7 +29,8 @@ Debes tener python instalado:
 ```
 <hr>
 
-Debes tener algun gestor de entornos virtuales instalado, en este caso, nosotros utilizamos *__pipenv__*
+Pipenv requerido:
+
 
 *input:*
 ```bash
