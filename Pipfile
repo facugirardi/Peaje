@@ -6,8 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-pipfile = "*"
-django-admin-interface = "*"
 
 [dev-packages]
 
