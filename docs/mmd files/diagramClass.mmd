@@ -1,0 +1,76 @@
+classDiagram
+
+    Ruta --> Estacion : 1-*
+    Estacion --> Casilla : 1-*
+    Casilla --> TurnoTrabajo : 1-*
+    TurnoTrabajo <|-- RegistroCobro : 1-*
+    RegistroCobro --> Tarifa : -1
+    TurnoTrabajo --> Usuario :-1
+
+    class Ruta{
+        STRING Nombre
+        ENUM Tipo
+        STRING Coordenadas
+        agregarEstacion()
+        eliminarEstacion()
+        listarEstaciones()
+    }
+
+    class Estacion{
+        INT NumeroEstacion
+        INT KMRuta
+        abrirCasilla()
+        cerrarCasilla()
+        generarInformeCasillas()
+    }
+
+    class Casilla{
+        INT NumCasilla
+        BOOL Estado
+
+        emitirTicket()
+        registarCobro()
+        cambiarEstado()
+        validarMonto()
+        generarReporteCasilla()
+    }
+
+    class TurnoTrabajo{
+        DATETIME FechaHoraInicio
+        DATETIME FechaHoraFin
+        STRING SentidoCobro
+        FLOAT MontoCambio
+        STRING EnlaceReporte
+        BOOL Estado
+        iniciarTurno()
+        cerrarTurno()
+        calcularDuracionTurno()
+        generarReporteTurno()
+        validarMontoInicial()
+    }
+
+    class RegistroCobro{
+        DATETIME FechaHoraEmision
+        generarInformeCaja()
+    }
+
+    class Usuario{
+        STRING Nombre
+        STRING Apellido
+        STRING Direccion
+        STRING Email
+        STRING TipoDocumento
+        LONGINT NumeroDocumento
+        STRING Contrasena
+        BOOL Permisos
+        iniciarSesion()
+        modificarDatoUsuario()
+        cambiarPermiso()
+    }
+
+    class Tarifa{
+        ENUM Categoria
+        FLOAT Monto
+        DATE FechaModificacion
+        modificarTarifa()
+    }
