@@ -41,12 +41,7 @@ Pipenv requerido:
 
 *input:*
 ```bash
-    pipenv --version
-```
-
-*output:*
-```bash
-    pipenv, version <numeroVersion>
+    pip install pipenv
 ```
 
 <hr>
@@ -71,5 +66,5 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 >Una vez hayas seguido estos pasos, podrás ejecutar y/o trabajar en el proyecto sin ningún problema.
 
 ## Diagrama Entidad-Relacion del sistema
-![Imagen Diagrama Entidad-Relacion](doc/ERDiagrama.jpeg)
+![Imagen Diagrama Entidad-Relacion](docs/ERDiagrama.jpeg)
 
