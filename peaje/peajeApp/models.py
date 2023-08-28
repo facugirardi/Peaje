@@ -28,13 +28,14 @@ class Estacion(models.Model):
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
 
+
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
-    estado = models.BooleanField(("Estado:"))
+    estado = models.BooleanField(("Estado:"), default=True)
     id_estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Casilla {self.pk}"
+        return f"Casilla {self.num_casilla} de Estación N°{self.id_estacion.numero_estacion}"
 
 
 class Usuario(models.Model):
@@ -63,9 +64,9 @@ class TurnoTrabajo(models.Model):
     sentido_cobro = models.CharField(("Sentido de Cobro:"), max_length=100)
     monto_inicial = models.DecimalField(("Monto Inicial:"),max_digits=5,decimal_places=2)
     enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
-    estado = models.BooleanField(("Estado:"))
+    estado = models.BooleanField(("Estado:"), default=True)
     id_casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
-    id_operador = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_operador.nombre} {self.id_operador.apellido}"
