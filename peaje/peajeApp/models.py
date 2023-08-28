@@ -69,7 +69,7 @@ class TurnoTrabajo(models.Model):
     id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_operador.nombre} {self.id_operador.apellido}"
+        return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
 
 
 class Tarifa(models.Model):
