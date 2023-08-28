@@ -7,6 +7,8 @@ class Ruta(models.Model):
     tipo = models.CharField(("Tipo Ruta:"), max_length=50)
     coordenadas = models.CharField(("Coordenada Ruta:"), max_length=50)
 
+    def listar_estaciones(self):
+        return Estacion.objects.filter(id_ruta=self)
 
 class Estacion(models.Model):
     numero_estacion = models.IntegerField(("Numero Estacion:"))
@@ -29,6 +31,12 @@ class Usuario(models.Model):
     numero_documento = models.CharField(("Numero Documento:"), max_length=50)
     password = models.CharField(("Password:"), max_length=50)
     permisos = models.BooleanField(("Permiso:"))
+
+    def modificar_datos(self, n_nombre, n_apellido, n_direccion):
+        self.nombre = n_nombre
+        self.apellido = n_apellido
+        self.direccion = n_direccion
+        self.save()
 
 
 class TurnoTrabajo(models.Model):
