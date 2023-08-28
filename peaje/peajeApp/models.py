@@ -17,6 +17,7 @@ class Estacion(models.Model):
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
     id_estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
+    estado = models.BooleanField(("Estado:"))
 
 
 class Usuario(models.Model):
