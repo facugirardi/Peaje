@@ -1,0 +1,66 @@
+erDiagram
+    Ruta ||--|{ Estacion : Tiene
+    Estacion ||--|{ Casilla : Tiene
+    Casilla ||--|{ TurnoTrabajo : Tiene
+    TurnoTrabajo ||--|{ RegistroCobro : Tiene
+    TurnoTrabajo }|--|| Usuario : Pertenece
+    RegistroCobro }|--|| Tarifa : Usa
+
+    Estacion{
+        INT ID PK
+        INT NumeroEstacion
+        INT KMRuta
+        INT ID-Ruta FK
+    }
+
+    Ruta{
+        INT ID PK
+        STRING Nombre
+        ENUM Tipo
+        STRING Coordenadas
+
+    }
+
+    Casilla{
+        INT ID PK
+        INT NumCasilla
+        INT ID-Estacion FK
+    }
+
+    Tarifa{
+        INT ID PK
+        ENUM Categoria
+        FLOAT Monto
+        DATE FechaModificacion
+    }
+
+    RegistroCobro{
+        INT ID PK
+        DATETIME FechaHoraEmision
+        INT ID-Turno FK
+        INT ID-Tarifa FK
+    }
+
+    Usuario{
+        INT ID PK
+        STRING Nombre
+        STRING Apellido
+        STRING Direccion
+        STRING Email
+        STRING TipoDocumento
+        LONGINT NumeroDocumento
+        STRING Contrasena
+        BOOL Permisos
+    }
+
+    TurnoTrabajo{
+        INT ID PK
+        DATETIME FechaHoraInicio
+        DATETIME FechaHoraFin
+        STRING SentidoCobro
+        FLOAT MontoCambio
+        STRING Direccion-Reporte
+        BOOL Estado
+        INT ID-Casilla FK
+        INT ID-Operador FK
+    }
