@@ -38,6 +38,7 @@ class TurnoTrabajo(models.Model):
     enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
     id_casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
     id_operador = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    estado = models.BooleanField(("Estado:"))
 
 
 class Tarifa(models.Model):
