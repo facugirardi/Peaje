@@ -19,6 +19,12 @@ class Ruta(models.Model):
 
     def listar_estaciones(self):
         return Estacion.objects.filter(id_ruta=self)
+    
+    def agregar_estacion(self):
+        pass
+
+    def eliminar_estacion(self):
+        pass
 
 class Estacion(models.Model):
     numero_estacion = models.IntegerField(("Numero Estacion:"))
@@ -27,16 +33,33 @@ class Estacion(models.Model):
 
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
+    
+    def abrir_casilla(self):
+        pass
+
+    def cerrar_casilla(self):
+        pass
 
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
-    estado = models.BooleanField(("Estado:"), default=True)
+    estado = models.BooleanField(("Abierto:"), default=True)
     id_estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Casilla {self.num_casilla} de Estación N°{self.id_estacion.numero_estacion}"
 
+    def emitir_ticket(self):
+        pass
+
+    def registrar_cobro(self):
+        pass
+
+    def cambiar_estado(self):
+        pass
+
+    def generar_reporte_casilla(self):
+        pass
 
 class Usuario(models.Model):
     nombre = models.CharField(("Nombre:"), max_length=50)
@@ -46,10 +69,19 @@ class Usuario(models.Model):
     tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
     numero_documento = models.CharField(("Numero Documento:"), max_length=50)
     password = models.CharField(("Password:"), max_length=50)
-    permisos = models.BooleanField(("Permiso:"))
+    permisos = models.BooleanField(("Admin:"))
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
+
+    def iniciar_sesion(self):
+        pass
+
+    def cambiar_permisos(self):
+        if self.permisos == True:
+            self.permisos = False
+        else:
+            self.permisos = True
 
     def modificar_datos(self, n_nombre, n_apellido, n_direccion):
         self.nombre = n_nombre
@@ -71,6 +103,20 @@ class TurnoTrabajo(models.Model):
     def __str__(self):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
 
+    def iniciar_turno(self):
+        pass
+    
+    def cerrar_turno(self):
+        pass
+
+    def duracion_turno(self):
+        pass
+
+    def generar_reporte_turno(self):
+        pass
+
+    def ingresar_monto_inicial(self):
+        pass
 
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
@@ -89,6 +135,8 @@ class Tarifa(models.Model):
     def __str__(self):
         return f"{self.get_categoria_display()} - Monto: {self.monto}"
 
+    def modif_tarifa(self):
+        pass
 
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
@@ -97,3 +145,6 @@ class RegistroCobro(models.Model):
 
     def __str__(self):
         return f"Registro de Cobro - Emisión: {self.fh_emision}, Turno: {self.id_turno}, Tarifa: {self.id_tarifa}"
+
+    def generar_informe_caja(self):
+        pass
