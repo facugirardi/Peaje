@@ -71,6 +71,12 @@ class Estacion(models.Model):
     def setKm_ruta(self):
         pass 
 
+    def getId_ruta(self):
+        pass
+
+    def setId_ruta(self):
+        pass 
+
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
     estado = models.BooleanField(("Abierto:"), default=True)
