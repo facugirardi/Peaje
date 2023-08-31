@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -45,6 +46,9 @@ class Ruta(models.Model):
     def set_coordenadas(self, nuevas_coordenadas):
         self.coordenadas = nuevas_coordenadas
         self.save()
+
+class RutaBuscar(admin.ModelAdmin):
+    search_fields = ["nombre", "tipo", "coordenadas"]
 
 
 class Estacion(models.Model):
@@ -117,7 +121,7 @@ class Casilla(models.Model):
         pass
 
 
-    
+
 class Usuario(models.Model):
     nombre = models.CharField(("Nombre:"), max_length=50)
     apellido = models.CharField(("Apellido:"), max_length=50)
