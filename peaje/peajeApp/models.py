@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib import admin
 
-# Create your models here.
 
 class Ruta(models.Model):
 
@@ -11,7 +10,7 @@ class Ruta(models.Model):
         ('Municipal', 'Muncipal'),
     )
 
-    nombre = models.CharField(("Nombre Ruta:"), max_length=50)
+    _nombre = models.CharField(("Nombre Ruta:"), max_length=50)
     tipo = models.CharField(("Tipo Ruta:"), max_length=50, choices=TIPOS_RUTA)
     coordenadas = models.CharField(("Coordenada Ruta:"), max_length=50)
 
@@ -25,37 +24,13 @@ class Ruta(models.Model):
         pass
 
     def eliminar_estacion(self):
-        pass
-
-    def get_nombre(self):
-        pass
-
-    def set_nombre(self):
-        pass
-
-    def get_tipo(self):
-        return self.tipo
-    
-    def set_tipo(self, nuevo_tipo):
-        self.tipo = nuevo_tipo
-        self.save()
-
-    def get_coordenadas(self):
-        return self.coordenadas
-    
-    def set_coordenadas(self, nuevas_coordenadas):
-        self.coordenadas = nuevas_coordenadas
-        self.save()
-
-
-class RutaBuscar(admin.ModelAdmin):
-    search_fields = ["nombre", "tipo", "coordenadas"]
+        pass    
 
 
 class Estacion(models.Model):
-    numero_estacion = models.IntegerField(("Numero Estacion:"))
-    km_ruta = models.IntegerField(("KM Ruta:"))
-    id_ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
+    _numero_estacion = models.IntegerField(("Numero Estacion:"))
+    _km_ruta = models.IntegerField(("KM Ruta:"))
+    ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
@@ -66,28 +41,11 @@ class Estacion(models.Model):
     def cerrar_casilla(self):
         pass
 
-    def get_numero_estacion(self):
-        return self.numero_estacion
-    
-    def set_numero_estacion(self, nuevo_numero):
-        self.numero_estacion = nuevo_numero
-        self.save()
-
-    def get_km_ruta(self):
-        return self.km_ruta
-    
-    def set_km_ruta(self, nuevo_km):
-        self.km_ruta = nuevo_km
-        self.save()
-
-    def get_id_ruta(self):
-        return self.id_ruta
-
 
 class Casilla(models.Model):
-    num_casilla = models.IntegerField(("Numero Casilla:"))
-    estado = models.BooleanField(("Abierto:"), default=True)
-    id_estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
+    _num_casilla = models.IntegerField(("Numero Casilla:"))
+    _estado = models.BooleanField(("Abierto:"), default=True)
+    estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Casilla {self.num_casilla} de Estación N°{self.id_estacion.numero_estacion}"
@@ -104,33 +62,16 @@ class Casilla(models.Model):
     def generar_reporte_casilla(self):
         pass
 
-    def get_num_casilla(self):
-        return self.num_casilla
-    
-    def set_num_casilla(self, nuevo_numero):
-        self.num_casilla = nuevo_numero
-        self.save()
-
-    def get_estado(self):
-        return self.estado
-    
-    def set_estado(self, nuevo_estado):
-        self.estado = nuevo_estado
-        self.save()
-
-    def get_id_estacion(self):
-        pass
-
 
 class Usuario(models.Model):
-    nombre = models.CharField(("Nombre:"), max_length=50)
-    apellido = models.CharField(("Apellido:"), max_length=50)
-    direccion = models.CharField(("Direccion:"), max_length=50) 
-    email = models.EmailField(("Email:"), max_length=254)
-    tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
-    numero_documento = models.CharField(("Numero Documento:"), max_length=50)
-    password = models.CharField(("Password:"), max_length=50)
-    permisos = models.BooleanField(("Admin:"))
+    _nombre = models.CharField(("Nombre:"), max_length=50)
+    _apellido = models.CharField(("Apellido:"), max_length=50)
+    _direccion = models.CharField(("Direccion:"), max_length=50) 
+    _email = models.EmailField(("Email:"), max_length=254)
+    _tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
+    _numero_documento = models.CharField(("Numero Documento:"), max_length=50)
+    _password = models.CharField(("Password:"), max_length=50)
+    _permisos = models.BooleanField(("Admin:"))
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
@@ -148,19 +89,16 @@ class Usuario(models.Model):
         self.direccion = n_direccion
         self.save()
 
-    def get_nombre(self):
-        pass
-
 
 class TurnoTrabajo(models.Model):
-    fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
-    fh_fin = models.DateTimeField(("Fecha y Hora Final:"), auto_now=False, auto_now_add=False)
+    _fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
+    _fh_fin = models.DateTimeField(("Fecha y Hora Final:"), auto_now=False, auto_now_add=False)
     sentido_cobro = models.CharField(("Sentido de Cobro:"), max_length=100)
-    monto_inicial = models.DecimalField(("Monto Inicial:"),max_digits=5,decimal_places=2)
-    enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
-    estado = models.BooleanField(("Estado:"), default=True)
-    id_casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
-    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    _monto_inicial = models.DecimalField(("Monto Inicial:"),max_digits=5,decimal_places=2)
+    _enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
+    _estado = models.BooleanField(("Estado:"), default=True)
+    casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
@@ -181,42 +119,6 @@ class TurnoTrabajo(models.Model):
 
     def ingresar_monto_inicial(self):
         pass
-
-    def get_fh_inicio(self):
-        pass
-
-    def set_fh_inicio(self):
-        pass
-
-    def get_fh_fin(self):
-        pass
-
-    def set_fh_fin(self):
-        pass
-
-    def set_sentido_cobro(self):
-        pass
-
-    def get_sentido_cobro(self):
-        pass
-
-    def set_monto_inicial(self):
-        pass
-
-    def get_monto_inicial(self):
-        pass
-
-    def set_enlace_reporte(self):
-        pass
-    
-    def get_enlace_reporte(self):
-        pass
-    
-    def set_estado(self):
-        pass
-
-    def get_estado(self):
-        pass
     
     
 class Tarifa(models.Model):
@@ -230,7 +132,7 @@ class Tarifa(models.Model):
     )
 
     categoria = models.CharField(("Categoria Vehiculo"), max_length=50, choices=CATEGORIAS_VEHICULO)
-    monto = models.DecimalField(("Monto:"), max_digits=5,decimal_places=2)
+    _monto = models.DecimalField(("Monto:"), max_digits=5,decimal_places=2)
     fecha_modificacion = models.DateField(("Fecha Modificacion:"), auto_now=False, auto_now_add=False)
 
     def __str__(self):
@@ -239,45 +141,15 @@ class Tarifa(models.Model):
     def modif_tarifa(self, nuevo_monto):
         self.monto = nuevo_monto
         self.save()
-        
-    def get_categoria(self):
-        pass
-    
-    def set_categoria(self):
-        pass
-    
-    def get_monto(self):
-        pass
-    
-    def set_monto(self):
-        pass
-    
-    def get_fecha_modif(self):
-        pass
-    
-    def set_fecha_modif(self):
-        pass
-    
+            
     
 class RegistroCobro(models.Model):
-    fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
-    id_turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
-    id_tarifa = models.ForeignKey(Tarifa,on_delete=models.CASCADE)
+    _fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
+    turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
+    tarifa = models.ForeignKey(Tarifa,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Registro de Cobro - Emisión: {self.fh_emision}, Turno: {self.id_turno}, Tarifa: {self.id_tarifa}"
 
     def generar_informe_caja(self):
-        pass
-
-    def set_fh_emision(self):
-        pass
-
-    def get_fh_emision(self):
-        pass
-
-    def get_id_turno(self):
-        pass
-
-    def get_id_tarifa(self):
         pass
