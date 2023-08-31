@@ -204,6 +204,9 @@ class TurnoTrabajo(models.Model):
 
     def getMonto_inicial(self):
         pass
+
+    def setEnlace_reporte(self):
+        pass
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
         ('motocicleta', 'Motocicleta'),
