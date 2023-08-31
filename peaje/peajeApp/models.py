@@ -32,6 +32,18 @@ class Ruta(models.Model):
     def setNombre(self):
         pass
 
+    def getTipo(self):
+        pass
+
+    def setTipo(self):
+        pass
+
+    def getCoordenadas(self):
+        pass
+
+    def setCoordenadas(self):
+        pass
+
 
 class Estacion(models.Model):
     numero_estacion = models.IntegerField(("Numero Estacion:"))
