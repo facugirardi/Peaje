@@ -47,6 +47,7 @@ class Ruta(models.Model):
         self.coordenadas = nuevas_coordenadas
         self.save()
 
+
 class RutaBuscar(admin.ModelAdmin):
     search_fields = ["nombre", "tipo", "coordenadas"]
 
@@ -121,7 +122,6 @@ class Casilla(models.Model):
         pass
 
 
-
 class Usuario(models.Model):
     nombre = models.CharField(("Nombre:"), max_length=50)
     apellido = models.CharField(("Apellido:"), max_length=50)
@@ -150,6 +150,7 @@ class Usuario(models.Model):
 
     def get_nombre(self):
         pass
+
 
 class TurnoTrabajo(models.Model):
     fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
@@ -217,6 +218,7 @@ class TurnoTrabajo(models.Model):
     def get_estado(self):
         pass
     
+    
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
         ('motocicleta', 'Motocicleta'),
@@ -255,6 +257,7 @@ class Tarifa(models.Model):
     
     def set_fecha_modif(self):
         pass
+    
     
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
