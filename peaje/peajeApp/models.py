@@ -145,7 +145,7 @@ class Usuario(models.Model):
         self.save()
 
     def get_nombre(self):
-        
+        pass
 
 class TurnoTrabajo(models.Model):
     fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
