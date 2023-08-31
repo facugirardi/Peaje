@@ -32,17 +32,20 @@ class Ruta(models.Model):
     def setNombre(self):
         pass
 
-    def getTipo(self):
-        pass
 
-    def setTipo(self):
-        pass
+    def get_tipo(self):
+        return self.tipo
+    
+    def set_tipo(self, nuevo_tipo):
+        self.tipo = nuevo_tipo
+        self.save()
 
-    def getCoordenadas(self):
-        pass
-
-    def setCoordenadas(self):
-        pass
+    def get_coordenadas(self):
+        return self.coordenadas
+    
+    def set_coordenadas(self, nuevas_coordenadas):
+        self.coordenadas = nuevas_coordenadas
+        self.save()
 
 
 class Estacion(models.Model):
@@ -59,23 +62,26 @@ class Estacion(models.Model):
     def cerrar_casilla(self):
         pass
 
-    def getNumero_estacion(self):
-        pass
+    def get_numero_estacion(self):
+        return self.numero_estacion
+    
+    def set_numero_estacion(self, nuevo_numero):
+        self.numero_estacion = nuevo_numero
+        self.save()
 
-    def setNumero_estacion(self):
-        pass 
-
-    def getKm_ruta(self):
-        pass
-
-    def setKm_ruta(self):
-        pass 
+    def get_km_ruta(self):
+        return self.km_ruta
+    
+    def set_km_ruta(self, nuevo_km):
+        self.km_ruta = nuevo_km
+        self.save()
 
     def getId_ruta(self):
-        pass
+        return self.id_ruta
 
-    def setId_ruta(self):
-        pass 
+    def setId_ruta(self, nuevo_Id_ruta):
+        self.id_ruta = nuevo_Id_ruta
+        self.save()
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
@@ -97,17 +103,19 @@ class Casilla(models.Model):
     def generar_reporte_casilla(self):
         pass
 
-    def getNum_casilla(self):
-        pass
+    def get_num_casilla(self):
+        return self.num_casilla
+    
+    def set_num_casilla(self, nuevo_numero):
+        self.num_casilla = nuevo_numero
+        self.save()
 
-    def setNum_casilla(self):
-        pass 
-
-    def getEstado(self):
-        pass
-
-    def setEstado(self):
-        pass
+    def get_estado(self):
+        return self.estado
+    
+    def set_estado(self, nuevo_estado):
+        self.estado = nuevo_estado
+        self.save()
 
     def getId_estacion(self):
         pass
@@ -133,10 +141,8 @@ class Usuario(models.Model):
         pass
 
     def cambiar_permisos(self):
-        if self.permisos == True:
-            self.permisos = False
-        else:
-            self.permisos = True
+        self.permisos = not self.permisos
+        self.save()
 
     def modificar_datos(self, n_nombre, n_apellido, n_direccion):
         self.nombre = n_nombre
@@ -159,10 +165,12 @@ class TurnoTrabajo(models.Model):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
 
     def iniciar_turno(self):
-        pass
+        self.estado = True
+        self.save()
     
     def cerrar_turno(self):
-        pass
+        self.estado = False
+        self.save()
 
     def duracion_turno(self):
         pass
@@ -173,6 +181,29 @@ class TurnoTrabajo(models.Model):
     def ingresar_monto_inicial(self):
         pass
 
+    def getFh_inicio(self):
+        pass
+
+    def setFh_inicio(self):
+        pass
+
+    def getFh_fin(self):
+        pass
+
+    def setFh_fin(self):
+        pass
+
+    def setSentido_cobro(self):
+        pass
+
+    def getSentido_cobro(self):
+        pass
+
+    def setMonto_inicial(self):
+        pass
+
+    def getMonto_inicial(self):
+        pass
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
         ('motocicleta', 'Motocicleta'),
@@ -190,9 +221,9 @@ class Tarifa(models.Model):
     def __str__(self):
         return f"{self.get_categoria_display()} - Monto: {self.monto}"
 
-    def modif_tarifa(self):
-        pass
-
+    def modif_tarifa(self, nuevo_monto):
+        self.monto = nuevo_monto
+        self.save()
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
     id_turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
@@ -202,4 +233,22 @@ class RegistroCobro(models.Model):
         return f"Registro de Cobro - Emisión: {self.fh_emision}, Turno: {self.id_turno}, Tarifa: {self.id_tarifa}"
 
     def generar_informe_caja(self):
+        pass
+
+    def setFh_emision(self):
+        pass
+
+    def getFh_emision(self):
+        pass
+
+    def getId_turno(self):
+        pass
+
+    def setId_turno(self):
+        pass
+
+    def getId_tarifa(self):
+        pass
+
+    def setId_tarifa(self):
         pass
