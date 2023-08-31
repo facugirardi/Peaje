@@ -59,6 +59,12 @@ class Estacion(models.Model):
     def cerrar_casilla(self):
         pass
 
+    def getNumero_estacion(self):
+        pass
+
+    def setNombre(self):
+        pass 
+
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
