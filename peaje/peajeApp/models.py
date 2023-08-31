@@ -97,6 +97,25 @@ class Casilla(models.Model):
     def generar_reporte_casilla(self):
         pass
 
+    def getNum_casilla(self):
+        pass
+
+    def setNum_casilla(self):
+        pass 
+
+    def getEstado(self):
+        pass
+
+    def setEstado(self):
+        pass
+
+    def getId_estacion(self):
+        pass
+
+    def setId_estacion(self):
+        pass
+
+    
 class Usuario(models.Model):
     nombre = models.CharField(("Nombre:"), max_length=50)
     apellido = models.CharField(("Apellido:"), max_length=50)
