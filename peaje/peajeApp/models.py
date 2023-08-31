@@ -65,6 +65,11 @@ class Estacion(models.Model):
     def setNumero_estacion(self):
         pass 
 
+    def getKm_ruta(self):
+        pass
+
+    def setKm_ruta(self):
+        pass 
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
