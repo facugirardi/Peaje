@@ -26,6 +26,13 @@ class Ruta(models.Model):
     def eliminar_estacion(self):
         pass
 
+    def getNombre(self):
+        pass
+
+    def setNombre(self):
+        pass
+
+
 class Estacion(models.Model):
     numero_estacion = models.IntegerField(("Numero Estacion:"))
     km_ruta = models.IntegerField(("KM Ruta:"))
