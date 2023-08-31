@@ -26,12 +26,11 @@ class Ruta(models.Model):
     def eliminar_estacion(self):
         pass
 
-    def getNombre(self):
+    def get_nombre(self):
         pass
 
-    def setNombre(self):
+    def set_nombre(self):
         pass
-
 
     def get_tipo(self):
         return self.tipo
@@ -76,12 +75,9 @@ class Estacion(models.Model):
         self.km_ruta = nuevo_km
         self.save()
 
-    def getId_ruta(self):
+    def get_id_ruta(self):
         return self.id_ruta
 
-    def setId_ruta(self, nuevo_Id_ruta):
-        self.id_ruta = nuevo_Id_ruta
-        self.save()
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
@@ -117,11 +113,9 @@ class Casilla(models.Model):
         self.estado = nuevo_estado
         self.save()
 
-    def getId_estacion(self):
+    def get_id_estacion(self):
         pass
 
-    def setId_estacion(self):
-        pass
 
     
 class Usuario(models.Model):
@@ -150,6 +144,8 @@ class Usuario(models.Model):
         self.direccion = n_direccion
         self.save()
 
+    def get_nombre(self):
+        
 
 class TurnoTrabajo(models.Model):
     fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
@@ -181,32 +177,42 @@ class TurnoTrabajo(models.Model):
     def ingresar_monto_inicial(self):
         pass
 
-    def getFh_inicio(self):
+    def get_fh_inicio(self):
         pass
 
-    def setFh_inicio(self):
+    def set_fh_inicio(self):
         pass
 
-    def getFh_fin(self):
+    def get_fh_fin(self):
         pass
 
-    def setFh_fin(self):
+    def set_fh_fin(self):
         pass
 
-    def setSentido_cobro(self):
+    def set_sentido_cobro(self):
         pass
 
-    def getSentido_cobro(self):
+    def get_sentido_cobro(self):
         pass
 
-    def setMonto_inicial(self):
+    def set_monto_inicial(self):
         pass
 
-    def getMonto_inicial(self):
+    def get_monto_inicial(self):
         pass
 
-    def setEnlace_reporte(self):
+    def set_enlace_reporte(self):
         pass
+    
+    def get_enlace_reporte(self):
+        pass
+    
+    def set_estado(self):
+        pass
+
+    def get_estado(self):
+        pass
+    
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
         ('motocicleta', 'Motocicleta'),
@@ -227,6 +233,25 @@ class Tarifa(models.Model):
     def modif_tarifa(self, nuevo_monto):
         self.monto = nuevo_monto
         self.save()
+        
+    def get_categoria(self):
+        pass
+    
+    def set_categoria(self):
+        pass
+    
+    def get_monto(self):
+        pass
+    
+    def set_monto(self):
+        pass
+    
+    def get_fecha_modif(self):
+        pass
+    
+    def set_fecha_modif(self):
+        pass
+    
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
     id_turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
@@ -238,20 +263,14 @@ class RegistroCobro(models.Model):
     def generar_informe_caja(self):
         pass
 
-    def setFh_emision(self):
+    def set_fh_emision(self):
         pass
 
-    def getFh_emision(self):
+    def get_fh_emision(self):
         pass
 
-    def getId_turno(self):
+    def get_id_turno(self):
         pass
 
-    def setId_turno(self):
-        pass
-
-    def getId_tarifa(self):
-        pass
-
-    def setId_tarifa(self):
+    def get_id_tarifa(self):
         pass
