@@ -62,7 +62,7 @@ class Estacion(models.Model):
     def getNumero_estacion(self):
         pass
 
-    def setNombre(self):
+    def setNumero_estacion(self):
         pass 
 
 
