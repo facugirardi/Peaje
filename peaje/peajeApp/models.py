@@ -6,8 +6,7 @@ class Ruta(models.Model):
 
     TIPOS_RUTA = (
         ('Nacional', 'Nacional'),
-        ('Provincial', 'Provincial'),
-        ('Municipal', 'Muncipal'),
+        ('Provincial', 'Provincial')
     )
 
     nombre = models.CharField(("Nombre Ruta:"), max_length=50)
