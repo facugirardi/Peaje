@@ -10,7 +10,7 @@ class Ruta(models.Model):
         ('Municipal', 'Muncipal'),
     )
 
-    _nombre = models.CharField(("Nombre Ruta:"), max_length=50)
+    nombre = models.CharField(("Nombre Ruta:"), max_length=50)
     tipo = models.CharField(("Tipo Ruta:"), max_length=50, choices=TIPOS_RUTA)
     coordenadas = models.CharField(("Coordenada Ruta:"), max_length=50)
 
@@ -28,8 +28,8 @@ class Ruta(models.Model):
 
 
 class Estacion(models.Model):
-    _numero_estacion = models.IntegerField(("Numero Estacion:"))
-    _km_ruta = models.IntegerField(("KM Ruta:"))
+    numero_estacion = models.IntegerField(("Numero Estacion:"))
+    km_ruta = models.IntegerField(("KM Ruta:"))
     ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -43,8 +43,8 @@ class Estacion(models.Model):
 
 
 class Casilla(models.Model):
-    _num_casilla = models.IntegerField(("Numero Casilla:"))
-    _estado = models.BooleanField(("Abierto:"), default=True)
+    num_casilla = models.IntegerField(("Numero Casilla:"))
+    estado = models.BooleanField(("Abierto:"), default=True)
     estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -64,14 +64,14 @@ class Casilla(models.Model):
 
 
 class Usuario(models.Model):
-    _nombre = models.CharField(("Nombre:"), max_length=50)
-    _apellido = models.CharField(("Apellido:"), max_length=50)
-    _direccion = models.CharField(("Direccion:"), max_length=50) 
-    _email = models.EmailField(("Email:"), max_length=254)
-    _tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
-    _numero_documento = models.CharField(("Numero Documento:"), max_length=50)
-    _password = models.CharField(("Password:"), max_length=50)
-    _permisos = models.BooleanField(("Admin:"))
+    nombre = models.CharField(("Nombre:"), max_length=50)
+    apellido = models.CharField(("Apellido:"), max_length=50)
+    direccion = models.CharField(("Direccion:"), max_length=50) 
+    email = models.EmailField(("Email:"), max_length=254)
+    tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
+    numero_documento = models.CharField(("Numero Documento:"), max_length=50)
+    password = models.CharField(("Password:"), max_length=50)
+    permisos = models.BooleanField(("Admin:"))
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
@@ -91,12 +91,12 @@ class Usuario(models.Model):
 
 
 class TurnoTrabajo(models.Model):
-    _fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
-    _fh_fin = models.DateTimeField(("Fecha y Hora Final:"), auto_now=False, auto_now_add=False)
+    fh_inicio = models.DateTimeField(("Fecha y Hora Incio:"), auto_now=False, auto_now_add=False)
+    fh_fin = models.DateTimeField(("Fecha y Hora Final:"), auto_now=False, auto_now_add=False)
     sentido_cobro = models.CharField(("Sentido de Cobro:"), max_length=100)
-    _monto_inicial = models.DecimalField(("Monto Inicial:"),max_digits=5,decimal_places=2)
-    _enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
-    _estado = models.BooleanField(("Estado:"), default=True)
+    monto_inicial = models.DecimalField(("Monto Inicial:"),max_digits=5,decimal_places=2)
+    enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50)
+    estado = models.BooleanField(("Estado:"), default=True)
     casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
 
@@ -132,7 +132,7 @@ class Tarifa(models.Model):
     )
 
     categoria = models.CharField(("Categoria Vehiculo"), max_length=50, choices=CATEGORIAS_VEHICULO)
-    _monto = models.DecimalField(("Monto:"), max_digits=5,decimal_places=2)
+    monto = models.DecimalField(("Monto:"), max_digits=5,decimal_places=2)
     fecha_modificacion = models.DateField(("Fecha Modificacion:"), auto_now=False, auto_now_add=False)
 
     def __str__(self):
@@ -144,7 +144,7 @@ class Tarifa(models.Model):
             
     
 class RegistroCobro(models.Model):
-    _fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
+    fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
     turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
     tarifa = models.ForeignKey(Tarifa,on_delete=models.CASCADE)
 
