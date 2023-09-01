@@ -35,13 +35,6 @@ class Estacion(models.Model):
 
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
-    
-    def abrir_casilla(self):
-        pass
-
-    def cerrar_casilla(self):
-        pass
-
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))

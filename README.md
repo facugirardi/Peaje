@@ -72,5 +72,5 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 
 
 ## Diagrama De Clases Del Sistema
-![Imagen Diagrama Entidad-Relacion](docs/DiagramaClass.jpeg)
+![Imagen Diagrama Entidad-Relacion](docs/DiagramaUML.jpeg)
 
