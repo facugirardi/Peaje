@@ -149,6 +149,7 @@ class Tarifa(models.Model):
     
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
+    patente = models.CharField(("Patente:"), max_length=24, default="NULL")
     turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
     tarifa = models.ForeignKey(Tarifa,on_delete=models.CASCADE)
 
