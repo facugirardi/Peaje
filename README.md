@@ -6,6 +6,8 @@
 
 [Diagrama Entidad-Relacion](#diagrama-entidad-relacion-del-sistema)
 
+[Diagrama Clases](#diagrama-de-clases-del-sistema)
+
 
 
 ## Introduccion
