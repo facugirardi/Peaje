@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-
+import datetime
 
 class Ruta(models.Model):
 
@@ -20,11 +20,12 @@ class Ruta(models.Model):
     def listar_estaciones(self):
         return Estacion.objects.filter(id_ruta=self)
     
-    def agregar_estacion(self):
-        pass
+    def agregar_estacion(self, numero_estacion, km_ruta):
+        estacion = Estacion(numero_estacion=numero_estacion, km_ruta=km_ruta, ruta=self)
+        estacion.save()
 
-    def eliminar_estacion(self):
-        pass    
+    def eliminar_estacion(self, estacion_id):
+        Estacion.objects.filter(pk=estacion_id).delete()
 
 
 class Estacion(models.Model):
@@ -57,7 +58,8 @@ class Casilla(models.Model):
         pass
 
     def cambiar_estado(self):
-        pass
+        self.estado = not self.estado
+        self.save()
 
     def generar_reporte_casilla(self):
         pass
@@ -112,13 +114,14 @@ class TurnoTrabajo(models.Model):
         self.save()
 
     def duracion_turno(self):
-        pass
+        return self.fh_fin - self.fh_inicio
 
     def generar_reporte_turno(self):
         pass
 
-    def ingresar_monto_inicial(self):
-        pass
+    def ingresar_monto_inicial(self, monto):
+        self.monto_inicial = monto
+        self.save()
     
     
 class Tarifa(models.Model):
@@ -140,6 +143,7 @@ class Tarifa(models.Model):
 
     def modif_tarifa(self, nuevo_monto):
         self.monto = nuevo_monto
+        self.fecha_modificacion = datetime.now() 
         self.save()
             
     
