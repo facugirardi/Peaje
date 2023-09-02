@@ -11,8 +11,8 @@
   <meta name="keywords" content="" />
 
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="/peaje/peajeApp/static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/peaje/peajeApp/static/css/style.css">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Peaje &mdash; Home</title>
 </head>
 <body>
@@ -35,8 +35,8 @@
           </div>
         </div>
     </div> 
-
-    <script src="/peaje/peajeApp/static/js/typed.js"></script>
+  {% endblock %}
+    <script src="{% static 'js/typed.js' %}"></script>
     <script>
       var typed = new Typed('.typed-words', {
         strings: ["Eficiente","Dinamico","Seguro"],
@@ -48,8 +48,5 @@
         showCursor: true
       });
     </script>
-
-
   </body>
-{% endblock %}
   </html>

@@ -5,5 +5,3 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'index.html')
 
-def detalle_usuario(request):
-    return render(request, 'detalle.html')
