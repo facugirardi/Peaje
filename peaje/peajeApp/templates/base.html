@@ -13,13 +13,10 @@
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <title>
-
-    {% block title %} Home {% endblock %}
-
-  </title>
+  <title> {% block title %} Home {% endblock %} </title>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navScroll">
+    {% block content %} 
 
       <div class="site-blocks-cover">
         <div class="container">
@@ -31,7 +28,7 @@
                 <div class="col-md-10 text-center">
                   <h1>Sistema de Peaje <span class="typed-words"></span></h1>
                   <p class="lead mb-5">Un Sistema de Peaje Moderno y Eficiente al Servicio de la Comunidad.</p>
-                  <div><a data-fancybox data-ratio="2" href="/turno/" class="btn btn-primary btn-md">Iniciar</a></div>
+                  <div><a data-fancybox data-ratio="2" href="{% url 'turno' %}" class="btn btn-primary btn-md">Iniciar</a></div>
                 </div>
               </div>
 
@@ -51,11 +48,7 @@
         loop: true,
         showCursor: true
       });
-    </script>
-
-    {% block content %} 
-    
-
+    </script>    
 
     {% endblock %}
 
