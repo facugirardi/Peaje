@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 <<<<<<< HEAD
 def detalle_usuario(request):
@@ -14,4 +14,3 @@ def admin(request):
 =======
 def creacionTurno(request):
     return render(request, 'turno.html')
->>>>>>> main
