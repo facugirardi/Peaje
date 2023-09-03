@@ -7,3 +7,6 @@ def index(request):
 
 def detalle_usuario(request):
     return render(request, 'detalle.html')
+
+def admin(request):
+    return render(request, 'admin.html')
