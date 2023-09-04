@@ -39,29 +39,6 @@ h1, h2, h3, h4, h5,
     box-shadow: none !important;   
 }
 
-.btn.btn-black {
-    color: #fff;
-    background-color: #000; 
-}
-
-
-.btn.btn-black:hover {
-    color: #000;
-    background-color: #fff; 
-    
-    }
-
-
-    .btn.btn-outline-white {
-    border: 2px solid #fff; 
-}
-
-
-.btn.btn-outline-white:hover {
-    background: #fff;
-    color: #21325E !important;   
-}
-
 .btn.btn-md {
     padding: 15px 30px;
     font-size: 12px;
