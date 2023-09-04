@@ -5,5 +5,10 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'base.html')
 
+
 def creacionTurno(request):
     return render(request, 'turno.html')
+
+
+def operador(request):
+    return render(request, 'operador.html')
