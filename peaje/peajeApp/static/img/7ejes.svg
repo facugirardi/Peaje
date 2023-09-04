@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<svg width="70" height="36" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+ <defs>
+  <symbol id="svg_4" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
+   <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+   <path d="m64,32c-35.3,0 -64,28.7 -64,64l0,208l0,80l0,16c0,44.2 35.8,80 80,80c26.2,0 49.4,-12.6 64,-32c14.6,19.4 37.8,32 64,32c44.2,0 80,-35.8 80,-80c0,-5.5 -0.6,-10.8 -1.6,-16l129.6,0l33.6,0c-1,5.2 -1.6,10.5 -1.6,16c0,44.2 35.8,80 80,80s80,-35.8 80,-80c0,-5.5 -0.6,-10.8 -1.6,-16l1.6,0c17.7,0 32,-14.3 32,-32l0,-64l0,-16l0,-10.3c0,-9.2 -3.2,-18.2 -9,-25.3l-58.8,-71.8c-10.6,-13 -26.5,-20.5 -43.3,-20.5l-48.9,0l0,-48.1c0,-35.3 -28.7,-64 -64,-64l-352,0zm521,224l-105,0l0,-64l48.8,0c2.4,0 4.7,1.1 6.2,2.9l50,61.1zm-57,112a32,32 0 1 1 0,64a32,32 0 1 1 0,-64zm-352,32a32,32 0 1 1 64,0a32,32 0 1 1 -64,0zm-96,-32a32,32 0 1 1 0,64a32,32 0 1 1 0,-64z"/>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use fill="#21325e" id="svg_5" transform="matrix(0.822666 0 0 0.825329 6.08575 2.48537)" x="12.68" xlink:href="#svg_4" y="0.22"/>
+  <rect fill="#21325e" height="19.1" id="svg_15" width="29.8" x="0.8" y="4.6"/>
+  <ellipse cx="11.2" cy="25.4" fill="#21325e" id="svg_16" rx="3.8" ry="4.6"/>
+  <ellipse cx="49.75" cy="26" fill="#21325e" id="svg_17" rx="3.9" ry="4.6"/>
+  <ellipse cx="11.2" cy="25.45" fill="#ffffff" id="svg_23" rx="1.8" ry="1.85"/>
+  <ellipse cx="49.65" cy="26.2" fill="#ffffff" id="svg_24" rx="1.8" ry="1.85"/>
+  <ellipse cx="4.85" cy="25.3" fill="#21325e" id="svg_26" rx="3.9" ry="4.6"/>
+  <ellipse cx="4.95" cy="25.5" fill="#ffffff" id="svg_25" rx="1.8" ry="1.85"/>
+  <ellipse cx="20.75" cy="25.5" fill="#21325e" id="svg_29" rx="3.9" ry="4.6"/>
+  <ellipse cx="20.65" cy="25.7" fill="#ffffff" id="svg_28" rx="1.8" ry="1.85"/>
+ </g>
+</svg>
