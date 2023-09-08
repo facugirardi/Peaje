@@ -18,13 +18,6 @@ class Ruta(models.Model):
 
     def listar_estaciones(self):
         return Estacion.objects.filter(id_ruta=self)
-    
-    def agregar_estacion(self, numero_estacion, km_ruta):
-        estacion = Estacion(numero_estacion=numero_estacion, km_ruta=km_ruta, ruta=self)
-        estacion.save()
-
-    def eliminar_estacion(self, estacion_id):
-        Estacion.objects.filter(pk=estacion_id).delete()
 
 
 class Estacion(models.Model):
@@ -34,6 +27,7 @@ class Estacion(models.Model):
 
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
+
 
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
@@ -115,6 +109,9 @@ class TurnoTrabajo(models.Model):
         self.monto_inicial = monto
         self.save()
     
+    def registrar_cobro(self):
+        pass
+
     
 class Tarifa(models.Model):
     CATEGORIAS_VEHICULO = (
@@ -141,7 +138,6 @@ class Tarifa(models.Model):
     
 class RegistroCobro(models.Model):
     fh_emision = models.DateTimeField(("Fecha y Hora Emision:"), auto_now=False, auto_now_add=False)
-    patente = models.CharField(("Patente:"), max_length=24, default="NULL")
     turno = models.ForeignKey(TurnoTrabajo,on_delete=models.CASCADE)
     tarifa = models.ForeignKey(Tarifa,on_delete=models.CASCADE)
 
