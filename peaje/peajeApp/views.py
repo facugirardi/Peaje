@@ -12,3 +12,7 @@ def creacionTurno(request):
 
 def operador(request):
     return render(request, 'operador.html')
+
+
+def login(request):
+    return render(request, 'login.html')
