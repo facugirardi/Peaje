@@ -4,16 +4,16 @@ body {
   color: #818181;
   font-weight: 300;
   font-size: 15px;
-  background: #EEEEEE; }
+  background: #EEEEEE; } 
 
 
 ::-moz-selection {
   background: #000;
-  color: #fff; }
+ }
 
 ::selection {
   background: #000;
-  color: #fff; }
+  }
 
 a {
   -webkit-transition: .3s all ease;

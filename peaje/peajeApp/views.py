@@ -15,5 +15,8 @@ def operador(request):
     return render(request, 'operador.html')
 
 
+def login(request):
+    return render(request, 'login.html')
+
 def creacion_empleado(request):
     return render(request, 'creacion_empleado.html')
