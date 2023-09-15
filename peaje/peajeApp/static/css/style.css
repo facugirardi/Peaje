@@ -103,8 +103,9 @@ h1, h2, h3, h4, h5,
     height: calc(20vh); }
 
 .login-title{
+  margin-top: -50px !important;
   font-weight: 500 !important;
-  margin-bottom: 50px !important;
+  margin-bottom: 30px !important;
 }
 
 .site-blocks-cover h1 {
