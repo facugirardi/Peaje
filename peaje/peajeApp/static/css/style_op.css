@@ -1,37 +1,9 @@
-body {
-    line-height: 1.7;
-    color: #818181;
-    font-weight: 300;
-    font-size: 15px;
-    background: #EEEEEE; }
-  
-  
-::-moz-selection {
-    background: #000;
-    color: #fff; }
-  
-::selection {
-    background: #000;
-    color: #fff; }
-  
-a {
-    -webkit-transition: .3s all ease;
-    -o-transition: .3s all ease;
-    transition: .3s all ease; }
-a:hover {
-    text-decoration: none; }
-
-    h1 {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-      color: #21325E; }
-    
-
-
-.container{
-
-    margin-top: 125px;
-
+body{
+    color: #818181 !important;
+    background: #EEEEEE !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
+    
 
 .order-card {
     color: #21325E;
@@ -43,8 +15,8 @@ a:hover {
 
 .site-section-heading {
     color:#21325E ;
+    margin-top: 50px;
     margin-bottom: 50px;
-    font-weight: 500 !important;    
 }
 
 .card {

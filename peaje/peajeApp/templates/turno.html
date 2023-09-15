@@ -6,35 +6,49 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style_head.css' %}">
 {% endblock %}
 
 {% block content %} 
     
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
+    <div class="container">
+        <section class="header">
+            <nav>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{% url 'index' %}">HOME</a></li>
+                        <li><a href="{% url 'turno' %}">TURNO</a></li>
+                        <li><a href="{% url 'creacion_empleado' %}">CREAR</a></li>
+                </div>
+            </nav>
+        </section>
+    </div> 
+    
+
     <section class="site-section" id="contact-section">
         <div class="container">
             <div class="row mb-5">
-            <div class="col-12 text-center">
-            <h1 class="site-section-heading">Panel Administrador</h1>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-12 mb-5">
     
     
-        <form action="#" class="p-5 bg-white">
+        <form action="#" class="p-5 bg-white" method = 'POST'>
+            
+            {% csrf_token %}
     
         <h2 class="h4 mb-5">Creacion Turno</h2> 
     
         <div class="row form-group">
         <div class="col-md-6 mb-3 mb-md-0">
             <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
-            <input type="text" id="input-id-casilla" class="form-control">
+            <input type="text" id="input-id-casilla" class="form-control" name="idcasilla">
         </div>
         <div class="col-md-6">
             <label class="text-black" for="lbl-id-casilla">ID Operador</label>
-            <input type="text" id="input-id-operador" class="form-control">
+            <input type="text" id="input-id-operador" class="form-control" name="idoperador">
         </div>
         </div>
     
@@ -42,14 +56,14 @@
     <div class="row form-group">
         <div class="col-md-12">
         <label class="text-black" for="lbl-start-time">Hora Inicio:</label> 
-        <input type="datetime-local" id="start-time" class="form-control">
+        <input type="datetime-local" id="start-time" class="form-control" name = "fh-incio">
         </div>
     </div>
     
     <div class="row form-group">
         <div class="col-md-12">
         <label class="text-black" for="lbl-end-time">Hora Fin:</label> 
-        <input type="datetime-local" id="end-time" class="form-control">
+        <input type="datetime-local" id="end-time" class="form-control" name="fh-fin">
         </div>
     </div>
     
@@ -58,7 +72,7 @@
     
         <div class="col-md-12">
             <label class="text-black" for="lbl-monto">Monto inicial:</label> 
-            <input type="number" id="input-monto" class="form-control">
+            <input type="text" id="input-monto" class="form-control" name="monto-inicial">
         </div>
     </div>
     
@@ -66,7 +80,7 @@
     
         <div class="col-md-12">
             <label class="text-black" for="lbl-direction">Sentido cobro:</label> 
-            <select name="direction" id="input-direction" class="form-control">
+            <select name="direccion" id="input-direction" class="form-control">
     
             <option value="Oeste-Este">Oeste-Este</option>
             <option value="Este-Oeste">Este-Oeste</option>

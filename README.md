@@ -9,8 +9,8 @@
 [Diagrama Clases](#diagrama-de-clases-del-sistema)
 
 
-## Introduccion
 
+## Introduccion
 Este proyecto consiste en implementar un sistema de gestión y control de peaje con el propósito de administrar de manera eficiente la recaudación en todas las estaciones de las rutas de la provincia de Córdoba.
 
 
@@ -37,10 +37,9 @@ Django requerido:
 ```bash
     pip install Django
 ```
-
 <hr>
-
 Pipenv requerido:
+
 
 *input:*
 ```bash
@@ -69,10 +68,9 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 >Una vez hayas seguido estos pasos, podrás ejecutar y/o trabajar en el proyecto sin ningún problema.
 
 ## Diagrama Entidad-Relacion Del Sistema
-
 ![Imagen Diagrama Entidad-Relacion](docs/DiagramaER.jpeg)
 
 
 ## Diagrama De Clases Del Sistema
-
 ![Imagen Diagrama Entidad-Relacion](docs/DiagramaUML.jpeg)
+

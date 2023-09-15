@@ -19,12 +19,14 @@ a {
   -o-transition: .3s all ease;
   transition: .3s all ease; }
   a:hover {
-    text-decoration: none; }
+    text-decoration: none; 
+}
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  color: #21325E; }
+  color: #21325E; 
+}
 
 
 .site-section-heading {
@@ -70,11 +72,13 @@ h1, h2, h3, h4, h5,
   background-repeat: no-repeat;
   background-position: top;
   background-position: center center;
-  background: #E5E5E5; }
+  background: #E5E5E5; 
+}
 
 
 .site-blocks-cover.overlay {
-  position: relative; }
+  position: relative; 
+}
 
 
 .site-blocks-cover.overlay:before {
@@ -84,23 +88,27 @@ h1, h2, h3, h4, h5,
   bottom: 0;
   right: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.4); }
+  background: rgba(0, 0, 0, 0.4); 
+}
 
 
 .site-blocks-cover .player {
   position: absolute;
   bottom: -250px;
-  width: 100%; }
+  width: 100%; 
+}
 
 
 .site-blocks-cover, .site-blocks-cover > .container > .row {
   min-height: 600px;
-  height: calc(100vh); }
+  height: calc(100vh); 
+}
 
 
 .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover > .container > .row {
     min-height: 400px;
-    height: calc(20vh); }
+    height: calc(20vh); 
+}
 
 .login-title{
   margin-top: -65px !important;
@@ -134,10 +142,4 @@ h1, h2, h3, h4, h5,
   } 
 }
 
-
-.site-section {
-    padding: 2.5em 0; }
-    @media (min-width: 768px) {
-    .site-section {
-        padding: 5em 0; } }
 
