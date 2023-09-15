@@ -24,11 +24,11 @@
     <div class="row form-group">
     <div class="col-md-6 mb-3 mb-md-0">
         <label class="text-black" for="lbl-nombre">Nombre:</label>
-        <input type="text" id="nombre-empleado" class="form-control" name="nombre-empleado">
+        <input type="text" id="nombre-empleado" class="form-control" name="nombre-empleado" pattern = "[A-Za-z\s]+">
     </div>
     <div class="col-md-6">
         <label class="text-black" for="lbl-apellido">Apellido:</label>
-        <input type="text" id="apellido-empleado" class="form-control" name="apellido-empleado">
+        <input type="text" id="apellido-empleado" class="form-control" name="apellido-empleado" pattern = "[A-Za-z\s]+">
     </div>
     </div>
 
@@ -36,14 +36,14 @@
 <div class="row form-group">
     <div class="col-md-12">
     <label class="text-black" for="lbl-direccion">Direccion:</label> 
-    <input type="text" id="direccion-empleado" class="form-control" name = "direccion-empleado">
+    <input type="text" id="direccion-empleado" class="form-control" name = "direccion-empleado" pattern="[A-Za-z0-9\s,.-]+">
     </div>
 </div>
 
 <div class="row form-group">
     <div class="col-md-12">
     <label class="text-black" for="lbl-email">Email:</label> 
-    <input type="text" id="email-empleado" class="form-control" name="email-empleado">
+    <input type="email" id="email-empleado" class="form-control" name="email-empleado">
     </div>
 </div>
 
@@ -57,14 +57,14 @@
 <div class="row form-group">
     <div class="col-md-12">
     <label class="text-black" for="lbl-tipo-documento">Numero Documento:</label> 
-    <input type="text" id="nro-documento-empleado" class="form-control" name="nro-documento-empleado">
+    <input type="text" id="nro-documento-empleado" class="form-control" name="nro-documento-empleado" pattern="[0-9]">
     </div>
 </div>
 
 <div class="row form-group">
     <div class="col-md-12">
     <label class="text-black" for="lbl-pass-empleado">Contraseña:</label> 
-    <input type="password" id="pass-empleado" class="form-control" name="pass-empleado">
+    <input type="password" id="pass-empleado" class="form-control" name="pass-empleado" pattern="^[a-zA-Z0-9]{8,}$">
     </div>
 </div>
 
