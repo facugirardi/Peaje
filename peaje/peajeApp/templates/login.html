@@ -14,7 +14,7 @@
 
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <h1>Login <span class="typed-words"></span></h1>
+              <b><h1 class='login-title'>Login</h1></b>
               <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form id="loginForm">
@@ -35,18 +35,5 @@
       </div>
     </div>
 </div> 
-
-<script src="{% static 'js/typed.js' %}"></script>
-<script>
-  var typed = new Typed('.typed-words', {
-    strings: ["Eficiente","Dinamico","Seguro"],
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 2000,
-    startDelay: 1000,
-    loop: true,
-    showCursor: true
-  });
-</script>    
 
 {% endblock %}

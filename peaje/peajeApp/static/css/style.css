@@ -6,7 +6,6 @@ body {
   font-size: 15px;
   background: #EEEEEE; } 
 
-
 ::-moz-selection {
   background: #000;
  }
@@ -103,6 +102,10 @@ h1, h2, h3, h4, h5,
     min-height: 400px;
     height: calc(20vh); }
 
+.login-title{
+  font-weight: 500 !important;
+  margin-bottom: 50px !important;
+}
 
 .site-blocks-cover h1 {
   font-size: 3rem;
@@ -136,3 +139,4 @@ h1, h2, h3, h4, h5,
     @media (min-width: 768px) {
     .site-section {
         padding: 5em 0; } }
+
