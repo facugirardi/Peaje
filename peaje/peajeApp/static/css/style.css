@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5,
 }
 
 .btn.btn-md {
-    padding: 15px 30px;
+    padding: 12.5px 25px;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: .1em; 
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5,
     height: calc(20vh); }
 
 .login-title{
-  margin-top: -50px !important;
+  margin-top: -65px !important;
   font-weight: 500 !important;
   margin-bottom: 30px !important;
 }

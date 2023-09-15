@@ -19,3 +19,6 @@ def login(request):
 
 def creacion_empleado(request):
     return render(request, 'creacion_empleado.html')
+
+
+# Creacion Empleado, Login y Creacion Turno
