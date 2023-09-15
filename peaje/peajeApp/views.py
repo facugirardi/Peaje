@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from peajeApp.models import *
+from django.views.generic import ListView
 
 # Create your views here.
-def index(request):
+def base(request):
     return render(request, 'base.html')
 
 
