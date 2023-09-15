@@ -1,0 +1,111 @@
+ {% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Panel Operador {% endblock %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/style_op.css' %}">
+
+{% endblock %}
+
+{% block content %} 
+<body>
+<div class="container">
+    <div class="col-12 text-center">
+        <h1 class="site-section-heading">Panel Operador</h1>
+        </div>
+    <div class="row">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Motocicletas</h6>
+                    <h2 class="text-right"><i class="fa fa-motorcycle f-left"></i><span>1</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$40</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Automoviles</h6>
+                    <h2 class="text-right"><i class="fa fa-car-side f-left"></i><span>2</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$80</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">2 Ejes</h6>
+                    <h2 class="text-right"><i class="fa fa-truck f-left"></i><span>3</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$160</span></p>
+                    <span class="tooltiptext">Con Ruedas Duales o Altura Mayor a 2,10m.</span>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">3 o 4 Ejes</h6>
+                    <h2 class="text-right"><img class="fa f-left" src="{% static 'img/auto3ejes.svg' %}"><span>4</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$160</span></p>
+                    <span class="tooltiptext">Sin Ruedas Duales y Altura Menor a 2,10m.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">3 o 4 Ejes</h6>
+                    <h2 class="text-right"><i class="fa fa-truck-moving f-left"></i><span>5</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$240</span></p>
+                    <span class="tooltiptext">Con Ruedas Duales o Altura Mayor a 2,10m.</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">5 o 6 Ejes</h6>
+                    <h2 class="text-right"><img class="fa f-left" src="{% static 'img/5ejes.svg' %}"><span>6</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$320</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Mas de 6 Ejes</h6>
+                    <h2 class="text-right"><img class="fa f-left" src="{% static 'img/7ejes.svg' %}"><span>7</span></h2>
+                    <p class="m-b-0">Precio:<span class="f-right">$400</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Finalizar Turno</h6>
+                    <h2 class="text-right"><i class="fa fa-clock f-left"></i><span>‎</span></h2>
+                    <p class="m-b-0">Minutos Restantes<span class="f-right">351</span></p>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-12 text-center">
+    <a data-fancybox data-ratio="2" href="#" class="btn btn-primary btn-md">Emitir Ticket</a>
+    </div>  
+</div>
+<script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
+
+</body>
+{% endblock %}
