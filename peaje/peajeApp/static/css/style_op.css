@@ -27,12 +27,6 @@ a:hover {
     
 
 
-.container{
-
-    margin-top: 125px;
-
-}
-
 .order-card {
     color: #21325E;
 }
@@ -43,6 +37,7 @@ a:hover {
 
 .site-section-heading {
     color:#21325E ;
+    margin-top: 50px;
     margin-bottom: 50px;
     font-weight: 500 !important;    
 }

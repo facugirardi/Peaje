@@ -2,14 +2,24 @@
 
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style_head.css' %}">
 
+<div class="container">
+    <section class="header">
+        <nav>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{% url 'index' %}">HOME</a></li>
+                    <li><a href="{% url 'turno' %}">TURNO</a></li>
+                    <li><a href="{% url 'creacion_empleado' %}">CREAR</a></li>
+            </div>
+        </nav>
+    </section>
+</div> 
 
 <section class="site-section" id="contact-section">
     <div class="container">
         <div class="row mb-5">
-        <div class="col-12 text-center">
-        <h1 class="site-section-heading">Panel Administrador</h1>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-12 mb-5">
