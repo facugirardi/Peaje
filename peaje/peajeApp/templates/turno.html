@@ -43,11 +43,25 @@
         <div class="row form-group">
         <div class="col-md-6 mb-3 mb-md-0">
             <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
-            <input type="text" id="input-id-casilla" class="form-control" name="idcasilla">
-        </div>
+                
+                <select class="form-control", id="input-id-casilla", name="select-casilla-id">
+                
+                    {% for i in casillas %}
+                        <option value="{{i.id}}">{{i.id}}</option>
+                    {% endfor %}
+                
+                </select>
+            </div>
         <div class="col-md-6">
             <label class="text-black" for="lbl-id-casilla">ID Operador</label>
-            <input type="text" id="input-id-operador" class="form-control" name="idoperador">
+            <select class="form-control", id="input-id-casilla", name="select-casilla-id">
+                    
+                    {% for i in operadores %}
+                        <option value="{{i.id}}">{{i.id}}:{{i.nombre}} {{i.apellido}}</option>
+                    {% endfor %}
+            
+            </select>
+
         </div>
         </div>
     

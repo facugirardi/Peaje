@@ -8,7 +8,11 @@ def base(request):
 
 
 def creacionTurno(request):
-    return render(request, 'turno.html')
+
+    operadores = Usuario.objects.all()
+    casillas = Casilla.objects.all()    
+
+    return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
 
 
 def operador(request):
