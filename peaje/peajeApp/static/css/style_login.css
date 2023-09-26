@@ -4,8 +4,8 @@ html{
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background: linear-gradient(#141e30, #21325E);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    background: #EEEEEE;
 }
 .login-box{
     position: absolute;
@@ -14,15 +14,15 @@ body{
     width: 400px;
     padding: 40px;
     transform: translate(-50%,-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: #ffffff;
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
 .login-box h2{
     margin: 0 0 30px;
     padding: 0;
-    color: #fff;
+    color: #21325E;
     text-align: center;
 }
 .login-box .user-box{
@@ -32,10 +32,10 @@ body{
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: #21325E;
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #21325E;
     outline: none;
     background: transparent;
 }
@@ -45,7 +45,7 @@ body{
     left: 0;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: #21325E;
     pointer-events: none;
     transition: .5s;
 }
@@ -53,14 +53,15 @@ body{
 .login-box .user-box input:valid ~ label{
     top: -20px;
     left: 0;
-    color: #03e9f4;
+    color: #21325E;
     font-size: 12px;
 }
 .login-box form a{
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #03e9f4;
+    background-color: #EEEEEE;
+    color: #21325E;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -68,11 +69,15 @@ body{
     transition: .5s;
     margin-top: 40px;
     letter-spacing: 4px;
+    border-radius: 2.5px;
 }
+
+
+
 .login-box a:hover{
-    background: #03e9f4;
+    background: #21325E;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 7.5px;
 
 }
 .login-box a span{
@@ -84,7 +89,7 @@ body{
     left: -100%;
     height: 2px;
     width: 100%;
-    background: linear-gradient(90deg,transparent,#03e9f4);
+    background: linear-gradient(90deg,transparent,#21325E);
     animation: btn-anim1 1s linear infinite;
 }
 @keyframes btn-anim1{
@@ -100,7 +105,7 @@ body{
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg,transparent,#03e9f4);
+    background: linear-gradient(180deg,transparent,#21325E);
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s;
 }
@@ -117,7 +122,7 @@ body{
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg,transparent,#03e9f4);
+    background: linear-gradient(270deg,transparent,#21325E);
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s;
 }
@@ -134,7 +139,7 @@ body{
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg,transparent,#03e9f4);
+    background: linear-gradient(360deg,transparent,#21325E);
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s;
 }
