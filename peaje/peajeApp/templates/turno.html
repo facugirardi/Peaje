@@ -47,12 +47,11 @@
                 <select class="form-control", id="input-id-casilla", name="select-casilla-id">
                 
                     {% for i in casillas %}
-                        <option value="{{i.id}}">{{i.id}}</option>
+                        <option value="{{i.id}}">Casilla N°{{i.id}} {{i.estacion}}</option>
                     {% endfor %}
                 
                 </select>
-            </div>
-        <div class="col-md-6">
+            </div>        <div class="col-md-6">
             <label class="text-black" for="lbl-id-casilla">ID Operador</label>
             <select class="form-control", id="input-id-casilla", name="select-casilla-id">
                     
