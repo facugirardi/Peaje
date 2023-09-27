@@ -36,8 +36,7 @@
     
         <form action="#" class="p-5 bg-white" method = 'POST'>
             
-            {% csrf_token %}
-    
+            {% csrf_token %}    
         <h2 class="h4 mb-5">Creacion Turno</h2> 
     
         <div class="row form-group">
@@ -45,18 +44,20 @@
             <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
                 
                 <select class="form-control", id="input-id-casilla", name="select-casilla-id">
+                    <option class="form-control">Seleccione una opcion:</option>
                 
                     {% for i in casillas %}
-                        <option value="{{i.id}}">Casilla N°{{i.id}} {{i.estacion}}</option>
+                        <option value="{{i.id}}" class="form-control">Casilla N°{{i.id}} {{i.estacion}}</option>
                     {% endfor %}
                 
                 </select>
             </div>        <div class="col-md-6">
             <label class="text-black" for="lbl-id-casilla">ID Operador</label>
             <select class="form-control", id="input-id-casilla", name="select-casilla-id">
-                    
+                    <option class="form-control">Seleccione una opcion:</option>
+
                     {% for i in operadores %}
-                        <option value="{{i.id}}">{{i.id}}:{{i.nombre}} {{i.apellido}}</option>
+                        <option value="{{i.id}}">ID{{i.id}} [{{i.nombre}} {{i.apellido}}]</option>
                     {% endfor %}
             
             </select>
