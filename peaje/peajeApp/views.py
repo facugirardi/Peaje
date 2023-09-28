@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, View
 from .models import *
+from django.contrib import messages
 
 # Create your views here.
 def base(request):
@@ -49,7 +50,12 @@ class CreacionEmpleadoView(View):
                            permisos= True
                            )
         
-        empleado.save()
+
+        try:
+            empleado.save()
+            messages.success(request, "Los datos se ingresaron correctamente")
+        except:
+            messages.error(request, f'Error al ingresar los datos')
 
         return render(request, 'creacion_empleado.html')
 
