@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, View
 from .models import *
 
 # Create your views here.
@@ -22,8 +22,14 @@ def operador(request):
 def login(request):
     return render(request, 'login.html')
 
-def creacion_empleado(request):
-    if request.method == 'POST':
+
+
+class CreacionEmpleadoView(View):
+    def get(self, request):
+        return render(request, 'creacion_empleado.html')
+
+
+    def post(self, request):
         nombre = request.POST['nombre-empleado']
         apellido = request.POST['apellido-empleado']
         direccion = request.POST['direccion-empleado']
@@ -45,7 +51,7 @@ def creacion_empleado(request):
         
         empleado.save()
 
-    return render(request, 'creacion_empleado.html')
+        return render(request, 'creacion_empleado.html')
 
 
 # Creacion Empleado, Login y Creacion Turno
