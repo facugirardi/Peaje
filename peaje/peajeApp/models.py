@@ -61,14 +61,29 @@ class Usuario(models.Model):
     nombre = models.CharField(("Nombre:"), max_length=50)
     apellido = models.CharField(("Apellido:"), max_length=50)
     direccion = models.CharField(("Direccion:"), max_length=50) 
-    email = models.EmailField(("Email:"), max_length=254)
+    email = models.EmailField(("Email:"), max_length=254, unique=True)
     tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
     numero_documento = models.CharField(("Numero Documento:"), max_length=50)
     password = models.CharField(("Password:"), max_length=50)
     permisos = models.BooleanField(("Admin:"))
+    
+    REQUIRED_FIELDS = ['password']
+    USERNAME_FIELD = 'email'
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
+    
+    @property
+    def is_anonymous(self):
+        return False
+
+    @property
+    def is_authenticated(self):
+        return True
+    
+    @property
+    def is_active(self):
+        return True
 
     def iniciar_sesion(self):
         pass
