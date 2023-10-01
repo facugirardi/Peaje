@@ -1,12 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic import ListView, View
 from .models import *
-from django.contrib.auth import authenticate, login
-from .models import Usuario
 
 # Create your views here.
 def base(request):
     return render(request, 'base.html')
+
 
 
 class CreacionTurnoView(View):
@@ -48,21 +47,7 @@ def operador(request):
     return render(request, 'operador.html')
 
 
-def custom_login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        try:
-            user = Usuario.objects.get(email=email) 
-            if user.password == password:
-                # Autenticación exitosa
-                request.session['user_id'] = user.id
-                return redirect('nombre_de_la_vista_de_inicio')
-        except Usuario.DoesNotExist:
-            # El usuario no existe
-            pass
-            print('error')
-            
+def login(request):
     return render(request, 'login.html')
 
 
