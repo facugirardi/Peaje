@@ -22,7 +22,7 @@ class CreacionTurnoView(View):
         fh_inicio = request.POST['fh_inicio']
         fh_fin = request.POST['fh_fin']
         sentido_cobro = request.POST['direccion']
-        monto_inicial = request.POST['monto_inicial'] #Hay un problema con el monto inicial, hay que arreglarlo
+        monto_inicial = request.POST['monto_inicial'] 
         operador = request.POST['select_operador_id']
         casilla = request.POST['select_casilla_id']
 
@@ -30,7 +30,7 @@ class CreacionTurnoView(View):
             fh_inicio=fh_inicio,
             fh_fin=fh_fin,
             sentido_cobro=sentido_cobro,
-            monto_inicial=0.00, #Le puse por defecto 0.00, hay que arreglarlo, me da un error de tipo de dato invalid.operation
+            monto_inicial=monto_inicial,
             enlace_reporte='NULL',
             estado=True,
             casilla_id=casilla,
