@@ -1,4 +1,3 @@
-// mi_script.js
 const inputIdEstacion = document.getElementById("input-id-estacion");
 const selectCasilla = document.getElementById("input-id-casilla");
 const casillaOptions = [...selectCasilla];
