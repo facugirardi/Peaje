@@ -41,7 +41,7 @@ class Casilla(models.Model):
     estacion = models.ForeignKey(Estacion,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Casilla {self.num_casilla} de Estación N°{self.id_estacion.numero_estacion}"
+        return f"Casilla {self.num_casilla} de Estación N°{self.estacion.numero_estacion}"
 
     def emitir_ticket(self):
         pass

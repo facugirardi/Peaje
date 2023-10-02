@@ -8,12 +8,40 @@ def base(request):
     return render(request, 'base.html')
 
 
-def creacionTurno(request):
 
-    operadores = Usuario.objects.all()
-    casillas = Casilla.objects.all()    
+class CreacionTurnoView(View):
 
-    return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
+    def get(self, request): 
+        operadores = Usuario.objects.all()
+        casillas = Casilla.objects.all()
+
+        return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
+
+
+
+    def post(self, request):
+        fh_inicio = request.POST['fh_inicio']
+        fh_fin = request.POST['fh_fin']
+        sentido_cobro = request.POST['direccion']
+        monto_inicial = request.POST['monto_inicial'] 
+        operador = request.POST['select_operador_id']
+        casilla = request.POST['select_casilla_id']
+
+        turno = TurnoTrabajo(
+            fh_inicio=fh_inicio,
+            fh_fin=fh_fin,
+            sentido_cobro=sentido_cobro,
+            monto_inicial=monto_inicial,
+            enlace_reporte='NULL',
+            estado=True,
+            casilla_id=casilla,
+            usuario_id=operador
+        )
+        
+        turno.save()
+
+        return render(request, 'turno.html')
+
 
 
 def operador(request):

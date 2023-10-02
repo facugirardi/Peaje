@@ -68,13 +68,13 @@ body{
     padding: 10px 20px;
     background-color: #E5E5E5;
     color: #21325E;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     border-radius: 2.5px;
 }
 
