@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 import datetime
 
+
 class Ruta(models.Model):
 
     TIPOS_RUTA = (

@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
-from django.contrib import messages
+from .models import Usuario
 
 # Create your views here.
 def base(request):
@@ -48,9 +48,22 @@ def operador(request):
     return render(request, 'operador.html')
 
 
-def login(request):
-    return render(request, 'login.html')
+class LoginView(View):
+    template_name = 'login.html'
 
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        email = request.POST['email']
+        password = request.POST['password']
+        try:
+            usuario = Usuario.objects.get(email=email, password=password)
+            request.session['user_id'] = usuario.id
+            return redirect('operador')
+        except Usuario.DoesNotExist:
+            error_message = "Credenciales inválidas. Inténtalo de nuevo."
+            return render(request, self.template_name, {'error_message': error_message})
 
 
 class CreacionEmpleadoView(View):
@@ -78,12 +91,7 @@ class CreacionEmpleadoView(View):
                            permisos= True
                            )
         
-
-        try:
-            empleado.save()
-            messages.success(request, "Los datos se ingresaron correctamente")
-        except:
-            messages.error(request, f'Error al ingresar los datos')
+        empleado.save()
 
         return render(request, 'creacion_empleado.html')
 
