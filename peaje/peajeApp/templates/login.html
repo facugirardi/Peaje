@@ -29,9 +29,11 @@
       </button>
       </div>
   </form>
+  <br>
   {% if error_message %}
-  <p>{{ error_message }}</p>
+  <p id='error_message'>{{ error_message }}</p>
   {% endif %}
 </div>
-
+<br>
+<script src={% static 'js/login.js' %}></script>
 {% endblock %}

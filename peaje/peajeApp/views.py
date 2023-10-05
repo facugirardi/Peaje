@@ -62,7 +62,7 @@ class LoginView(View):
             request.session['user_id'] = usuario.id
             return redirect('operador')
         except Usuario.DoesNotExist:
-            error_message = "Credenciales inválidas. Inténtalo de nuevo."
+            error_message = "Credenciales inválidas."
             return render(request, self.template_name, {'error_message': error_message})
 
 
