@@ -60,7 +60,10 @@ class LoginView(View):
         try:
             usuario = Usuario.objects.get(email=email, password=password)
             request.session['user_id'] = usuario.id
-            return redirect('operador')
+            if usuario.permisos == False:
+                return redirect('operador')
+            else:
+                return redirect('turno')
         except Usuario.DoesNotExist:
             error_message = "Credenciales inválidas."
             return render(request, self.template_name, {'error_message': error_message})
