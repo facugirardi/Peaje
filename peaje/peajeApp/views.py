@@ -32,17 +32,23 @@ class CreacionTurnoView(View):
         fecha_inicio = timezone.make_aware(datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
         fecha_fin = timezone.make_aware(datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
 
-        if fecha_inicio > fecha_fin:
-            error_message = "La fecha de inicio no puede ser mayor que la fecha de finalización."
-            return render(request, 'turno.html', {'error_message': error_message})
-        
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
+        
+        if fecha_inicio > fecha_fin:
+            message = "La fecha de inicio no puede ser mayor que la fecha de finalización."
+            return render(request, 'turno.html', {'message': message})
+        
+        elif duracion_turno > 9:
+            message = "El turno no puede durar más de 9 horas."
+            return render(request, 'turno.html', {'message': message})
 
-        if duracion_turno > 9:
-            error_message = "El turno no puede durar más de 9 horas."
-            return render(request, 'turno.html', {'error_message': error_message})
-
-
+        elif fecha_inicio > fecha_fin and duracion_turno > 9:
+            message = "La fecha de inicio no puede ser mayor que la fecha de finalización y el turno no puede durar más de 9 horas."
+            return render(request, 'turno.html', {'message': message})
+        
+        else:
+            message = "Turno creado correctamente."
+        
         turno = TurnoTrabajo(
             fh_inicio=fh_inicio,
             fh_fin=fh_fin,
