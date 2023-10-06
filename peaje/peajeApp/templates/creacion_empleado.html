@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/style_head.css' %}">
 
-{% comment %} {% if user.is_authenticated %} {% endcomment %}
-
+{% if user.is_authenticated %}
+{% if user.permisos == True %}
 
 <div class="container">
     <section class="header">
@@ -95,9 +95,16 @@
     </div>
     </div>
 </section>
+{% else %}
+<script>
+    window.location.href = "{% url 'operador' %}";
+</script>
+{% endif %}
 
-{% comment %} {% else %}
+
+
+ {% else %}
 <script>
     window.location.href = "{% url 'index' %}";
 </script>
-{% endif %} {% endcomment %}
+{% endif %} 

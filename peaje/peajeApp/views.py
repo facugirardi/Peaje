@@ -3,7 +3,6 @@ from django.views.generic import ListView, View
 from .models import *
 from .models import Usuario
 from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.decorators import login_required
 
 def base(request):
     return render(request, 'base.html')
@@ -64,22 +63,22 @@ class LoginView(View):
         return render(request, self.template_name)
 
     def post(self, request):
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(request, email=email, password=password)
-
+        print(username, password)
+        user = authenticate(request, username=username, password=password)
         print(user)
 
         if user is not None:
             login(request, user)
-            if user.usuario.permisos == False:
-                return redirect('operador')
-            else:
+            if user.permisos == True:
                 return redirect('turno')
+            else:
+                return redirect('operador')
         else:
-            error_message = "Credenciales inválidas."
-            return render(request, self.template_name, {'error_message': error_message})
+            return render(request, self.template_name, {'error_message': 'Credenciales inválidas'})
+
 
 
 class CreacionEmpleadoView(View):

@@ -1,31 +1,28 @@
 from django.db import models
 from django.contrib import admin
 import datetime
-from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
-class UsuarioManager(BaseUserManager):
-    def create_user(self, email, password, **extra_fields):
-        if not email:
-            raise ValueError("The Email field must be set")
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.password = password 
+class CustomUserManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError("El campo de nombre de usuario es obligatorio")
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+    def create_superuser(self, username, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("El superusuario debe tener is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("El superusuario debe tener is_superuser=True.")
 
-        return self.create_user(email, password, **extra_fields)
+        return self.create_user(username, password, **extra_fields)
 
 
 class Ruta(models.Model):
@@ -61,6 +58,7 @@ class Estacion(models.Model):
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
 
+
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
     estado = models.BooleanField(("Abierto:"), default=True)
@@ -83,24 +81,28 @@ class Casilla(models.Model):
         pass
 
 
-class Usuario(models.Model):
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(max_length=30, unique=True)
+    email = models.EmailField(("Email"), max_length=254, unique=True)
     nombre = models.CharField(("Nombre"), max_length=50)
     apellido = models.CharField(("Apellido"), max_length=50)
     direccion = models.CharField(("Direccion"), max_length=50) 
-    email = models.EmailField(("Email"), max_length=254, unique=True)
     tipo_documento = models.CharField(("Tipo Documento"), max_length=50)
     numero_documento = models.CharField(("Numero Documento"), max_length=50)
-    password = models.CharField(("Password"), max_length=50)
     permisos = models.BooleanField(("Admin"), default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    is_anonymous = models.BooleanField(default=False) 
-    is_authenticated = models.BooleanField(default=False) 
-    is_superuser = models.BooleanField(default=False) 
+
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
+
+    objects = CustomUserManager()
+
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
-
+        return f"{self.username} - {self.nombre} {self.apellido}"
 
     def iniciar_sesion(self):
         pass
@@ -116,29 +118,6 @@ class Usuario(models.Model):
         self.apellido = n_apellido
         self.direccion = n_direccion
         self.save()
-
-
-    def has_perm(self, perm, obj=None):
-        return self.is_superuser
-
-
-    def has_module_perms(self, app_label):
-        return self.is_superuser
-
-    def set_password(self, raw_password):
-        self.password = make_password(raw_password)
-
-    def check_password(self, raw_password):
-        return check_password(raw_password, self.password)
-
-    def get_username(self):
-        return self.email
-
-    objects = UsuarioManager()
-
-    USERNAME_FIELD = 'email'
-
-    REQUIRED_FIELDS = ['password']
 
 
 class TurnoTrabajo(models.Model):

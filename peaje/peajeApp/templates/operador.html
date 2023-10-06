@@ -15,7 +15,8 @@
 {% block content %} 
 
 
-{% if request.COOKIES.sesion == 'True' %}
+{% if user.is_authenticated %}
+{% if user.permisos == False %}
 
 
 <div class="container">
@@ -111,6 +112,12 @@
     </div>  
 </div>
 <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
+{% else %}
+<script>
+    window.location.href = "{% url 'turno' %}";
+</script>
+{% endif %}
+
 
 {% else %}
     <script>

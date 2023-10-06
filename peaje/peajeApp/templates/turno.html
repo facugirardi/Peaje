@@ -11,119 +11,126 @@
 
 {% block content %} 
 {% if user.is_authenticated %}
+{% if user.permisos == True %}
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-    <div class="container">
-        <section class="header">
-            <nav>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href="{% url 'turno' %}">TURNO</a></li>
-                        <li><a href="{% url 'creacion_empleado' %}">EMPLEADO</a></li>
-                </div>
-            </nav>
-        </section>
-    </div> 
-    
-
-    <section class="site-section" id="contact-section">
         <div class="container">
-            <div class="row mb-5">
-        </div>
-        <div class="row">
-            <div class="col-md-12 mb-5">
-    
-    
-                <form action="#" class="p-5 bg-white" method="POST">
-                    {% csrf_token %}
-                    <h2 class="h4 mb-5">Creacion Turno</h2>
-                
-                    <div class="row form-group">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" for="lbl-id-estacion">ID Estación</label>
-                            <input type="text" id="input-id-estacion" class="form-control" name="id_estacion">
-                        </div>
-                
-                        <div class="col-md-6">
-                            <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
-                            <select class="form-control" id="input-id-casilla" name="select_casilla_id">
-                                <option class="form-control">Seleccione una opción:</option>
-                
-                                {% for i in casillas %}
-                                <option value="{{ i.id }}" class="form-control" data-estacion="{{ i.estacion.id }}">Casilla N°{{ i.num_casilla }} de la Estacion N° {{ i.estacion_id }}</option>
-                                {% endfor %}
-                
-                            </select>
-                        </div>
+            <section class="header">
+                <nav>
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="{% url 'turno' %}">TURNO</a></li>
+                            <li><a href="{% url 'creacion_empleado' %}">EMPLEADO</a></li>
                     </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-6">
-                            <label class="text-black" for="lbl-id-operador">ID Operador</label>
-                            <select class="form-control" id="input-id-operador" name="select_operador_id">
-                                <option class="form-control">Seleccione una opción:</option>
-                                {% for i in operadores %}
-                                <option value="{{ i.id }}">ID{{ i.id }} [{{ i.nombre }} {{ i.apellido }}]</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="lbl-start-time">Hora Inicio:</label>
-                            <input type="datetime-local" id="start-time" class="form-control" name="fh_inicio">
-                        </div>
-                    </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="lbl-end-time">Hora Fin:</label>
-                            <input type="datetime-local" id="end-time" class="form-control" name="fh_fin">
-                        </div>
-                    </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="lbl-monto">Monto inicial:</label>
-                            <input type="number" id="input-monto" class="form-control" name="monto_inicial" step = "0.01">
-                        </div>
-                    </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="lbl-direccion">Sentido cobro:</label>
-                            <select name="direccion" id="input-direccion" class="form-control">
-                                <option value="Oeste-Este">Oeste-Este</option>
-                                <option value="Este-Oeste">Este-Oeste</option>
-                                <option value="Norte-Sur">Norte-Sur</option>
-                                <option value="Sur-Norte">Sur-Norte</option>
-                            </select>
-                        </div>
-                    </div>
-                
-                    <div class="row form-group">
-                        <div class="col-md-12 text-center">
-                            <input type="submit" value="Ingresar Turno" class="btn btn-primary btn-md text-white">
-                        </div>
-                    </div>
-                </form>
-                
-                <script src="{% static 'js/main.js' %}"></script>
-            
-            </div>
-    
-        </div>
-        </div>
-    </section>
-    
+                </nav>
+            </section>
         </div> 
-    
-    
-    
-    </body>
-    
+        
+
+        <section class="site-section" id="contact-section">
+            <div class="container">
+                <div class="row mb-5">
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-5">
+        
+        
+                    <form action="#" class="p-5 bg-white" method="POST">
+                        {% csrf_token %}
+                        <h2 class="h4 mb-5">Creacion Turno</h2>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label class="text-black" for="lbl-id-estacion">ID Estación</label>
+                                <input type="text" id="input-id-estacion" class="form-control" name="id_estacion">
+                            </div>
+                    
+                            <div class="col-md-6">
+                                <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
+                                <select class="form-control" id="input-id-casilla" name="select_casilla_id">
+                                    <option class="form-control">Seleccione una opción:</option>
+                    
+                                    {% for i in casillas %}
+                                    <option value="{{ i.id }}" class="form-control" data-estacion="{{ i.estacion.id }}">Casilla N°{{ i.num_casilla }} de la Estacion N° {{ i.estacion_id }}</option>
+                                    {% endfor %}
+                    
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label class="text-black" for="lbl-id-operador">ID Operador</label>
+                                <select class="form-control" id="input-id-operador" name="select_operador_id">
+                                    <option class="form-control">Seleccione una opción:</option>
+                                    {% for i in operadores %}
+                                    <option value="{{ i.id }}">ID{{ i.id }} [{{ i.nombre }} {{ i.apellido }}]</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-black" for="lbl-start-time">Hora Inicio:</label>
+                                <input type="datetime-local" id="start-time" class="form-control" name="fh_inicio">
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-black" for="lbl-end-time">Hora Fin:</label>
+                                <input type="datetime-local" id="end-time" class="form-control" name="fh_fin">
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-black" for="lbl-monto">Monto inicial:</label>
+                                <input type="number" id="input-monto" class="form-control" name="monto_inicial" step = "0.01">
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-black" for="lbl-direccion">Sentido cobro:</label>
+                                <select name="direccion" id="input-direccion" class="form-control">
+                                    <option value="Oeste-Este">Oeste-Este</option>
+                                    <option value="Este-Oeste">Este-Oeste</option>
+                                    <option value="Norte-Sur">Norte-Sur</option>
+                                    <option value="Sur-Norte">Sur-Norte</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Ingresar Turno" class="btn btn-primary btn-md text-white">
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <script src="{% static 'js/main.js' %}"></script>
+                
+                </div>
+        
+            </div>
+            </div>
+        </section>
+        
+            </div> 
+        
+        
+        
+        </body>
+    {% else %}
+    <script>
+        window.location.href = "{% url 'operador' %}";
+    </script>
+    {% endif %}
+
+
     {% else %}
     <script>
         window.location.href = "{% url 'index' %}";
