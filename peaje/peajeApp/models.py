@@ -1,6 +1,28 @@
 from django.db import models
 from django.contrib import admin
 import datetime
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError("El campo de nombre de usuario es obligatorio")
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("El superusuario debe tener is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("El superusuario debe tener is_superuser=True.")
+
+        return self.create_user(username, password, **extra_fields)
 
 
 class Ruta(models.Model):
@@ -36,6 +58,7 @@ class Estacion(models.Model):
     def __str__(self):
         return f"Estacion N°{self.numero_estacion}"
 
+
 class Casilla(models.Model):
     num_casilla = models.IntegerField(("Numero Casilla:"))
     estado = models.BooleanField(("Abierto:"), default=True)
@@ -58,25 +81,37 @@ class Casilla(models.Model):
         pass
 
 
-class Usuario(models.Model):
-    nombre = models.CharField(("Nombre:"), max_length=50)
-    apellido = models.CharField(("Apellido:"), max_length=50)
-    direccion = models.CharField(("Direccion:"), max_length=50) 
-    email = models.EmailField(("Email:"), max_length=254)
-    tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
-    numero_documento = models.CharField(("Numero Documento:"), max_length=50)
-    password = models.CharField(("Password:"), max_length=50)
-    permisos = models.BooleanField(("Admin:"))
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(max_length=30, unique=True)
+    email = models.EmailField(("Email"), max_length=254, unique=True)
+    nombre = models.CharField(("Nombre"), max_length=50)
+    apellido = models.CharField(("Apellido"), max_length=50)
+    direccion = models.CharField(("Direccion"), max_length=50) 
+    tipo_documento = models.CharField(("Tipo Documento"), max_length=50)
+    numero_documento = models.CharField(("Numero Documento"), max_length=50)
+    permisos = models.BooleanField(("Admin"), default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
+
+    objects = CustomUserManager()
+
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return f"{self.username} - {self.nombre} {self.apellido}"
 
     def iniciar_sesion(self):
         pass
 
+
     def cambiar_permisos(self):
         self.permisos = not self.permisos
         self.save()
+
 
     def modificar_datos(self, n_nombre, n_apellido, n_direccion):
         self.nombre = n_nombre
@@ -93,7 +128,7 @@ class TurnoTrabajo(models.Model):
     enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50, default='NULL')
     estado = models.BooleanField(("Estado:"), default=True)
     casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
