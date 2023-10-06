@@ -1,3 +1,4 @@
+from sqlite3 import IntegrityError
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
@@ -65,11 +66,9 @@ class LoginView(View):
             error_message = "Credenciales inválidas."
             return render(request, self.template_name, {'error_message': error_message})
 
-
 class CreacionEmpleadoView(View):
     def get(self, request):
         return render(request, 'creacion_empleado.html')
-
 
     def post(self, request):
         nombre = request.POST['nombre-empleado']
@@ -81,19 +80,29 @@ class CreacionEmpleadoView(View):
         pass_empleado = request.POST['pass-empleado']
 
 
-        empleado = Usuario(nombre=nombre, 
-                           apellido=apellido, 
-                           direccion=direccion,
-                           email=correo, 
-                           tipo_documento=tipo_documento,
-                           numero_documento=nro_documento,
-                           password=pass_empleado,
-                           permisos= True
-                           )
-        
-        empleado.save()
+        existe_mail = Usuario.objects.filter(email=correo).exists()
+        existe_documento = Usuario.objects.filter(numero_documento=nro_documento).exists()
 
-        return render(request, 'creacion_empleado.html')
+        if existe_mail:
+            error_message = "El correo electrónico ya existe. Escriba los datos correctamente"
+        elif existe_documento:
+            error_message = "El número de documento ya existe. Escriba los datos correctamente"
+        else:
 
+            empleado = Usuario(nombre=nombre, 
+                               apellido=apellido, 
+                               direccion=direccion,
+                               email=correo, 
+                               tipo_documento=tipo_documento,
+                               numero_documento=nro_documento,
+                               password=pass_empleado,
+                               permisos=True)
+            empleado.save()
+            return render(request, 'creacion_empleado.html')
+
+        return render(request, 'creacion_empleado.html', {'error_message': error_message})
+
+
+    
 
 # Creacion Empleado, Login y Creacion Turno

@@ -28,7 +28,11 @@
         
         {% csrf_token %}
 
-    <h2 class="h4 mb-5">Creacion Empleado</h2> 
+    <h2 class="h4 mb-5">Creacion Empleado</h2>
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
 
     <div class="row form-group">
     <div class="col-md-6 mb-3 mb-md-0">
@@ -42,46 +46,46 @@
     </div>
 
 
-<div class="row form-group">
-    <div class="col-md-12">
-    <label class="text-black" for="lbl-direccion">Direccion:</label> 
-    <input type="text" id="direccion-empleado" class="form-control" name = "direccion-empleado" pattern="[A-Za-z0-9\s,.-]+" required>
+    <div class="row form-group">
+        <div class="col-md-12">
+        <label class="text-black" for="lbl-direccion">Direccion:</label> 
+        <input type="text" id="direccion-empleado" class="form-control" name = "direccion-empleado" pattern="[A-Za-z0-9\s,.-]+" required>
+        </div>
     </div>
-</div>
 
-<div class="row form-group">
-    <div class="col-md-12">
-    <label class="text-black" for="lbl-email">Email:</label> 
-    <input type="email" id="email-empleado" class="form-control" name="email-empleado" required>
+    <div class="row form-group">
+        <div class="col-md-12">
+        <label class="text-black" for="lbl-email">Email:</label> 
+        <input type="email" id="email-empleado" class="form-control" name="email-empleado" required>
+        </div>
     </div>
-</div>
 
-<div class="row form-group">
-    <div class="col-md-12">
-    <label class="text-black" for="lbl-tipo-documento">Tipo Documento:</label> 
-    <input type="text" id="tipo-documento-empleado" class="form-control" name="tipo-documento-empleado" required>
+    <div class="row form-group">
+        <div class="col-md-12">
+        <label class="text-black" for="lbl-tipo-documento">Tipo Documento:</label> 
+        <input type="text" id="tipo-documento-empleado" class="form-control" name="tipo-documento-empleado" required>
+        </div>
     </div>
-</div>
 
-<div class="row form-group">
-    <div class="col-md-12">
-    <label class="text-black" for="lbl-tipo-documento">Numero Documento:</label> 
-    <input type="text" id="nro-documento-empleado" class="form-control" name="nro-documento-empleado" required>
+    <div class="row form-group">
+        <div class="col-md-12">
+        <label class="text-black" for="lbl-tipo-documento">Numero Documento:</label> 
+        <input type="text" id="nro-documento-empleado" class="form-control" name="nro-documento-empleado" required>
+        </div>
     </div>
-</div>
 
-<div class="row form-group">
-    <div class="col-md-12">
-    <label class="text-black" for="lbl-pass-empleado">Contraseña:</label> 
-    <input type="password" id="pass-empleado" class="form-control" name="pass-empleado" pattern="^[a-zA-Z0-9]{8,}$" required>
+    <div class="row form-group">
+        <div class="col-md-12">
+        <label class="text-black" for="lbl-pass-empleado">Contraseña:</label> 
+        <input type="password" id="pass-empleado" class="form-control" name="pass-empleado" pattern="^[a-zA-Z0-9]{8,}$" required>
+        </div>
     </div>
-</div>
 
-<div class="row form-group">
-    <div class="col-md-12 text-center">
-        <input type="submit" value="Registrar Empleado" class="btn btn-primary btn-md text-white">
+    <div class="row form-group">
+        <div class="col-md-12 text-center">
+            <input type="submit" value="Registrar Empleado" class="btn btn-primary btn-md text-white">
+        </div>
     </div>
-</div>
 
 </div>
 
