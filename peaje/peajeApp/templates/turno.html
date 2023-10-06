@@ -10,7 +10,8 @@
 {% endblock %}
 
 {% block content %} 
-    
+{% if user.is_authenticated %}
+
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     <div class="container">
@@ -123,4 +124,12 @@
     
     </body>
     
+    {% else %}
+    <script>
+        window.location.href = "{% url 'index' %}";
+    </script>
+{% endif %}
+
+
+
 {% endblock %}

@@ -2,11 +2,22 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
 from .models import Usuario
+from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 def base(request):
     return render(request, 'base.html')
 
+
+class PerfilView(View):
+    def get(self, request):
+        return render(request, 'perfil.html')
+    
+    def post(self, request):
+        logout(request)
+        return redirect('index')
+
+    
 
 
 class CreacionTurnoView(View):
@@ -57,16 +68,22 @@ class LoginView(View):
     def post(self, request):
         email = request.POST['email']
         password = request.POST['password']
-        try:
-            usuario = Usuario.objects.get(email=email, password=password)
-            request.session['user_id'] = usuario.id
-            if usuario.permisos == False:
-                return redirect('operador')
-            else:
-                return redirect('turno')
-        except Usuario.DoesNotExist:
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None: 
+            login(request, user)
+            try:
+                usuario = Usuario.objects.get(email=email)
+                if usuario.permisos == False:
+                    return redirect('operador')
+                else:
+                    return redirect('turno')
+            except Usuario.DoesNotExist:
+                error_message = "Usuario no encontrado."
+        else:
             error_message = "Credenciales inválidas."
-            return render(request, self.template_name, {'error_message': error_message})
+
+        return render(request, self.template_name, {'error_message': error_message})
 
 
 class CreacionEmpleadoView(View):

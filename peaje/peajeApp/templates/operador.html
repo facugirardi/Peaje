@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Panel Operador {% endblock %}
+{% block title %} Operador - Peaje {% endblock %}
 
 {% block head %}
 
@@ -13,6 +13,10 @@
 {% endblock %}
 
 {% block content %} 
+
+
+{% if request.COOKIES.sesion == 'True' %}
+
 
 <div class="container">
     <div class="col-12 text-center">
@@ -107,6 +111,13 @@
     </div>  
 </div>
 <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
+
+{% else %}
+    <script>
+        window.location.href = "{% url 'index' %}";
+    </script>
+{% endif %}
+
 
 
 {% endblock %}

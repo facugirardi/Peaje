@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/style_head.css' %}">
 
+{% if user.is_authenticated %}
+
+
 <div class="container">
     <section class="header">
         <nav>
@@ -92,3 +95,9 @@
     </div>
     </div>
 </section>
+
+{% else %}
+<script>
+    window.location.href = "{% url 'index' %}";
+</script>
+{% endif %}
