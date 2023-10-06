@@ -1,8 +1,9 @@
-from sqlite3 import IntegrityError
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
-from .models import Usuario
+from .models import Usuario 
+from django.utils import timezone 
+from datetime import datetime
 
 # Create your views here.
 def base(request):
@@ -27,6 +28,20 @@ class CreacionTurnoView(View):
         monto_inicial = request.POST['monto_inicial'] 
         operador = request.POST['select_operador_id']
         casilla = request.POST['select_casilla_id']
+
+        fecha_inicio = timezone.make_aware(datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
+        fecha_fin = timezone.make_aware(datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
+
+        if fecha_inicio > fecha_fin:
+            error_message = "La fecha de inicio no puede ser mayor que la fecha de finalización."
+            return render(request, 'turno.html', {'error_message': error_message})
+        
+        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
+
+        if duracion_turno > 9:
+            error_message = "El turno no puede durar más de 9 horas."
+            return render(request, 'turno.html', {'error_message': error_message})
+
 
         turno = TurnoTrabajo(
             fh_inicio=fh_inicio,
