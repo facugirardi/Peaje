@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib import admin
 import datetime
-from django.contrib.auth.models import UserManager
-from django.contrib.auth.hashers import check_password as django_check_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import BaseUserManager
 
 
 class UsuarioManager(BaseUserManager):
@@ -13,7 +12,7 @@ class UsuarioManager(BaseUserManager):
             raise ValueError("The Email field must be set")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.password = make_password(password)  
+        user.password = password 
         user.save(using=self._db)
         return user
 
@@ -126,10 +125,11 @@ class Usuario(models.Model):
     def has_module_perms(self, app_label):
         return self.is_superuser
 
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
 
     def check_password(self, raw_password):
-        return django_check_password(raw_password, self.password)
-
+        return check_password(raw_password, self.password)
 
     def get_username(self):
         return self.email

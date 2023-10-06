@@ -32,6 +32,11 @@ AUTH_USER_MODEL = 'peajeApp.Usuario'
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
+
 
 INSTALLED_APPS = [
     'admin_interface',

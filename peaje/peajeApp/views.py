@@ -17,8 +17,6 @@ class PerfilView(View):
         logout(request)
         return redirect('index')
 
-    
-
 
 class CreacionTurnoView(View):
 
@@ -68,22 +66,20 @@ class LoginView(View):
     def post(self, request):
         email = request.POST['email']
         password = request.POST['password']
+
         user = authenticate(request, email=email, password=password)
 
-        if user is not None: 
+        print(user)
+
+        if user is not None:
             login(request, user)
-            try:
-                usuario = Usuario.objects.get(email=email)
-                if usuario.permisos == False:
-                    return redirect('operador')
-                else:
-                    return redirect('turno')
-            except Usuario.DoesNotExist:
-                error_message = "Usuario no encontrado."
+            if user.usuario.permisos == False:
+                return redirect('operador')
+            else:
+                return redirect('turno')
         else:
             error_message = "Credenciales inválidas."
-
-        return render(request, self.template_name, {'error_message': error_message})
+            return render(request, self.template_name, {'error_message': error_message})
 
 
 class CreacionEmpleadoView(View):
