@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'peajeApp.Usuario'
+
+
 # Application definition
 
 INSTALLED_APPS = [

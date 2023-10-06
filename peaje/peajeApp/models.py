@@ -1,6 +1,32 @@
 from django.db import models
 from django.contrib import admin
 import datetime
+from django.contrib.auth.models import UserManager
+from django.contrib.auth.hashers import check_password as django_check_password
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
+
+class UsuarioManager(BaseUserManager):
+    def create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.password = make_password(password)  
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self.create_user(email, password, **extra_fields)
 
 
 class Ruta(models.Model):
@@ -59,30 +85,60 @@ class Casilla(models.Model):
 
 
 class Usuario(models.Model):
-    nombre = models.CharField(("Nombre:"), max_length=50)
-    apellido = models.CharField(("Apellido:"), max_length=50)
-    direccion = models.CharField(("Direccion:"), max_length=50) 
-    email = models.EmailField(("Email:"), max_length=254)
-    tipo_documento = models.CharField(("Tipo Documento:"), max_length=50)
-    numero_documento = models.CharField(("Numero Documento:"), max_length=50)
-    password = models.CharField(("Password:"), max_length=50)
-    permisos = models.BooleanField(("Admin:"))
+    nombre = models.CharField(("Nombre"), max_length=50)
+    apellido = models.CharField(("Apellido"), max_length=50)
+    direccion = models.CharField(("Direccion"), max_length=50) 
+    email = models.EmailField(("Email"), max_length=254, unique=True)
+    tipo_documento = models.CharField(("Tipo Documento"), max_length=50)
+    numero_documento = models.CharField(("Numero Documento"), max_length=50)
+    password = models.CharField(("Password"), max_length=50)
+    permisos = models.BooleanField(("Admin"), default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_anonymous = models.BooleanField(default=False) 
+    is_authenticated = models.BooleanField(default=False) 
+    is_superuser = models.BooleanField(default=False) 
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 
+
     def iniciar_sesion(self):
         pass
+
 
     def cambiar_permisos(self):
         self.permisos = not self.permisos
         self.save()
+
 
     def modificar_datos(self, n_nombre, n_apellido, n_direccion):
         self.nombre = n_nombre
         self.apellido = n_apellido
         self.direccion = n_direccion
         self.save()
+
+
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
+
+
+    def check_password(self, raw_password):
+        return django_check_password(raw_password, self.password)
+
+
+    def get_username(self):
+        return self.email
+
+    objects = UsuarioManager()
+
+    USERNAME_FIELD = 'email'
+
+    REQUIRED_FIELDS = ['password']
 
 
 class TurnoTrabajo(models.Model):
@@ -93,7 +149,7 @@ class TurnoTrabajo(models.Model):
     enlace_reporte = models.CharField(("Enlace Reporte:"), max_length=50, default='NULL')
     estado = models.BooleanField(("Estado:"), default=True)
     casilla = models.ForeignKey(Casilla,on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
