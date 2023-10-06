@@ -38,8 +38,8 @@
                     {% csrf_token %}
                     <h2 class="h4 mb-5">Creacion Turno</h2>
                 
-                    {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>
+                    {% if message %}
+                    <p><strong>{{ message }}</strong></p>
                     {% endif %}
 
                     <div class="row form-group">
