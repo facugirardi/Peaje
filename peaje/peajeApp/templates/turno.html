@@ -16,37 +16,12 @@
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
         <div class="container">
-            <div class="row mb-5">
-        </div>
-        <div class="row">
-            <div class="col-md-12 mb-5">
-    
-    
-                <form action="#" class="p-5 bg-white" method="POST">
-                    {% csrf_token %}
-                    <h2 class="h4 mb-5">Creacion Turno</h2>
-                
-                    {% if message %}
-                    <p><strong>{{ message }}</strong></p>
-                    {% endif %}
-
-                    <div class="row form-group">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" for="lbl-id-estacion">ID Estación</label>
-                            <input type="text" id="input-id-estacion" class="form-control" name="id_estacion">
-                        </div>
-                
-                        <div class="col-md-6">
-                            <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
-                            <select class="form-control" id="input-id-casilla" name="select_casilla_id">
-                                <option class="form-control">Seleccione una opción:</option>
-                
-                                {% for i in casillas %}
-                                <option value="{{ i.id }}" class="form-control" data-estacion="{{ i.estacion.id }}">Casilla N°{{ i.num_casilla }} de la Estacion N° {{ i.estacion_id }}</option>
-                                {% endfor %}
-                
-                            </select>
-                        </div>
+            <section class="header">
+                <nav>
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="{% url 'turno' %}">TURNO</a></li>
+                            <li><a href="{% url 'creacion_empleado' %}">EMPLEADO</a></li>
                     </div>
                 </nav>
             </section>
