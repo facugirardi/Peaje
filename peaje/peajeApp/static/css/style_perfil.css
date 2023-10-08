@@ -1,0 +1,235 @@
+body {
+    line-height: 1.7;
+    color: #818181;
+    font-weight: 300;
+    font-size: 15px;
+    background: #EEEEEE; }
+  
+  
+::-moz-selection {
+    background: #000;
+    color: #fff; }
+  
+::selection {
+    background: #000;
+    color: #fff; }
+  
+a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+
+a:hover {
+    text-decoration: none; }
+
+    h1 {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      color: #21325E; }
+    
+
+
+.container{
+
+    margin-top: 150px;
+
+}
+
+.order-card {
+    color: #21325E;
+}
+
+.bg-c {
+    background-color: #fff;
+}
+
+.site-section-heading {
+    color:#21325E ;
+    margin-bottom: 50px;
+    font-weight: 500 !important;    
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.1);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.1);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    opacity: 0; 
+    background-color: #21325E;
+    color: #fff;
+    font-size: 10.5px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 7px 0;
+  
+    position: absolute;
+    z-index: 1;
+    transition: opacity 0.2s ease-in-out; 
+  }
+  
+  .card-block:hover .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+
+  .card-block:hover{
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+    background-color: rgb(244, 244, 244);
+    cursor: pointer;
+  }
+
+  .card-block:not(:hover) .tooltiptext{
+    transition: all 0.2s ease-out;
+}
+
+.btn:hover{
+    background: #21325E !important;
+    cursor: pointer;
+    color: #fff !important;
+    border-radius: 7.5px !important;
+}
+
+
+.btn.btn-md {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #E5E5E5;
+    color: #21325E;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    border: none;
+    margin-top: 40px;
+    letter-spacing: 2px;
+    border-radius: 2.5px;
+}
+
+
+a:hover {
+    text-decoration: none; }
+
+
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #21325E;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #21325E;
+}
+.profile-head h6{
+    color: #21325E;
+}
+
+.profile-edit-btn{
+    border: none;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #21325E;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #21325E;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #212529b8;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #21325E;
+}
+
+.site-section-heading {
+    color:#21325E ;
+}

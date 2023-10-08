@@ -1,12 +1,23 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
+from .models import Usuario 
+from django.utils import timezone 
+from datetime import datetime
 from .models import Usuario
+from django.contrib.auth import logout, login, authenticate
 
-# Create your views here.
 def base(request):
     return render(request, 'base.html')
 
+
+class PerfilView(View):
+    def get(self, request):
+        return render(request, 'perfil.html')
+    
+    def post(self, request):
+        logout(request)
+        return redirect('index')
 
 
 class CreacionTurnoView(View):
@@ -27,6 +38,26 @@ class CreacionTurnoView(View):
         operador = request.POST['select_operador_id']
         casilla = request.POST['select_casilla_id']
 
+        fecha_inicio = timezone.make_aware(datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
+        fecha_fin = timezone.make_aware(datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
+
+        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
+        
+        if fecha_inicio > fecha_fin:
+            message = "La fecha de inicio no puede ser mayor que la fecha de finalización."
+            return render(request, 'turno.html', {'message': message})
+        
+        elif duracion_turno > 9:
+            message = "El turno no puede durar más de 9 horas."
+            return render(request, 'turno.html', {'message': message})
+
+        elif fecha_inicio > fecha_fin and duracion_turno > 9:
+            message = "La fecha de inicio no puede ser mayor que la fecha de finalización y el turno no puede durar más de 9 horas."
+            return render(request, 'turno.html', {'message': message})
+        
+        else:
+            message = "Turno creado correctamente."
+        
         turno = TurnoTrabajo(
             fh_inicio=fh_inicio,
             fh_fin=fh_fin,
@@ -55,21 +86,26 @@ class LoginView(View):
         return render(request, self.template_name)
 
     def post(self, request):
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        try:
-            usuario = Usuario.objects.get(email=email, password=password)
-            request.session['user_id'] = usuario.id
-            return redirect('operador')
-        except Usuario.DoesNotExist:
-            error_message = "Credenciales inválidas. Inténtalo de nuevo."
-            return render(request, self.template_name, {'error_message': error_message})
+
+        print(username, password)
+        user = authenticate(request, username=username, password=password)
+        print(user)
+
+        if user is not None:
+            login(request, user)
+            if user.permisos == True:
+                return redirect('turno')
+            else:
+                return redirect('operador')
+        else:
+            return render(request, self.template_name, {'error_message': 'Credenciales inválidas'})
 
 
 class CreacionEmpleadoView(View):
     def get(self, request):
         return render(request, 'creacion_empleado.html')
-
 
     def post(self, request):
         nombre = request.POST['nombre-empleado']
@@ -81,19 +117,29 @@ class CreacionEmpleadoView(View):
         pass_empleado = request.POST['pass-empleado']
 
 
-        empleado = Usuario(nombre=nombre, 
-                           apellido=apellido, 
-                           direccion=direccion,
-                           email=correo, 
-                           tipo_documento=tipo_documento,
-                           numero_documento=nro_documento,
-                           password=pass_empleado,
-                           permisos= True
-                           )
-        
-        empleado.save()
+        existe_mail = Usuario.objects.filter(email=correo).exists()
+        existe_documento = Usuario.objects.filter(numero_documento=nro_documento).exists()
 
-        return render(request, 'creacion_empleado.html')
+        if existe_mail:
+            error_message = "El correo electrónico ya existe. Escriba los datos correctamente"
+        elif existe_documento:
+            error_message = "El número de documento ya existe. Escriba los datos correctamente"
+        else:
 
+            empleado = Usuario(nombre=nombre, 
+                               apellido=apellido, 
+                               direccion=direccion,
+                               email=correo, 
+                               tipo_documento=tipo_documento,
+                               numero_documento=nro_documento,
+                               password=pass_empleado,
+                               permisos=True)
+            empleado.save()
+            return render(request, 'creacion_empleado.html')
+
+        return render(request, 'creacion_empleado.html', {'error_message': error_message})
+
+
+    
 
 # Creacion Empleado, Login y Creacion Turno

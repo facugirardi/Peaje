@@ -10,14 +10,21 @@
 {% block title %} Login - Peaje {% endblock %}
 
 {% block content %} 
+{% if user.is_authenticated %}
+
+<script>
+  window.location.href = "{% url 'turno' %}";
+</script>
+
+{% else %}
 
 <div class="login-box">
   <h2>LOGIN</h2>
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
       <div class="user-box">
-          <input type="text" name="email" required="">
-          <label>Email</label>
+          <input type="text" name="username" required="">
+          <label>Usuario</label>
       </div>
       <div class="user-box">
           <input type="password" name="password" required="">
@@ -29,9 +36,13 @@
       </button>
       </div>
   </form>
+  <br>
   {% if error_message %}
-  <p>{{ error_message }}</p>
+  <p id='error_message'>{{ error_message }}</p>
   {% endif %}
 </div>
+<br>
+<script src={% static 'js/login.js' %}></script>
+{% endif %}
 
 {% endblock %}
