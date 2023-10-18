@@ -25,7 +25,7 @@ class PerfilView(View):
 class CreacionTurnoView(View):
 
     def get(self, request): 
-        operadores = Usuario.objects.all()
+        operadores = Usuario.objects.filter(permisos=False)
         casillas = Casilla.objects.all()
 
         return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
