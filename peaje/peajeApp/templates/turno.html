@@ -39,7 +39,12 @@
                     <form action="#" class="p-5 bg-white" method="POST">
                         {% csrf_token %}
                         <h2 class="h4 mb-5">Creacion Turno</h2>
-                    
+
+                        {% if messages %}
+                            <p id='messages'>{{ messages }}</p>
+
+                        {%endif%}
+
                         <div class="row form-group">
                             <div class="col-md-6 mb-3 mb-md-0">
                                 <label class="text-black" for="lbl-id-estacion">ID Estación</label>

@@ -46,29 +46,29 @@ class CreacionTurnoView(View):
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
         
         if fecha_inicio > fecha_fin or duracion_turno > 9:
-            message = "Hubo un problema al crear el turno. "
+            messages = "Hubo un problema al crear el turno. "
             if fecha_inicio > fecha_fin:
-                message += "La fecha de inicio no puede ser mayor que la fecha de finalización. "
+                messages = "La fecha de inicio no puede ser mayor que la fecha de finalización. "
             if duracion_turno > 9:
-                message += "El turno no puede durar más de 9 horas."
+                messages = "El turno no puede durar más de 9 horas."
         else:
             message = "Turno creado correctamente."
 
         
-        turno = TurnoTrabajo(
-            fh_inicio=fh_inicio,
-            fh_fin=fh_fin,
-            sentido_cobro=sentido_cobro,
-            monto_inicial=monto_inicial,
-            enlace_reporte='NULL',
-            estado=True,
-            casilla_id=casilla,
-            usuario_id=operador
-        )
-        
-        turno.save()
+            turno = TurnoTrabajo(
+                fh_inicio=fh_inicio,
+                fh_fin=fh_fin,
+                sentido_cobro=sentido_cobro,
+                monto_inicial=monto_inicial,
+                enlace_reporte='NULL',
+                estado=True,
+                casilla_id=casilla,
+                usuario_id=operador
+            )
+            
+            turno.save()
 
-        return render(request, 'turno.html')
+        return render(request, 'turno.html', {'messages': messages})
 
 
 
