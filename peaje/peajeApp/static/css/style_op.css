@@ -9,6 +9,7 @@ body{
     color: #21325E;
 }
 
+
 .bg-c {
     background-color: #fff;
 }
@@ -93,7 +94,7 @@ body{
     background-color: #21325E;
     border-color: #21325E;
     padding: 15px 30px;
-    font-size: 14px;
+    font-size: 105%;
     text-transform: uppercase;
     letter-spacing: 2px; 
     margin-top: 75px;
