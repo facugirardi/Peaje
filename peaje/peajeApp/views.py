@@ -8,6 +8,8 @@ from django.contrib.auth import *
 from django.contrib.auth.hashers import make_password
 from django.db.utils import *
 
+def navbar(request):
+    return render(request, 'navbar.html')
 
 def base(request):
     return render(request, 'base.html')

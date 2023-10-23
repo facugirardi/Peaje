@@ -1,23 +1,15 @@
+{% extends "navbar.html" %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/style_head.css' %}">
+{% block title %} Creacion de Empleados {% endblock %}
 
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style_head.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% block content %} 
 {% if user.is_authenticated %}
 {% if user.permisos == True %}
-
-<div class="container">
-    <section class="header">
-        <nav>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="{% url 'turno' %}">TURNO</a></li>
-                    <li><a href="{% url 'creacion_empleado' %}">EMPLEADO</a></li>
-            </div>
-        </nav>
-    </section>
-</div> 
 
 <section class="site-section" id="contact-section">
     <div class="container">
@@ -119,3 +111,5 @@
     window.location.href = "{% url 'index' %}";
 </script>
 {% endif %} 
+
+{% endblock %} 
