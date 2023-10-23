@@ -52,6 +52,7 @@ class Ruta(models.Model):
 
 class Estacion(models.Model):
     numero_estacion = models.IntegerField(("Numero Estacion:"))
+    nombre = models.CharField(("Nombre Estacion:"), max_length=50)
     km_ruta = models.IntegerField(("KM Ruta:"))
     ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
 
