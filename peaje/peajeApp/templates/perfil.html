@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <div class="profile-head">
                                             <h5>
-                                                Jorge Jorge
+                                                {{ user.nombre }} {{ user.apellido }}
                                             </h5>
                                             <br><br><br>
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -46,10 +46,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="profile-work">
-                                    <p>TURNO ACTUAL</p>
-                                    <a href="#">Minutos Restantes: 150</a><br/>
-                                    <a href="#">Sentido de Cobro: Este-Oeste</a><br/>
-                                    <a href="#">Casilla: 2</a>
+                                    <p></p>
+                                    <a href="#"></a><br/>
+                                    <a href="#"> </a><br/>
+                                    <a href="#"></a>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -60,7 +60,7 @@
                                                         <label>Nombre</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>Jorge Jorge</p>
+                                                        <p>{{ user.nombre }} {{ user.apellido }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -68,15 +68,15 @@
                                                         <label>Email</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>jorge@gmail.com</p>
+                                                        <p>{{ user.email }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Telefono</label>
+                                                        <label>Documento</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>123 456 7890</p>
+                                                        <p>{{ user.numero_documento }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -84,15 +84,7 @@
                                                         <label>Domicilio</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>Jorge 1992</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Contraseña</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>**********</p>
+                                                        <p>{{ user.direccion }}</p>
                                                     </div>
                                                 </div>
                                     </div>

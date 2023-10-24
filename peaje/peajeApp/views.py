@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
-from .models import Usuario 
-from django.utils import timezone 
+from django.utils import timezone
 from datetime import datetime
 from .models import Usuario
-from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth import *
+from django.contrib.auth.hashers import make_password
+from django.db.utils import *
+
+def navbar(request):
+    return render(request, 'navbar.html')
 
 def base(request):
     return render(request, 'base.html')
@@ -23,7 +27,7 @@ class PerfilView(View):
 class CreacionTurnoView(View):
 
     def get(self, request): 
-        operadores = Usuario.objects.all()
+        operadores = Usuario.objects.filter(permisos=False)
         casillas = Casilla.objects.all()
 
         return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
@@ -43,35 +47,30 @@ class CreacionTurnoView(View):
 
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
         
-        if fecha_inicio > fecha_fin:
-            message = "La fecha de inicio no puede ser mayor que la fecha de finalización."
-            return render(request, 'turno.html', {'message': message})
-        
-        elif duracion_turno > 9:
-            message = "El turno no puede durar más de 9 horas."
-            return render(request, 'turno.html', {'message': message})
-
-        elif fecha_inicio > fecha_fin and duracion_turno > 9:
-            message = "La fecha de inicio no puede ser mayor que la fecha de finalización y el turno no puede durar más de 9 horas."
-            return render(request, 'turno.html', {'message': message})
-        
+        if fecha_inicio > fecha_fin or duracion_turno > 9:
+            messages = "Hubo un problema al crear el turno. "
+            if fecha_inicio > fecha_fin:
+                messages = "La fecha de inicio no puede ser mayor que la fecha de finalización. "
+            if duracion_turno > 9:
+                messages = "El turno no puede durar más de 9 horas."
         else:
             message = "Turno creado correctamente."
-        
-        turno = TurnoTrabajo(
-            fh_inicio=fh_inicio,
-            fh_fin=fh_fin,
-            sentido_cobro=sentido_cobro,
-            monto_inicial=monto_inicial,
-            enlace_reporte='NULL',
-            estado=True,
-            casilla_id=casilla,
-            usuario_id=operador
-        )
-        
-        turno.save()
 
-        return render(request, 'turno.html')
+        
+            turno = TurnoTrabajo(
+                fh_inicio=fh_inicio,
+                fh_fin=fh_fin,
+                sentido_cobro=sentido_cobro,
+                monto_inicial=monto_inicial,
+                enlace_reporte='NULL',
+                estado=True,
+                casilla_id=casilla,
+                usuario_id=operador
+            )
+            
+            turno.save()
+
+        return render(request, 'turno.html', {'messages': messages})
 
 
 
@@ -110,35 +109,41 @@ class CreacionEmpleadoView(View):
     def post(self, request):
         nombre = request.POST['nombre-empleado']
         apellido = request.POST['apellido-empleado']
+        username = request.POST['username-empleado']
         direccion = request.POST['direccion-empleado']
         correo = request.POST['email-empleado']
         tipo_documento = request.POST['tipo-documento-empleado']
         nro_documento = request.POST['nro-documento-empleado']
         pass_empleado = request.POST['pass-empleado']
 
-
         existe_mail = Usuario.objects.filter(email=correo).exists()
         existe_documento = Usuario.objects.filter(numero_documento=nro_documento).exists()
 
         if existe_mail:
-            error_message = "El correo electrónico ya existe. Escriba los datos correctamente"
+            error_message = "El correo electrónico ya existe. Por favor, escriba los datos correctamente."
         elif existe_documento:
-            error_message = "El número de documento ya existe. Escriba los datos correctamente"
+            error_message = "El número de documento ya existe. Por favor, escriba los datos correctamente."
         else:
+            try:
 
-            empleado = Usuario(nombre=nombre, 
-                               apellido=apellido, 
-                               direccion=direccion,
-                               email=correo, 
-                               tipo_documento=tipo_documento,
-                               numero_documento=nro_documento,
-                               password=pass_empleado,
-                               permisos=True)
-            empleado.save()
-            return render(request, 'creacion_empleado.html')
+                hashed_password = make_password(pass_empleado)
+
+                empleado = Usuario.objects.create(
+                    nombre=nombre,
+                    apellido=apellido,
+                    username=username,
+                    direccion=direccion,
+                    email=correo,
+                    tipo_documento=tipo_documento,
+                    numero_documento=nro_documento,
+                    password=hashed_password,  
+                    permisos=False
+                )
+                return render(request, 'creacion_empleado.html')
+            except IntegrityError:
+                error_message = "Ocurrió un error al crear el empleado. Por favor, revise los datos ingresados."
 
         return render(request, 'creacion_empleado.html', {'error_message': error_message})
-
 
     
 
