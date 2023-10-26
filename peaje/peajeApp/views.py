@@ -125,9 +125,7 @@ class CreacionEmpleadoView(View):
             error_message = "El número de documento ya existe. Por favor, escriba los datos correctamente."
         else:
             try:
-
                 hashed_password = make_password(pass_empleado)
-
                 empleado = Usuario.objects.create(
                     nombre=nombre,
                     apellido=apellido,
@@ -139,12 +137,11 @@ class CreacionEmpleadoView(View):
                     password=hashed_password,  
                     permisos=False
                 )
-                return render(request, 'creacion_empleado.html')
+
+                error_message = "Empleado creado correctamente."
+                return render(request, 'creacion_empleado.html', {'error_message': error_message})
             except IntegrityError:
                 error_message = "Ocurrió un error al crear el empleado. Por favor, revise los datos ingresados."
 
-        return render(request, 'creacion_empleado.html', {'error_message': error_message})
-
-    
 
 # Creacion Empleado, Login y Creacion Turno
