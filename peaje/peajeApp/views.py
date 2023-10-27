@@ -47,14 +47,14 @@ class CreacionTurnoView(View):
 
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
         
-        if fecha_inicio > fecha_fin or duracion_turno > 9:
-            messages = "Hubo un problema al crear el turno. "
-            if fecha_inicio > fecha_fin:
-                messages = "La fecha de inicio no puede ser mayor que la fecha de finalización. "
-            if duracion_turno > 9:
-                messages = "El turno no puede durar más de 9 horas."
+        if fecha_inicio > fecha_fin:
+            messages = "La fecha de inicio no puede ser mayor que la fecha de finalización."
+        elif duracion_turno > 9:
+            messages = "El turno no puede durar más de 9 horas."
+        elif casilla == "Seleccione una opción:" or operador == "Seleccione una opción:":
+            messages = "Debe seleccionar una casilla y un operador."
         else:
-            message = "Turno creado correctamente."
+            messages = "Turno creado correctamente."
 
         
             turno = TurnoTrabajo(

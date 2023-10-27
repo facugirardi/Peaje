@@ -292,17 +292,23 @@
                     </div>
             
                     <div class="col-md-6">
-                        <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
-                        <select class="form-control" id="input-id-casilla" name="select_casilla_id">
-                            <option class="form-control">Seleccione una opción:</option>
-            
-                            {% for i in casillas %}
-                            <option value="{{ i.id }}" class="form-control" data-estacion="{{ i.estacion.id }}">Casilla N°{{ i.num_casilla }} de la Estacion N° {{ i.estacion_id }}</option>
-                            {% endfor %}
-            
-                        </select>
-                    </div>
-                </div>
+                      <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
+                      <select class="form-control" id="input-id-casilla" name="select_casilla_id">
+                          <option class="form-control">Seleccione una opción:</option>
+                          {% for casilla in casillas %}
+                              {% if casilla.estado %}
+                                  <option value="{{ casilla.id }}" class="form-control" data-estacion="{{ casilla.estacion.id }}">
+                                      Casilla N°{{ casilla.num_casilla }} de la Estacion N° {{ casilla.estacion_id }}
+                                  </option>
+                              {% else %}
+                                  <option value="{{ casilla.id }}" class="form-control" data-estacion="{{ casilla.estacion.id }}" disabled>
+                                      Casilla N°{{ casilla.num_casilla }} de la Estacion N° {{ casilla.estacion_id }} (Cerrada)
+                                  </option>
+                              {% endif %}
+                          {% endfor %}
+                      </select>
+                  </div>
+                  
             
                 <div class="row form-group">
                     <div class="col-md-6">
@@ -310,7 +316,7 @@
                         <select class="form-control" id="input-id-operador" name="select_operador_id">
                             <option class="form-control">Seleccione una opción:</option>
                             {% for i in operadores %}
-                            <option value="{{ i.id }}">ID{{ i.id }} [{{ i.nombre }} {{ i.apellido }}]</option>
+                            <option value="{{ i.id }}">ID{{ i.id }} - {{ i.nombre }} {{ i.apellido }}</option>
                             {% endfor %}
                         </select>
                     </div>
