@@ -316,7 +316,11 @@
                         <select class="form-control" id="input-id-operador" name="select_operador_id">
                             <option class="form-control">Seleccione una opción:</option>
                             {% for i in operadores %}
-                            <option value="{{ i.id }}">ID{{ i.id }} - {{ i.nombre }} {{ i.apellido }}</option>
+                              {% if i.disponible %}
+                                <option value="{{ i.id }}" class="form-control">Operador N°{{ i.id }}  {{i.nombre}}  {{i.apellido}}</option>
+                              {% else %}
+                                  <option value="{{ i.id }}" class="form-control" disabled>Operador N°{{ i.id }}  {{i.nombre}}  {{i.apellido}} (Turno asignado)</option>
+                              {% endif %}
                             {% endfor %}
                         </select>
                     </div>

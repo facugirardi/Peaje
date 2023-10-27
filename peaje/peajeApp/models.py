@@ -92,6 +92,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     tipo_documento = models.CharField(("Tipo Documento"), max_length=50)
     numero_documento = models.CharField(("Numero Documento"), max_length=50)
     permisos = models.BooleanField(("Admin"), default=False)
+    disponible = models.BooleanField(("Disponible"), default=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 

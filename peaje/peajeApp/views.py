@@ -23,40 +23,40 @@ class PerfilView(View):
         logout(request)
         return redirect('index')
 
-
 class CreacionTurnoView(View):
 
-    def get(self, request): 
+    def get(self, request):
         operadores = Usuario.objects.filter(permisos=False)
-        casillas = Casilla.objects.all()
+        casillas = Casilla.objects.filter(estado=True)
 
         return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
-
-
 
     def post(self, request):
         fh_inicio = request.POST['fh_inicio']
         fh_fin = request.POST['fh_fin']
         sentido_cobro = request.POST['direccion']
-        monto_inicial = request.POST['monto_inicial'] 
-        operador = request.POST['select_operador_id']
+        monto_inicial = request.POST['monto_inicial']
         casilla = request.POST['select_casilla_id']
+        operador_id = request.POST['select_operador_id']
 
         fecha_inicio = timezone.make_aware(datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
         fecha_fin = timezone.make_aware(datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
 
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
-        
+
         if fecha_inicio > fecha_fin:
             messages = "La fecha de inicio no puede ser mayor que la fecha de finalización."
         elif duracion_turno > 9:
             messages = "El turno no puede durar más de 9 horas."
-        elif casilla == "Seleccione una opción:" or operador == "Seleccione una opción:":
+        elif casilla == "Seleccione una opción:" or operador_id == "Seleccione una opción:":
             messages = "Debe seleccionar una casilla y un operador."
         else:
+            operador_obj = Usuario.objects.get(id=operador_id)
+            operador_obj.disponible = False
+            operador_obj.save()
+
             messages = "Turno creado correctamente."
 
-        
             turno = TurnoTrabajo(
                 fh_inicio=fh_inicio,
                 fh_fin=fh_fin,
@@ -65,13 +65,12 @@ class CreacionTurnoView(View):
                 enlace_reporte='NULL',
                 estado=True,
                 casilla_id=casilla,
-                usuario_id=operador
+                usuario_id=operador_id
             )
-            
+
             turno.save()
 
         return render(request, 'turno.html', {'messages': messages})
-
 
 
 def operador(request):
