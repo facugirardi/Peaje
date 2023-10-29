@@ -8,7 +8,6 @@ body{
     color: #21325E;
 }
 
-
 .bg-c {
     background-color: #fff;
 }
@@ -67,6 +66,11 @@ body{
     visibility: visible;
   }
   
+  .selected{
+    transition: all 0.2s ease-out !important;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.4) !important;
+    background-color: rgb(237, 237, 237) !important;
+  }
 
   .card-block:hover{
     transition: all 0.2s ease-out;
