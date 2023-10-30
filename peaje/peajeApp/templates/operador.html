@@ -17,8 +17,19 @@
 
 {% if user.is_authenticated %}
 {% if user.permisos == False %}
-
-
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link waves-effect waves-light" href="{% url 'perfil' %}">
+            <div class="icono_container">
+            <i class="fas fa-user icono_perfil"></i>
+            </div>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 <div class="container">
     <div class="col-12 text-center">
         <h1 class="site-section-heading">Panel Operador</h1>
