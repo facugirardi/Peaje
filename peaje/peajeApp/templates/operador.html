@@ -25,7 +25,7 @@
         </div>
     <div class="row">
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento1'>
                 <div class="card-block">
                     <h6 class="m-b-20">Motocicletas</h6>
                     <h2 class="text-right"><i class="fa fa-motorcycle f-left"></i><span>1</span></h2>
@@ -35,7 +35,7 @@
         </div>
         
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento2'>
                 <div class="card-block">
                     <h6 class="m-b-20">Automoviles</h6>
                     <h2 class="text-right"><i class="fa fa-car-side f-left"></i><span>2</span></h2>
@@ -45,7 +45,7 @@
         </div>
         
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento3'>
                 <div class="card-block">
                     <h6 class="m-b-20">2 Ejes</h6>
                     <h2 class="text-right"><i class="fa fa-truck f-left"></i><span>3</span></h2>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento4'>
                 <div class="card-block">
                     <h6 class="m-b-20">3 o 4 Ejes</h6>
                     <h2 class="text-right"><img class="fa f-left" src="{% static 'img/auto3ejes.svg' %}"><span>4</span></h2>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento5'>
                 <div class="card-block">
                     <h6 class="m-b-20">3 o 4 Ejes</h6>
                     <h2 class="text-right"><i class="fa fa-truck-moving f-left"></i><span>5</span></h2>
@@ -78,7 +78,7 @@
         </div>
         
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento6'>
                 <div class="card-block">
                     <h6 class="m-b-20">5 o 6 Ejes</h6>
                     <h2 class="text-right"><img class="fa f-left" src="{% static 'img/5ejes.svg' %}"><span>6</span></h2>
@@ -88,9 +88,9 @@
         </div>
         
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c order-card">
+            <div class="card-select card bg-c order-card" id='elemento7'>
                 <div class="card-block">
-                    <h6 class="m-b-20">Mas de 6 Ejes</h6>
+                    <h6 class="m-b-20">Más de 6 Ejes</h6>
                     <h2 class="text-right"><img class="fa f-left" src="{% static 'img/7ejes.svg' %}"><span>7</span></h2>
                     <p class="m-b-0">Precio:<span class="f-right">$400</span></p>
                 </div>
@@ -108,7 +108,7 @@
         </div>
 	</div>
     <div class="col-md-12 text-center">
-    <a data-fancybox data-ratio="2" href="#" class="btn btn-primary btn-md">Emitir Ticket</a>
+    <a data-fancybox data-ratio="2" href="#" class="emitir btn btn-primary btn-md" id='enviarDatos'>Emitir Ticket</a>
     </div>  
 </div>
 <script src="{% static 'js/main.js' %}"></script>
