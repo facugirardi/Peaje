@@ -23,7 +23,7 @@
 <body>
 <nav class="navbar bg-body-tertiary fixed-top" data-bs-theme="blue" >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Sistema de Peaje</a>
+      <a class="navbar-brand"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,6 +39,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'turno' %}">TURNOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'perfil' %}">PERFIL</a>
             </li>
           </ul>
         </div>
