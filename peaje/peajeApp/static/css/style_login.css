@@ -16,7 +16,7 @@ body{
     transform: translate(-50%,-50%);
     background: #ffffff;
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
 }
 .login-box h2{
@@ -83,8 +83,6 @@ body{
     background: #21325E;
     cursor: pointer;
     color: #fff;
-    border-radius: 7.5px;
-
 }
 .login-box button span{
     position: absolute;
