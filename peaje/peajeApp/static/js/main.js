@@ -47,25 +47,25 @@ $(document).ready(function() {
         
             switch (selectedId) {
                 case 'elemento1':
-                    resultadoDiv = '1; Motocicleta; 40';
+                    resultadoDiv = '1;Motocicleta;40';
                     break;
                 case 'elemento2':
-                    resultadoDiv = '2; Automoviles; 80';
+                    resultadoDiv = '2;Automoviles;80';
                     break;
                 case 'elemento3':
-                    resultadoDiv = '3; 2 Ejes Con Ruedas Duales o Altura Mayor a 2,10m; 160';
+                    resultadoDiv = '3;2 Ejes Con Ruedas Duales o Altura Mayor a 2,10m;160';
                     break;
                 case 'elemento4':
-                    resultadoDiv = '4; 3 o 4 Ejes Sin Ruedas Duales y Altura Menor a 2,10m; 160';
+                    resultadoDiv = '4;3 o 4 Ejes Sin Ruedas Duales y Altura Menor a 2,10m;160';
                     break;
                 case 'elemento5':
-                    resultadoDiv = '5; 3 o 4 Ejes Con Ruedas Duales o Altura Mayor a 2,10m; 240';
+                    resultadoDiv = '5;3 o 4 Ejes Con Ruedas Duales o Altura Mayor a 2,10m;240';
                     break;
                 case 'elemento6':
-                    resultadoDiv = '6; 5 o 6 Ejes; 320';
+                    resultadoDiv = '6;5 o 6 Ejes;320';
                     break;
                 case 'elemento7':
-                    resultadoDiv = '7; Más de 6 Ejes; 400';
+                    resultadoDiv = '7;Más de 6 Ejes;400';
                     break;
             }    
 
