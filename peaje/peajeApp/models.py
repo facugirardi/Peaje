@@ -160,6 +160,7 @@ class Tarifa(models.Model):
         ('automoviles', 'Automóviles'),
         ('2_ejes_duales', '2 Ejes con Ruedas Duales o Altura Mayor a 2.10m'),
         ('3_4_ejes', '3 o 4 Ejes, Sin Ruedas Duales y Altura Menor a 2.10m'),
+        ('3_4_ejes2', '3 o 4 Ejes, Con Ruedas Duales o Altura Mayor a 2,10m'),
         ('5_6_ejes', '5 o 6 Ejes'),
         ('mas_de_6_ejes', 'Más de 6 Ejes'),
     )
