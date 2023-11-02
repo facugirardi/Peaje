@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style_ticket.css' %}">
+{% endblock %}
+
+{% block title %} Ticket - Peaje {% endblock %}
+
+{% block content %} 
+{% if user.is_authenticated %}
+
+<main class="ticket-system">
+    <div class="top">
+    <h1 class="title"></h1>
+    <div class="printer" />
+    </div>
+    <div class="receipts-wrapper">
+       <div class="receipts">
+          <div class="receipt">
+                <h2>Ticket Peaje</h2>
+             <div class="details">
+                <div class="item">
+                   <span>Operador</span>
+                   <h3>Nº 192</h3>
+                </div> 
+                <div class="item">
+                    <img src="{% static 'img/qr-code.svg' %}" style="width:60px;height:60px;">
+                </div> 
+                <div class="item">
+                   <span>Fecha - Hora </span>
+                   <h3>27/08/2018 15:33</h3>
+                </div>
+                <div class="item">
+                   <span>Casilla</span>
+                   <h3>8</h3>
+                </div>
+                <div class="item">
+                   <span>Cat. Vehiculo</span>
+                   <h3>Nº 2</h3>
+                </div>
+                <div class="item">
+                   <span>Importe</span>
+                   <h3>$ 204</h3>
+                </div>
+                <div class="item">
+                    <span>Ubicacion</span>
+                    <h3>Ruta Provincial Nº 35</h3>
+                 </div>  
+                 <div class="item">
+                    <span>Km Ruta</span>
+                    <h3>Km 234</h3>
+                 </div>  
+                 <div class="item">
+                    <span>Nº Estacion</span>
+                    <h3>23</h3>
+                 </div>  
+                 <div class="item">
+                    <span>Ticket No.</span>
+                    <h3>92920</h3>
+                 </div> 
+             </div>
+          </div>
+       </div>
+    </div>
+ </main>   
+
+ {% else %}
+ <script>
+     window.location.href = "{% url 'index' %}";
+ </script>
+{% endif %}
+
+ 
+{% endblock %}

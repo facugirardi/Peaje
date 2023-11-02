@@ -143,4 +143,5 @@ class CreacionEmpleadoView(View):
                 error_message = "Ocurrió un error al crear el empleado. Por favor, revise los datos ingresados."
 
 
-# Creacion Empleado, Login y Creacion Turno
+def ticket_view(request):
+    return render(request, 'ticket.html')

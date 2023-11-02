@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700');
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #E5E5E5;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .ticket-system {
+    max-width: 385px;
+    .top {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .title {
+        font-weight: normal;
+        font-size: 1.6em;
+        text-align: left;
+        margin-left: 20px;
+        margin-bottom: 50px;
+        color: #000000;
+      }
+      .printer {
+        width: 90%;
+        height: 20px;
+        border: 5px solid #fff;
+        border-radius: 10px;
+        box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+    .receipts-wrapper {
+      overflow: hidden;
+      margin-top: -10px;
+      padding-bottom: 10px;
+    }
+  
+    .receipts {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transform: translateY(-510px);
+  
+      animation-duration: 1s;
+      animation-name: print;
+      animation-fill-mode: forwards;
+  
+  
+      .receipt {
+        padding: 25px 30px;
+        text-align: left;
+        min-height: 200px;
+        width: 88%;
+        background-color: #fff;
+        border-radius: 10px 10px 20px 20px;
+        box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
+  
+        .airliner-logo {
+          max-width: 80px;
+        }
+  
+        .route {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 30px 0;
+  
+          .plane-icon {
+            width: 30px;
+            height: 30px;
+            transform: rotate(90deg);
+          }
+          h2 {
+            font-weight: 300;
+            font-size: 2.2em;
+            margin: 0;
+          }
+        }
+  
+        .details {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+  
+          .item {
+            display: flex;
+            flex-direction: column;
+            min-width: 70px;
+  
+            span {
+              font-size: .8em;
+              color: rgba(28, 28, 28, .7);
+              font-weight: 500;
+            }
+            h3 {
+              margin-top: 10px;
+              margin-bottom: 25px;
+            }
+          }
+        }
+          
+
+        }
+    }
+  }
+  
+  @keyframes print {
+    0% {
+      transform: translateY(-510px)
+    }
+    35% {
+      transform: translateY(-395px);
+    }
+    70% {
+      transform: translateY(-140px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
