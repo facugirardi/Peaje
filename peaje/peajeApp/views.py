@@ -15,6 +15,10 @@ def base(request):
     return render(request, 'base.html')
 
 
+def gestion_turno(request):
+    return render(request, 'turno_op.html')
+
+
 class PerfilView(View):
     def get(self, request):
         return render(request, 'perfil.html')

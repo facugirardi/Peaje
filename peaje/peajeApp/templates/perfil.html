@@ -96,6 +96,18 @@
                 </div>
                     <div class="col-md-12 text-center">
             <a data-fancybox data-ratio="2" href="{% url 'index' %}" class="btn btn-primary btn-md">Volver</a>
+            
+            {% if user.permisos == False %}
+            <style>
+                .btn-invisible {
+                    opacity: 0;
+                    cursor: default !important;
+                }
+            </style>            
+            <a data-fancybox data-ratio="2" class="btn btn-primary btn-md btn-invisible"></a>
+            <a data-fancybox data-ratio="2" href="{% url 'gestion_turno' %}" class="btn btn-primary btn-md">Turno</a>
+            {% endif %}
+
             </div>  
         </div>
         <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>

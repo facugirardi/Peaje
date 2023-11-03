@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/style_perfil.css' %}">
+{% endblock %}
+
+{% block title %} Perfil - Peaje {% endblock %}
+
+{% block content %} 
+
+{% if user.is_authenticated %}
+{% if user.permisos == False %}
+    <div class="container">
+                <div class="container emp-profile">
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-5">
+                                <div class="profile-head">
+                                            <h5>
+                                                Gestionar Turno
+                                            </h5>
+                                            <br><br><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="row">
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>           
+                </div>
+                    <div class="col-md-12 text-center">
+            <a data-fancybox data-ratio="2" href="{% url 'index' %}" class="btn btn-primary btn-md">Volver</a>
+            </div>  
+        </div>
+        <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
+        
+
+        {% else %}
+        <script>
+            window.location.href = "{% url 'turno' %}";
+        </script>
+        {% endif %}
+        
+        
+        {% else %}
+            <script>
+                window.location.href = "{% url 'index' %}";
+            </script>
+        {% endif %}
+
+{% endblock %}
