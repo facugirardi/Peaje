@@ -145,3 +145,8 @@ class CreacionEmpleadoView(View):
 
 def ticket_view(request):
     return render(request, 'ticket.html')
+
+class PanelView(View):
+    def get(self, request):
+        casillas = Casilla.objects.all()
+        return render(request, 'panel_admin.html', {'casillas': casillas})
