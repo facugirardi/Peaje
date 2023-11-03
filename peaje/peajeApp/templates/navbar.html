@@ -46,6 +46,12 @@
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'panel' %}">PANEL DE ADMINISTRACION</a>
           </ul>
+
+          <div class="navbar-nav sticky-bottom">
+            {% csrf_token %}
+            <a class="nav-link text-danger active" href="{% url 'panel' %}">LOG OUT</a>   
+          </div>
+
         </div>
       </div>
     </div>
