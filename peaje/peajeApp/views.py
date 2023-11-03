@@ -27,7 +27,7 @@ class CreacionTurnoView(View):
 
     def get(self, request):
         operadores = Usuario.objects.filter(permisos=False)
-        casillas = Casilla.objects.filter(estado=True)
+        casillas = Casilla.objects.all()
 
         return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
 
@@ -126,7 +126,7 @@ class CreacionEmpleadoView(View):
             try:
                 hashed_password = make_password(pass_empleado)
                 empleado = Usuario.objects.create(
-                    nombre=nombre,
+                    nombre=nombre,  
                     apellido=apellido,
                     username=username,
                     direccion=direccion,
