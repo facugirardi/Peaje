@@ -7,6 +7,9 @@ from .models import Usuario
 from django.contrib.auth import *
 from django.contrib.auth.hashers import make_password
 from django.db.utils import *
+from django.views.decorators.csrf import csrf_exempt
+import datetime
+
 
 def navbar(request):
     return render(request, 'navbar.html')
@@ -79,6 +82,30 @@ class CreacionTurnoView(View):
 
 def operador(request):
     return render(request, 'operador.html')
+
+
+class OperadorView(View):
+    template_name = 'operador.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        
+        categoria = request.POST['categoria']
+        precio = request.POST['precio']
+        fecha = datetime.date.today()
+
+        tarifa = Tarifa(
+            categoria = categoria,
+            monto = precio,
+            fecha_modificacion = fecha
+        )
+
+        tarifa.save()
+        
+        render(request, 'ticket.html')
+        return render(request, self.template_name)
 
 
 class LoginView(View):

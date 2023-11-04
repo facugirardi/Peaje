@@ -120,6 +120,7 @@ body{
 
 
 .btn.btn-md {
+    color:#fff !important;
     background-color: #21325E;
     border-color: #21325E;
     padding: 15px 30px;

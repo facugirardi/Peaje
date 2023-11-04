@@ -119,9 +119,18 @@
         </div>
 	</div>
     <div class="col-md-12 text-center">
-    <a data-fancybox data-ratio="2" href="{% url 'ticket' %}" class="emitir btn btn-primary btn-md" id='enviarDatos' target="_blank">Emitir Ticket</a>
+    <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md" id='enviarDatos'>Emitir Ticket</a>
     </div>  
 </div>
+
+<form method='POST' action='{% url 'operador' %}' id='form_operador'>
+    {% csrf_token %}
+
+    <input type='hidden' name='precio' id='input_precio'></input>
+    <input type='hidden' name='categoria' id='input_categoria'></input>
+
+</form>
+
 <script src="{% static 'js/main.js' %}"></script>
 <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
 {% else %}

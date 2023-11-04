@@ -54,7 +54,7 @@
       flex-direction: column;
       transform: translateY(-510px);
   
-      animation-duration: 2s;
+      animation-duration: 1.5s;
       animation-name: print;
       animation-fill-mode: forwards;
   
@@ -120,12 +120,6 @@
   @keyframes print {
     0% {
       transform: translateY(-470px)
-    }
-    35% {
-      transform: translateY(-385px);
-    }
-    70% {
-      transform: translateY(-140px);
     }
     100% {
       transform: translateY(0);
