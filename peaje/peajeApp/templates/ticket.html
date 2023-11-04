@@ -67,6 +67,24 @@
     </div>
  </main>   
 
+<script>
+
+   var url = window.location.href;
+   var params = new URLSearchParams(url);
+   var precio = params.get('precio');
+   var categoria = params.get('categoria');
+
+   console.log('Precio:', precio);
+   console.log('Categoría:', categoria);
+
+   var element_precio = document.getElementById("precio");
+   var element_categoria = document.getElementById("categoria");
+
+   element_precio.innerHTML = precio;
+   element_categoria.innerHTML = categoria;
+
+</script>
+
  {% else %}
  <script>
      window.location.href = "{% url 'index' %}";

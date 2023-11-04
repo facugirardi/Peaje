@@ -133,7 +133,12 @@
 
 {% if parametros %}
 <script>
-    var nv = window.open('http://127.0.0.1:8000/ticket/', '_blank');
+    var parametros = {{ parametros|safe }};
+    var precio = parametros.precio;
+    var categoria = parametros.categoria;
+    var url = 'http://127.0.0.1:8000/ticket/?send=1&categoria=' + categoria + '&precio=' + precio;
+
+    var nv = window.open(url, '_blank');
 </script>
 {% endif %}
 
