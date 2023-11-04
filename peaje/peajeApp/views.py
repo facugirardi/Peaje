@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 from django.db.utils import *
 from django.views.decorators.csrf import csrf_exempt
 import datetime
-
+import pytz
 
 def navbar(request):
     return render(request, 'navbar.html')
@@ -18,7 +18,13 @@ def base(request):
     return render(request, 'base.html')
 
 def ticket_view(request):
-    return render(request, 'ticket.html')
+    fecha = datetime.date.today()
+    argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
+    hora_actual = datetime.datetime.now(argentina_timezone)
+
+    hora = f'{hora_actual.hour}:{hora_actual.minute}'
+
+    return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
 
 def gestion_turno(request):
     return render(request, 'turno_op.html')
