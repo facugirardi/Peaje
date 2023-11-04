@@ -131,6 +131,13 @@
 
 </form>
 
+{% if parametros %}
+<script>
+    var nv = window.open('http://127.0.0.1:8000/ticket/', '_blank');
+</script>
+{% endif %}
+
+
 <script src="{% static 'js/main.js' %}"></script>
 <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
 {% else %}

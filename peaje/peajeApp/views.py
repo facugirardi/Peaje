@@ -17,6 +17,8 @@ def navbar(request):
 def base(request):
     return render(request, 'base.html')
 
+def ticket_view(request):
+    return render(request, 'ticket.html')
 
 def gestion_turno(request):
     return render(request, 'turno_op.html')
@@ -89,7 +91,7 @@ class OperadorView(View):
 
     def get(self, request):
         return render(request, self.template_name)
-
+        
     def post(self, request):
         
         categoria = request.POST['categoria']
@@ -103,9 +105,14 @@ class OperadorView(View):
         )
 
         tarifa.save()
-        
-        render(request, 'ticket.html')
-        return render(request, self.template_name)
+
+        parametros = {
+            'categoria': categoria,
+            'precio': precio
+        }
+
+
+        return render(request, self.template_name, {'parametros': parametros})
 
 
 class LoginView(View):
@@ -174,5 +181,3 @@ class CreacionEmpleadoView(View):
                 error_message = "Ocurrió un error al crear el empleado. Por favor, revise los datos ingresados."
 
 
-def ticket_view(request):
-    return render(request, 'ticket.html')
