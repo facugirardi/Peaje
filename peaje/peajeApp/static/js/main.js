@@ -38,7 +38,7 @@ $(document).ready(function() {
     });
 });
 
-    $('.emitir').on('click', function() {
+    $('.disp').on('click', function() {
         var selectedId = $('.selected').attr('id');
         var categoria = '';
         var precio = '';

@@ -119,8 +119,13 @@
         </div>
 	</div>
     <div class="col-md-12 text-center">
-    <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md" id='enviarDatos'>Emitir Ticket</a>
-    </div>  
+    {% if turno.estado == False %}
+        <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md no_disp" id='enviarDatos'>Emitir Ticket</a>
+    {% else %}
+        <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md disp" id='enviarDatos'>Emitir Ticket</a>
+    {% endif %}
+
+</div>  
 </div>
 
 <form method='POST' action='{% url 'operador' %}' id='form_operador'>

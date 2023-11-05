@@ -128,15 +128,18 @@ class CreacionTurnoView(View):
         return render(request, 'turno.html', {'messages': messages})
 
 
-def operador(request):
-    return render(request, 'operador.html')
-
-
 class OperadorView(View):
     template_name = 'operador.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        usuario = request.user
+        turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+
+        if turno:
+            return render(request, self.template_name, {'turno': turno})
+        else:
+            return render(request, self.template_name)
+
         
     def post(self, request):
         
