@@ -112,9 +112,12 @@ class OperadorView(View):
 
         tarifa.save()
 
+        tarifa_id = tarifa.id
+
         parametros = {
             'categoria': categoria,
-            'precio': precio
+            'precio': precio,
+            'tarifa': tarifa_id
         }
 
 

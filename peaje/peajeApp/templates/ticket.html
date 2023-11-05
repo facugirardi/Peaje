@@ -59,7 +59,7 @@
                  </div>  
                  <div class="item">
                     <span>Ticket No.</span>
-                    <h3>92920</h3>
+                    <h3 id='tarifa'></h3>
                  </div> 
              </div>
           </div>
@@ -73,15 +73,15 @@
    var params = new URLSearchParams(url);
    var precio = params.get('precio');
    var categoria = params.get('categoria');
-
-   console.log('Precio:', precio);
-   console.log('Categoría:', categoria);
+   var tarifa = params.get('tarifa');
 
    var element_precio = document.getElementById("precio");
    var element_categoria = document.getElementById("categoria");
+   var element_tarifa = document.getElementById("tarifa");
 
    element_precio.innerHTML = precio;
    element_categoria.innerHTML = categoria;
+   element_tarifa.innerHTML = tarifa;
 
 </script>
 
@@ -103,6 +103,5 @@ falta:
 - Ubicacion
 - KM Ruta
 - Num. Estacion
-- Num. Ticket 
 
 {% endcomment %}
