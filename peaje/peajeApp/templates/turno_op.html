@@ -34,7 +34,10 @@
                                 <div class="container mt-4 mb-3">
                                     <div class="row justify-content-center">
                                         <div class="col-md-3">
-                                            <div class="card p-3 mb-2">
+
+
+                                            {% if user.disponible == False %}
+                                            <div class="card card_dis p-3 mb-2">
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="ms-2 c-details">
@@ -45,13 +48,35 @@
                                                 <div class="mt-5">
                                                     <h3 class="heading">Iniciar Turno</h3>
                                                     <div class="mt-5">
-                                                        <div class="mt-3"> <span class="text1">Iniciar Jornada</span> </div>
+                                                        <div class="mt-3"> <span class="text1">Turno Disponible</span> </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {% else %}
+                                            <div class="card p-3 mb-2 no_disponible">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div class="ms-2 c-details">
+                                                            <h6 class="mb-0">Gestion Turno</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5">
+                                                    <h3 class="heading">Iniciar Turno</h3>
+                                                    <div class="mt-5">
+                                                        <div class="mt-3"> <span class="text1">Turno No Disponible</span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
+                                            
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="card p-3 mb-2">
+
+                                            {% if user.disponible == False %}
+                                            <div class="card card_dis p-3 mb-2">
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="ms-2 c-details">
@@ -62,10 +87,29 @@
                                                 <div class="mt-5">
                                                     <h3 class="heading">Finalizar Turno</h3>
                                                     <div class="mt-5">
-                                                        <div class="mt-3"> <span class="text1">Finalizar Jornada</span> </div>
+                                                        <div class="mt-3"> <span class="text1">Turno Disponible</span> </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {% else %}
+                                            <div class="card p-3 mb-2 no_disponible">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div class="ms-2 c-details">
+                                                            <h6 class="mb-0">Gestion Turno</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5">
+                                                    <h3 class="heading">Finalizar Turno</h3>
+                                                    <div class="mt-5">
+                                                        <div class="mt-3"> <span class="text1">Turno No Disponible</span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
                                         </div>
                                 </div>
                         </div>
