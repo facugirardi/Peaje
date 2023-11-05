@@ -18,9 +18,9 @@ def base(request):
     return render(request, 'base.html')
 
 def ticket_view(request):
-    fecha = datetime.date.today()
     argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
     hora_actual = datetime.datetime.now(argentina_timezone)
+    fecha = datetime.datetime.now(argentina_timezone).date()
 
     hora = f'{hora_actual.hour}:{hora_actual.minute}'
 
