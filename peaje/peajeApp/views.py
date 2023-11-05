@@ -8,7 +8,6 @@ from django.contrib.auth import *
 from django.contrib.auth.hashers import make_password
 from django.db.utils import *
 from django.views.decorators.csrf import csrf_exempt
-import datetime
 import pytz
 
 def navbar(request):
