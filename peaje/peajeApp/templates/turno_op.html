@@ -37,7 +37,7 @@
 
 
                                             {% if user.disponible == False %}
-                                            <div class="card card_dis p-3 mb-2">
+                                            <div class="card card_dis p-3 mb-2 iniciar">
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="ms-2 c-details">
@@ -76,7 +76,7 @@
                                         <div class="col-md-3">
 
                                             {% if user.disponible == False %}
-                                            <div class="card card_dis p-3 mb-2">
+                                            <div class="card card_dis p-3 mb-2 finalizar">
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="ms-2 c-details">
@@ -131,8 +131,33 @@
             <a data-fancybox data-ratio="2" href="{% url 'index' %}" class="btn btn-primary btn-md">Volver</a>
             </div>  
         </div>
+
+        <form method='POST' action='{% url 'gestion_turno' %}' id='form_iniciar'>
+            {% csrf_token %}
+            <input type="hidden" name="action" value="iniciar">
+        </form>
+        <form method='POST' action='{% url 'gestion_turno' %}' id='form_finalizar'>
+            {% csrf_token %}
+            <input type="hidden" name="action" value="finalizar">
+        </form>
+
+
         <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
         
+        <script>
+
+            $(document).ready(function() {
+                $('.iniciar').click(function() {
+                    $('#form_iniciar').submit();
+                });
+
+                $('.finalizar').click(function() {
+                    $('#form_finalizar').submit();
+                });
+
+            });            
+
+        </script>
 
         {% else %}
         <script>

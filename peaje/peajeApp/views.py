@@ -30,8 +30,28 @@ def ticket_view(request):
 
     return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
 
-def gestion_turno(request):
-    return render(request, 'turno_op.html')
+
+class GestionTurnoView(View):
+    def get(self, request):
+        return render(request, 'turno_op.html')
+    
+    def post(self, request):
+        if 'action' in request.POST:
+            action = request.POST['action']
+            turno = TurnoTrabajo.objects.get(usuario=request.user)
+
+            if action == 'iniciar':
+                turno.iniciar_turno()
+                request.user.disponible = False
+
+            elif action == 'finalizar':
+                turno.cerrar_turno()
+                request.user.disponible = True
+
+        turno.save()
+        request.user.save()
+
+        return render(request, 'turno_op.html')
 
 
 class PerfilView(View):
@@ -58,8 +78,8 @@ class CreacionTurnoView(View):
         casilla = request.POST['select_casilla_id']
         operador_id = request.POST['select_operador_id']
 
-        fecha_inicio = timezone.make_aware(datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
-        fecha_fin = timezone.make_aware(datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
+        fecha_inicio = timezone.make_aware(datetime.datetime.strptime(fh_inicio, '%Y-%m-%dT%H:%M'))
+        fecha_fin = timezone.make_aware(datetime.datetime.strptime(fh_fin, '%Y-%m-%dT%H:%M'))
 
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
 
