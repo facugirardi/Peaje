@@ -33,12 +33,21 @@ def ticket_view(request):
 
 class GestionTurnoView(View):
     def get(self, request):
-        return render(request, 'turno_op.html')
+
+        usuario = request.user
+        turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+
+        if turno:
+            estado_turno = turno.estado
+            return render(request, 'turno_op.html', {'estado_turno': estado_turno, 'turno': turno})
+        else:
+            return render(request, 'turno_op.html')
+
     
     def post(self, request):
         if 'action' in request.POST:
             action = request.POST['action']
-            turno = TurnoTrabajo.objects.get(usuario=request.user)
+            turno = TurnoTrabajo.objects.filter(usuario=request.user).first()
 
             if action == 'iniciar':
                 turno.iniciar_turno()

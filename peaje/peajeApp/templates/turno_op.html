@@ -37,7 +37,25 @@
 
 
                                             {% if user.disponible == False %}
-                                            <div class="card card_dis p-3 mb-2 iniciar">
+                                                {% if estado_turno == False %}
+                                                <div class="card card_dis p-3 mb-2 iniciar">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            <div class="ms-2 c-details">
+                                                                <h6 class="mb-0">Gestion Turno</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-5">
+                                                        <h3 class="heading">Iniciar Turno</h3>
+                                                        <div class="mt-5">
+                                                            <div class="mt-3"> <span class="text1">Turno Disponible</span> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            {% else %}
+                                            <div class="card p-3 mb-2 no_disponible">
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="ms-2 c-details">
@@ -46,12 +64,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="mt-5">
-                                                    <h3 class="heading">Iniciar Turno</h3>
+                                                    <h3 class="heading">En Curso</h3>
                                                     <div class="mt-5">
-                                                        <div class="mt-3"> <span class="text1">Turno Disponible</span> </div>
+                                                        <div class="mt-3"> <span class="text1">Turno En Curso</span> </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {% endif %}
 
                                             {% else %}
                                             <div class="card p-3 mb-2 no_disponible">
@@ -149,6 +168,7 @@
             $(document).ready(function() {
                 $('.iniciar').click(function() {
                     $('#form_iniciar').submit();
+
                 });
 
                 $('.finalizar').click(function() {
