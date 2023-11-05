@@ -28,7 +28,14 @@ def ticket_view(request):
 
     hora = f'{hora_actual.hour}:{minutos}'
 
-    return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
+    usuario = request.user
+    turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+
+    if turno:
+        return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora, 'turno': turno})
+    else:
+        return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
+
 
 
 class GestionTurnoView(View):
