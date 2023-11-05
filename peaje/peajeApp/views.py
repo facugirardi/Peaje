@@ -22,7 +22,11 @@ def ticket_view(request):
     hora_actual = datetime.datetime.now(argentina_timezone)
     fecha = datetime.datetime.now(argentina_timezone).date()
 
-    hora = f'{hora_actual.hour}:{hora_actual.minute}'
+    minutos = hora_actual.minute
+    if len(str(minutos)) == 1:
+        minutos = f'0{minutos}'
+
+    hora = f'{hora_actual.hour}:{minutos}'
 
     return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
 
