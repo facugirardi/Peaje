@@ -10,5 +10,6 @@ urlpatterns = [
     path('perfil/', views.PerfilView.as_view(), name='perfil'),
     path('navbar/', views.navbar, name='navbar'),
     path('ticket/', views.ticket_view, name='ticket'),
-    path('gestion_turno/', views.gestion_turno, name='gestion_turno')
+    path('gestion_turno/', views.gestion_turno, name='gestion_turno'),
+    path('panel/', views.PanelView.as_view(), name='panel'), 
 ]

@@ -1,0 +1,41 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+{% block title %} Panel de Administración de Casillas {% endblock %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% block content %}
+<section class="site-section" id="admin-panel-section">
+    <div class="container">
+        <h1 class="site-section-heading">Panel de Administración de Casillas</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número de Casilla</th>
+                    <th>Estación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for casilla in casillas %}
+                    <tr>
+                        <td>{{ casilla.id }}</td>
+                        <td>{{ casilla.num_casilla }}</td>
+                        <td>Estación N° {{ casilla.estacion.id }}</td>
+                        {% if casilla.estado %}
+                            <td>Abierta</td>
+                        {% else %}
+                            <td>Cerrada</td>
+                        {% endif %}
+
+                        <td><a href="" class="btn btn-primary">Administrar</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
