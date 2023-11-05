@@ -8,7 +8,6 @@ from django.contrib.auth import *
 from django.contrib.auth.hashers import make_password
 from django.db.utils import *
 from django.views.decorators.csrf import csrf_exempt
-import datetime
 import pytz
 
 def navbar(request):
@@ -103,6 +102,8 @@ class CreacionTurnoView(View):
             messages = "La fecha de inicio no puede ser mayor que la fecha de finalización."
         elif duracion_turno > 9:
             messages = "El turno no puede durar más de 9 horas."
+        elif fecha_inicio == fecha_fin:
+            messages = "La fecha de inicio no puede ser igual a la fecha de finalización."
         elif casilla == "Seleccione una opción:" or operador_id == "Seleccione una opción:":
             messages = "Debe seleccionar una casilla y un operador."
         else:
@@ -124,7 +125,7 @@ class CreacionTurnoView(View):
             )
 
             turno.save()
-
+        
         return render(request, 'turno.html', {'messages': messages})
 
 
