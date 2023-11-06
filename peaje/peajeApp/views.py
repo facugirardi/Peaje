@@ -35,7 +35,7 @@ def ticket_view(request):
     hora = f'{hora_actual.hour}:{minutos}'
 
     usuario = request.user
-    turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+    turno = TurnoTrabajo.objects.filter(usuario=usuario).last()
 
     if turno:
         return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora, 'turno': turno})
@@ -47,7 +47,7 @@ class GestionTurnoView(View):
     def get(self, request):
 
         usuario = request.user
-        turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+        turno = TurnoTrabajo.objects.filter(usuario=usuario).last()
 
         if turno:
             estado_turno = turno.estado
@@ -59,7 +59,7 @@ class GestionTurnoView(View):
     def post(self, request):
         if 'action' in request.POST:
             action = request.POST['action']
-            turno = TurnoTrabajo.objects.filter(usuario=request.user).first()
+            turno = TurnoTrabajo.objects.filter(usuario=request.user).last()
 
             if action == 'iniciar':
                 turno.iniciar_turno()
@@ -141,22 +141,29 @@ class OperadorView(View):
 
     def get(self, request):
         usuario = request.user
-        turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
+        turno = TurnoTrabajo.objects.filter(usuario=usuario).last()
 
-        fh_inicio = str(turno.fh_inicio)
+        fh_fin = str(turno.fh_fin)
+        fh_fin = fh_fin.split('+')[0]
 
         argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
-        fh_fin = str(datetime.datetime.now(argentina_timezone))
-        print(fh_fin)
-        print(fh_inicio)
 
-        fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S%z')
-        fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S.%f%z')
+        fh_inicio = datetime.datetime.now(argentina_timezone)
+        fh_inicio = fh_inicio.replace(microsecond=0, tzinfo=None).strftime('%Y-%m-%d %H:%M:%S')
+        fh_inicio = str(fh_inicio)
+
+
+
+        print(fh_inicio)
+        print(fh_fin)
+
+        fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S')
+        fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S')
 
         duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
-        print(duracion_turno)
+        horas_restantes = "{:.2f}".format(duracion_turno)
 
-
+        print(horas_restantes)
 
         if turno:
             return render(request, self.template_name, {'turno': turno})
