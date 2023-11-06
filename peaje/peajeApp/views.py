@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
 from django.utils import timezone
-from datetime import datetime
+import datetime
 from .models import Usuario
 from django.contrib.auth import *
 from django.contrib.auth.hashers import make_password
