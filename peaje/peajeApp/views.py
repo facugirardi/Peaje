@@ -143,6 +143,21 @@ class OperadorView(View):
         usuario = request.user
         turno = TurnoTrabajo.objects.filter(usuario=usuario).first()
 
+        fh_inicio = str(turno.fh_inicio)
+
+        argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
+        fh_fin = str(datetime.datetime.now(argentina_timezone))
+        print(fh_fin)
+        print(fh_inicio)
+
+        fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S%z')
+        fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S.%f%z')
+
+        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
+        print(duracion_turno)
+
+
+
         if turno:
             return render(request, self.template_name, {'turno': turno})
         else:
