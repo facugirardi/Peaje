@@ -9,12 +9,19 @@ from django.contrib.auth.hashers import make_password
 from django.db.utils import *
 from django.views.decorators.csrf import csrf_exempt
 import pytz
+import qrcode
+from qrcode.image.pure import PymagingImage
+import os
+from django.conf import settings
+
 
 def navbar(request):
     return render(request, 'navbar.html')
 
+
 def base(request):
     return render(request, 'base.html')
+
 
 def ticket_view(request):
     argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
@@ -34,7 +41,6 @@ def ticket_view(request):
         return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora, 'turno': turno})
     else:
         return render(request, 'ticket.html',  {'fecha': fecha, 'hora': hora})
-
 
 
 class GestionTurnoView(View):
@@ -76,6 +82,7 @@ class PerfilView(View):
     def post(self, request):
         logout(request)
         return redirect('index')
+
 
 class CreacionTurnoView(View):
 
@@ -146,7 +153,8 @@ class OperadorView(View):
         
         categoria = request.POST['categoria']
         precio = request.POST['precio']
-        fecha = datetime.date.today()
+        argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
+        fecha = datetime.datetime.now(argentina_timezone).date()
 
         tarifa = Tarifa(
             categoria = categoria,
@@ -163,6 +171,25 @@ class OperadorView(View):
             'precio': precio,
             'tarifa': tarifa_id
         }
+
+
+        qr_text = f'La categoria del vehiculo es {categoria}, el monto fue de ${precio} y se realizo en la fecha: {fecha}'
+        codigo_qr = qrcode.QRCode(
+            version=1, 
+            error_correction=qrcode.constants.ERROR_CORRECT_L, 
+            box_size=10,
+            border=0,
+        )
+
+        codigo_qr.add_data(qr_text)
+        codigo_qr.make(fit=True)
+
+        qr_svg = codigo_qr.make_image(fill_color="black", back_color="white")
+
+        nombre_archivo = "qr-code.png"
+        ruta_de_guardado = os.path.join('peajeApp', 'static', 'img', nombre_archivo)
+
+        qr_svg.save(ruta_de_guardado)
 
 
         return render(request, self.template_name, {'parametros': parametros})
