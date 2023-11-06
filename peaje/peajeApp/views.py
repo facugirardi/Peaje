@@ -165,6 +165,11 @@ class OperadorView(View):
 
         print(horas_restantes)
 
+        if horas_restantes < 0:
+            horas_restantes = 0
+        elif turno.estado == False:
+            horas_restantes = 0
+
         if turno:
             return render(request, self.template_name, {'turno': turno, 'tiempo': horas_restantes})
         else:
