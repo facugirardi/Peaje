@@ -160,13 +160,13 @@ class OperadorView(View):
         fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S')
         fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S')
 
-        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 3600
-        horas_restantes = "{:.2f}".format(duracion_turno)
+        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 60
+        horas_restantes = int(duracion_turno)
 
         print(horas_restantes)
 
         if turno:
-            return render(request, self.template_name, {'turno': turno})
+            return render(request, self.template_name, {'turno': turno, 'tiempo': horas_restantes})
         else:
             return render(request, self.template_name)
 
