@@ -143,31 +143,36 @@ class OperadorView(View):
         usuario = request.user
         turno = TurnoTrabajo.objects.filter(usuario=usuario).last()
 
-        fh_fin = str(turno.fh_fin)
-        fh_fin = fh_fin.split('+')[0]
-
-        argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
-
-        fh_inicio = datetime.datetime.now(argentina_timezone)
-        fh_inicio = fh_inicio.replace(microsecond=0, tzinfo=None).strftime('%Y-%m-%d %H:%M:%S')
-        fh_inicio = str(fh_inicio)
+        fecha_fin = 0
+        fecha_inicio = 0
 
 
+        if turno:
+            fh_fin = str(turno.fh_fin)
+            fh_fin = fh_fin.split('+')[0]
 
-        print(fh_inicio)
-        print(fh_fin)
+            argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
 
-        fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S')
-        fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S')
+            fh_inicio = datetime.datetime.now(argentina_timezone)
+            fh_inicio = fh_inicio.replace(microsecond=0, tzinfo=None).strftime('%Y-%m-%d %H:%M:%S')
+            fh_inicio = str(fh_inicio)
 
-        duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 60
-        horas_restantes = int(duracion_turno)
+            fecha_inicio = datetime.datetime.strptime(fh_inicio, '%Y-%m-%d %H:%M:%S')
+            fecha_fin = datetime.datetime.strptime(fh_fin, '%Y-%m-%d %H:%M:%S')
+
+            duracion_turno = (fecha_fin - fecha_inicio).total_seconds() / 60
+        
+            horas_restantes = int(duracion_turno)
+            estado = turno.estado
+        else:
+            horas_restantes = 0
+            estado = False
 
         print(horas_restantes)
 
         if horas_restantes < 0:
             horas_restantes = 0
-        elif turno.estado == False:
+        elif estado == False:
             horas_restantes = 0
 
         if turno:
