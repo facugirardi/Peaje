@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block title %} Panel de Administración de Casillas {% endblock %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style_perfil.css' %}">
 
 {% block content %}
 <section class="site-section" id="admin-panel-section">
-    <div class="container">
-        <h1 class="site-section-heading">Panel de Administración de Casillas</h1>
+
+    <div class="container"><br>
+        <h1 class="text-center">ADMINISTRACION DE CASILLAS</h1><br>
         
-        <table class="table">
+        <table class="table text-center">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Número de Casilla</th>
-                    <th>Estación</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Número de Casilla</th>
+                    <th scope="col">Estación</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-            </thead>
+            </thead class="table-group-divider">
             <tbody>
                 {% for casilla in casillas %}
                     <tr>
@@ -31,7 +32,11 @@
                             <td>Cerrada</td>
                         {% endif %}
 
-                        <td><a href="" class="btn btn-primary">Administrar</a></td>
+                        <td>
+                            <div class="col-md-12 text-center">
+                                <a data-fancybox data-ratio="2" class="btn btn-outline-primary">Administrar</a>
+                            </div>  
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
