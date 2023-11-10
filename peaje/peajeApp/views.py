@@ -298,3 +298,9 @@ class PanelView(View):
     def get(self, request):
         casillas = Casilla.objects.all()
         return render(request, 'panel_admin.html', {'casillas': casillas})
+
+
+def test_view(request):
+    turnos = TurnoTrabajo.objects.all()
+
+    return render(request, 'test.html', {'turnos': turnos})

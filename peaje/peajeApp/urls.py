@@ -12,4 +12,5 @@ urlpatterns = [
     path('ticket/', views.ticket_view, name='ticket'),
     path('gestion_turno/', views.GestionTurnoView.as_view(), name='gestion_turno'),
     path('panel/', views.PanelView.as_view(), name='panel'), 
+    path('test/', views.test_view, name='test')
 ]
