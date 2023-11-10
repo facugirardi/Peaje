@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/style_ticket.css' %}">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 {% endblock %}
 
 {% block title %} Ticket - Peaje {% endblock %}
@@ -23,48 +24,73 @@
              <div class="details">
                 <div class="item">
                    <span>Operador</span>
-                   <h3>Nº 192</h3>
+                   <h3>Nº {{ user.id }}</h3>
                 </div> 
                 <div class="item">
-                    <img src="{% static 'img/qr-code.svg' %}" style="width:60px;height:60px;">
+                    <img src="{% static 'img/qr-code.png' %}" style="width:60px;height:60px;">
                 </div> 
                 <div class="item">
                    <span>Fecha - Hora </span>
-                   <h3>27/08/2018 15:33</h3>
+                   <h3>{{ fecha }} {{ hora }}</h3>
                 </div>
                 <div class="item">
                    <span>Casilla</span>
-                   <h3>8</h3>
+                   <h3>{{ turno.casilla }}</h3>
                 </div>
                 <div class="item">
                    <span>Cat. Vehiculo</span>
-                   <h3>Nº 2</h3>
+                   <h3>Nº <span id='categoria'></span></h3>
                 </div>
                 <div class="item">
                    <span>Importe</span>
-                   <h3>$ 204</h3>
+                   <h3>$ <span id='precio'></span></h3>
                 </div>
                 <div class="item">
                     <span>Ubicacion</span>
-                    <h3>Ruta Provincial Nº 35</h3>
+                    <h3>Ruta {{ turno.casilla.estacion.ruta }}</h3>
                  </div>  
                  <div class="item">
                     <span>Km Ruta</span>
-                    <h3>Km 234</h3>
+                    <h3>Km {{ turno.casilla.estacion.km_ruta }}</h3>
                  </div>  
                  <div class="item">
                     <span>Nº Estacion</span>
-                    <h3>23</h3>
+                    <h3>{{ turno.casilla.estacion }}</h3>
                  </div>  
                  <div class="item">
                     <span>Ticket No.</span>
-                    <h3>92920</h3>
+                    <h3 id='tarifa'></h3>
                  </div> 
              </div>
           </div>
        </div>
     </div>
  </main>   
+
+<script>
+
+   var url = window.location.href;
+   var params = new URLSearchParams(url);
+   var precio = params.get('precio');
+   var categoria = params.get('categoria');
+   var tarifa = params.get('tarifa');
+
+   var element_precio = document.getElementById("precio");
+   var element_categoria = document.getElementById("categoria");
+   var element_tarifa = document.getElementById("tarifa");
+
+   element_precio.innerHTML = precio;
+   element_categoria.innerHTML = categoria;
+   element_tarifa.innerHTML = tarifa;
+
+   window.addEventListener('load', function() {
+      setTimeout(function() {
+          window.print();
+      }, 2000);
+  });
+
+
+</script>
 
  {% else %}
  <script>
@@ -74,3 +100,4 @@
 
  
 {% endblock %}
+

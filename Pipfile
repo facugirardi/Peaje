@@ -17,6 +17,7 @@ sqlparse = "==0.4.4"
 text-unidecode = "==1.3"
 toml = "==0.10.2"
 typing-extensions = "==4.7.1"
+qrcode = "*"
 
 [dev-packages]
 

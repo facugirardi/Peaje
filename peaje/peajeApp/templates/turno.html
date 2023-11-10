@@ -93,11 +93,7 @@
           ::-moz-selection {
             background: #000;
            }
-          
-          ::selection {
-            background: #000;
-            }
-          
+
           a {
             -webkit-transition: .3s all ease;
             -o-transition: .3s all ease;
@@ -288,14 +284,21 @@
                     <p id='messages'>{{ messages }}</p>
 
                 {%endif%}
-
                 <div class="row form-group">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <label class="text-black" for="lbl-id-estacion">ID Estación</label>
-                        <input type="text" id="input-id-estacion" class="form-control" name="id_estacion">
-                    </div>
-            
-                    <div class="col-md-6">
+
+                <div class="col-md-6">
+                  <label class="text-black" for="lbl-id-estacion">ID Estacion</label>
+                  <select class="form-control" id="input-id-estacion" name="id_estacion">
+                      <option class="form-control">Seleccione una opción:</option>
+                      {% for estacion in estaciones %}
+                          <option value="{{ estacion.id }}" class="form-control" data-estacion="{{ estacion.id }}">
+                              {{ estacion.id }}
+                          </option>
+                      {% endfor %}
+                  </select>
+              </div>
+
+              <div class="col-md-6">
                       <label class="text-black" for="lbl-id-casilla">ID Casilla</label>
                       <select class="form-control" id="input-id-casilla" name="select_casilla_id">
                           <option class="form-control">Seleccione una opción:</option>
@@ -305,7 +308,7 @@
                                       Casilla N°{{ casilla.num_casilla }} de la Estacion N° {{ casilla.estacion_id }}
                                   </option>
                               {% else %}
-                                  <option value="{{ casilla.id }}" class="form-control" data-estacion="{{ casilla.estacion.id }}" disabled>
+                                  <option value="{{ casilla.id }}" class="form-control" data-estacion="{{ casilla.estacion.id }}"disabled>
                                       Casilla N°{{ casilla.num_casilla }} de la Estacion N° {{ casilla.estacion_id }} (Cerrada)
                                   </option>
                               {% endif %}

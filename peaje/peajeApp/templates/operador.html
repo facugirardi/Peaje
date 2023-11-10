@@ -113,15 +113,42 @@
                 <div class="card-block">
                     <h6 class="m-b-20">Tiempo Restante</h6>
                     <h2 class="text-right"><i class="fa fa-clock f-left"></i><span>‎</span></h2>
-                    <p class="m-b-0">Minutos Restantes<span class="f-right">351</span></p>
+                    <p class="m-b-0">Minutos Restantes<span class="f-right">{{ tiempo }}</span></p>
                 </div>
             </div>
         </div>
 	</div>
     <div class="col-md-12 text-center">
-    <a data-fancybox data-ratio="2" href="{% url 'ticket' %}" class="emitir btn btn-primary btn-md" id='enviarDatos' target="_blank">Emitir Ticket</a>
-    </div>  
+    {% if turno.estado == False %}
+        <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md no_disp" id='enviarDatos'>Emitir Ticket</a>
+    {% else %}
+        <a data-fancybox data-ratio="2" class="emitir btn btn-primary btn-md disp" id='enviarDatos'>Emitir Ticket</a>
+    {% endif %}
+
+</div>  
 </div>
+
+<form method='POST' action='{% url 'operador' %}' id='form_operador'>
+    {% csrf_token %}
+
+    <input type='hidden' name='precio' id='input_precio'></input>
+    <input type='hidden' name='categoria' id='input_categoria'></input>
+
+</form>
+
+{% if parametros %}
+<script>
+    var parametros = {{ parametros|safe }};
+    var precio = parametros.precio;
+    var categoria = parametros.categoria;
+    var tarifa = parametros.tarifa;
+    var url = 'http://127.0.0.1:8000/ticket/?send=1&categoria=' + categoria + '&precio=' + precio + '&tarifa=' + tarifa;
+
+    var nv = window.open(url, '_blank');
+</script>
+{% endif %}
+
+
 <script src="{% static 'js/main.js' %}"></script>
 <script src="https://kit.fontawesome.com/13697a42ad.js" crossorigin="anonymous"></script></head>
 {% else %}

@@ -120,6 +120,7 @@ body{
 
 
 .btn.btn-md {
+    color:#fff !important;
     background-color: #21325E;
     border-color: #21325E;
     padding: 15px 30px;
@@ -127,4 +128,15 @@ body{
     text-transform: uppercase;
     letter-spacing: 2px; 
     margin-top: 75px;
+}
+
+.no_disp{
+  background-color: #2c3753 !important;
+  border-color: #2c3753 !important; 
+  cursor: not-allowed !important;
+}
+
+.no_disp:hover{
+  border-color: #2c3753 !important; 
+  background-color: #2c3753 !important;
 }
