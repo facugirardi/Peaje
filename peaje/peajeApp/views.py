@@ -89,8 +89,9 @@ class CreacionTurnoView(View):
     def get(self, request):
         operadores = Usuario.objects.filter(permisos=False)
         casillas = Casilla.objects.all()
+        estaciones = Estacion.objects.all()
 
-        return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas})
+        return render(request, 'turno.html', {'operadores': operadores, 'casillas': casillas, 'estaciones':estaciones})
 
     def post(self, request):
         fh_inicio = request.POST['fh_inicio']
