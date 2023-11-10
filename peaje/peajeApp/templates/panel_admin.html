@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %} Panel de Administración de Casillas {% endblock %}
-<link rel="stylesheet" href="{% static 'css/style_perfil.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 {% block content %}
 <section class="site-section" id="admin-panel-section">
@@ -33,9 +33,7 @@
                         {% endif %}
 
                         <td>
-                            <div class="col-md-12 text-center">
-                                <a data-fancybox data-ratio="2" class="btn btn-outline-primary">Administrar</a>
-                            </div>  
+                            <a class="btn btn-outline-primary" href="" >Administrar</a>
                         </td>
                     </tr>
                 {% endfor %}
