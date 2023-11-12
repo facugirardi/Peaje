@@ -1,0 +1,10 @@
+{% load static %}
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Detalles de la Casilla</h1>
+    <p>ID: {{ casilla.id }}</p>
+    <p>Número de Casilla: {{ casilla.num_casilla }}</p>
+    <p>Estación: {{ casilla.estacion.nombre }}</p>
+{% endblock %}
