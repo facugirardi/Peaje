@@ -296,5 +296,13 @@ class CreacionEmpleadoView(View):
 
 class PanelView(View):
     def get(self, request):
+        num_casilla = request.GET.get('num_casilla')
         casillas = Casilla.objects.all()
-        return render(request, 'panel_admin.html', {'casillas': casillas})
+        if num_casilla:
+            casillas = casillas.filter(num_casilla__icontains=num_casilla)
+        context = {
+            'form': CasillasFilterForm(),
+            'casillas' : casillas
+        }
+
+        return render(request, 'panel_admin.html', context)
