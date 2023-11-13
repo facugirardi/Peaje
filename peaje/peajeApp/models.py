@@ -4,7 +4,7 @@ import datetime
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
-class CustomUserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager): 
     def create_user(self, username, password=None, **extra_fields):
         if not username:
             raise ValueError("El campo de nombre de usuario es obligatorio")
