@@ -8,19 +8,20 @@
 <section class="site-section" id="admin-panel-section">
 
     <div class="container"><br>
-        <div class="row">
 
-            <div class="col-md-5">
-                <form method="GET" action="{% url 'panel' %}">
-                    {{form.as_p}}
-                    <input type="submit" value="Search" class="btn btn-primary" />
-                </form>
-            </div>
             
-            <div class="col-md-7">
+            <div >
                 <h1 class="text-center">ADMINISTRACION DE CASILLAS</h1><br>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <form method="GET" action="{% url 'panel' %}">
+                        {{form.as_table}}
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                    </form>
+                </div>
+            </div>
+
         
         <hr/>
         
