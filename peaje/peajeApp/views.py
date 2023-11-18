@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, View
 from .models import *
 from django.utils import timezone
@@ -307,3 +308,12 @@ class PanelView(View):
         }
 
         return render(request, 'panel_admin.html', context)
+    
+
+class DetalleCasillaView(View):
+    template_name = "detalle_casilla.html"
+
+    def get(self, request, casilla_id):
+        casilla = get_object_or_404(Casilla, id=casilla_id)
+
+        return render(request, self.template_name, {'casilla': casilla})
