@@ -309,11 +309,20 @@ class PanelView(View):
 
         return render(request, 'panel_admin.html', context)
     
-
 class DetalleCasillaView(View):
     template_name = "detalle_casilla.html"
 
     def get(self, request, casilla_id):
         casilla = get_object_or_404(Casilla, id=casilla_id)
+        return render(request, self.template_name, {'casilla': casilla})
+
+    def post(self, request, casilla_id):
+        casilla = get_object_or_404(Casilla, id=casilla_id)
+
+        if 'abrir_casilla' in request.POST:
+            casilla.abrir_casilla()
+
+        if 'cerrar_casilla' in request.POST:
+            casilla.cerrar_casilla()
 
         return render(request, self.template_name, {'casilla': casilla})

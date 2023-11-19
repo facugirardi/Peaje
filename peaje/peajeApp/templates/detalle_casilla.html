@@ -8,10 +8,15 @@
     <p>ID: {{ casilla.id }}</p>
     <p>Número de Casilla: {{ casilla.num_casilla }}</p>
     <p>Estado: {% if casilla.estado %}Abierta{% else %}Cerrada{% endif %}</p>
-    
-    {% if estacion_info %}
-        <p>Casilla de la Estación: {{ estacion_info.numero_estacion }}</p>
-    {% endif %}
+
+    <form method="post" action="{% url 'detalle_casilla' casilla.id %}">
+        {% csrf_token %}
+        {% if casilla.estado %}
+            <button type="submit" name="cerrar_casilla" class="btn btn-danger">Cerrar Casilla</button>
+        {% else %}
+            <button type="submit" name="abrir_casilla" class="btn btn-success">Abrir Casilla</button>
+        {% endif %}
+    </form>
 
     <a href="{% url 'panel' %}" class="btn btn-outline-primary">Volver al Panel</a>
 {% endblock %}
