@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <h1>Detalles de la Casilla N°{{ casilla.num_casilla }}{% if estacion_info %} De la Estacion N°{{ estacion_info.numero_estacion }}{% endif %}</h1>
+    <h1>Detalles de la Casilla N°{{ casilla.num_casilla }} De La {{ casilla.estacion }}</h1>
     <p>ID: {{ casilla.id }}</p>
     <p>Número de Casilla: {{ casilla.num_casilla }}</p>
     <p>Estado: {% if casilla.estado %}Abierta{% else %}Cerrada{% endif %}</p>
