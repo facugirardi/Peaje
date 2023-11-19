@@ -1,4 +1,5 @@
 
+from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, View
 from .models import *
@@ -314,7 +315,12 @@ class DetalleCasillaView(View):
 
     def get(self, request, casilla_id):
         casilla = get_object_or_404(Casilla, id=casilla_id)
-        return render(request, self.template_name, {'casilla': casilla})
+        try:
+            turno_actual = TurnoTrabajo.objects.get(casilla_id=casilla_id)
+        except TurnoTrabajo.DoesNotExist:
+            turno_actual = None
+
+        return render(request, self.template_name, {'casilla': casilla, 'turno_actual': turno_actual})
 
     def post(self, request, casilla_id):
         casilla = get_object_or_404(Casilla, id=casilla_id)
@@ -323,6 +329,9 @@ class DetalleCasillaView(View):
             casilla.abrir_casilla()
 
         if 'cerrar_casilla' in request.POST:
-            casilla.cerrar_casilla()
+            if not TurnoTrabajo.objects.filter(casilla_id=casilla_id, estado=True).exists():
+                casilla.cerrar_casilla()
+            else:
+                return HttpResponseBadRequest("No puedes cerrar la casilla mientras haya un turno en curso.")
 
         return render(request, self.template_name, {'casilla': casilla})

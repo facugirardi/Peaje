@@ -9,6 +9,16 @@
     <p>Número de Casilla: {{ casilla.num_casilla }}</p>
     <p>Estado: {% if casilla.estado %}Abierta{% else %}Cerrada{% endif %}</p>
 
+    {% if turno_actual %}
+        <p>Operador a Cargo: {{ turno_actual.usuario.nombre }} {{ turno_actual.usuario.apellido }}</p>
+        <p>Fecha de Inicio: {{ turno_actual.fh_inicio }}</p>
+        <p>Fecha de Fin: {{ turno_actual.fh_fin }}</p>
+        {% else %}
+        <p style="font-weight: bold;">No hay turno asociado a esta casilla</p>
+    {% endif %}
+
+
+
     <form method="post" action="{% url 'detalle_casilla' casilla.id %}">
         {% csrf_token %}
         {% if casilla.estado %}
