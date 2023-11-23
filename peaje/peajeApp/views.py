@@ -14,7 +14,7 @@ import pytz
 import qrcode
 from qrcode.image.pure import PymagingImage
 import os
-from config.forms import CasillasFilterForm
+from config.forms import CasillasFilterForm, TarifasFilterForm
 from datetime import date
 from decimal import Decimal
 
@@ -437,8 +437,17 @@ def reporte_view(request, casilla_id):
 
 class PanelTarifasView(View):
     def get(self, request):
+        num_tarifa = request.GET.get('num_tarifa')
         tarifas = Tarifa.objects.all()
-        return render(request, 'panel_tarifas.html', {'tarifas': tarifas})
+        if num_tarifa:
+            tarifas = tarifas.filter(id__icontains=num_tarifa)
+        context = {
+            'form': TarifasFilterForm(),
+            'tarifas' : tarifas
+        }
+    
+        tarifas = Tarifa.objects.all()
+        return render(request, 'panel_tarifas.html', context)
     
 class DetalleTarifas(View):
     def get(self, request, tarifa_id):
