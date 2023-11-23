@@ -340,10 +340,10 @@ class DetalleCasillaView(View):
         return render(request, self.template_name, {'casilla': casilla})
 
 
-def test_view(request):
+def turnos_view(request):
     turnos = TurnoTrabajo.objects.all()
 
-    return render(request, 'test.html', {'turnos': turnos})
+    return render(request, 'duracion_turnos.html', {'turnos': turnos})
 
 
 def reporte_view(request, casilla_id):
