@@ -36,6 +36,8 @@
                     <th scope="col" class="text-center">Categorias De Vehiculo</th>
                     <th scope="col" class="text-center">Monto</th>
                     <th scope="col" class="text-center">Fecha</th>
+                    <th scope="col" class="text-center">Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +46,7 @@
                         <td class="text-center">{{ tarifa.id }}</td>
                         <td class="text-center">{{ tarifa.categoria }}</td>
                         <td class="text-center">{{ tarifa.monto }}</td>
+                        <td class="text-center">{{ tarifa.fecha_modificacion }}</td>
                         <td class="text-center">
                             <a class="btn btn-outline-primary" href="{% url 'detalle_tarifa' tarifa.id %}">Ver</a>
                         </td>
