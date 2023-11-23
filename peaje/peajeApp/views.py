@@ -340,3 +340,8 @@ class PanelTarifasView(View):
     def get(self, request):
         tarifas = Tarifa.objects.all()
         return render(request, 'panel_tarifas.html', {'tarifas': tarifas})
+    
+class DetalleTarifas(View):
+    def get(self, request, tarifa_id):
+        tarifa = get_object_or_404(Tarifa, id=tarifa_id)
+        return render(request, 'detalle_tarifa.html', {'tarifa': tarifa})
