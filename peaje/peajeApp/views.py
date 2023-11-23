@@ -326,3 +326,9 @@ class DetalleCasillaView(View):
             casilla.cerrar_casilla()
 
         return render(request, self.template_name, {'casilla': casilla})
+
+
+def test_view(request):
+    turnos = TurnoTrabajo.objects.all()
+
+    return render(request, 'test.html', {'turnos': turnos})
