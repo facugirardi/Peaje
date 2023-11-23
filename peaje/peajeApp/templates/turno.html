@@ -292,7 +292,7 @@
                       <option class="form-control">Seleccione una opción:</option>
                       {% for estacion in estaciones %}
                           <option value="{{ estacion.id }}" class="form-control" data-estacion="{{ estacion.id }}">
-                              {{ estacion.id }}
+                              Estacion N°{{ estacion.id }}
                           </option>
                       {% endfor %}
                   </select>

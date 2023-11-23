@@ -14,7 +14,21 @@
 <section class="site-section" id="admin-panel-section">
 
     <div class="container"><br>
-        <h2 class="text-center">ADMINISTRACION DE CASILLAS</h2><br>
+
+        <div>
+            <h1 class="text-center">ADMINISTRACION DE CASILLAS</h1><br>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <form method="GET" action="{% url 'panel' %}">
+                    {{form.as_table}}
+                    <input type="submit" value="Search" class="btn btn-outline-primary" />
+                </form>
+            </div>
+        </div>
+
+    
+        <hr/>
         
         <table class="table text-center">
             <thead>
@@ -39,7 +53,7 @@
                         {% endif %}
 
                         <td>
-                            <a class="btn btn-outline-primary" href="" >Administrar</a>
+                            <a class="btn btn-outline-primary" href="{% url 'detalle_casilla' casilla.id %}">Administrar</a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -80,7 +80,14 @@ class Casilla(models.Model):
 
     def generar_reporte_casilla(self):
         pass
+    
+    def abrir_casilla(self):
+        self.estado = True
+        self.save()
 
+    def cerrar_casilla(self):
+        self.estado = False
+        self.save()
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):

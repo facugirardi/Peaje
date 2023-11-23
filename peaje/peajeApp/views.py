@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, View
 from .models import *
 from django.utils import timezone
@@ -13,6 +14,7 @@ import qrcode
 from qrcode.image.pure import PymagingImage
 import os
 from django.conf import settings
+from config.forms import CasillasFilterForm
 
 
 def navbar(request):
@@ -296,11 +298,31 @@ class CreacionEmpleadoView(View):
 
 class PanelView(View):
     def get(self, request):
+        num_casilla = request.GET.get('num_casilla')
         casillas = Casilla.objects.all()
-        return render(request, 'panel_admin.html', {'casillas': casillas})
+        if num_casilla:
+            casillas = casillas.filter(num_casilla__icontains=num_casilla)
+        context = {
+            'form': CasillasFilterForm(),
+            'casillas' : casillas
+        }
 
+        return render(request, 'panel_admin.html', context)
+    
+class DetalleCasillaView(View):
+    template_name = "detalle_casilla.html"
 
-def test_view(request):
-    turnos = TurnoTrabajo.objects.all()
+    def get(self, request, casilla_id):
+        casilla = get_object_or_404(Casilla, id=casilla_id)
+        return render(request, self.template_name, {'casilla': casilla})
 
-    return render(request, 'test.html', {'turnos': turnos})
+    def post(self, request, casilla_id):
+        casilla = get_object_or_404(Casilla, id=casilla_id)
+
+        if 'abrir_casilla' in request.POST:
+            casilla.abrir_casilla()
+
+        if 'cerrar_casilla' in request.POST:
+            casilla.cerrar_casilla()
+
+        return render(request, self.template_name, {'casilla': casilla})
