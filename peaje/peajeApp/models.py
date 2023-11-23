@@ -177,7 +177,7 @@ class Tarifa(models.Model):
     fecha_modificacion = models.DateField(("Fecha Modificacion:"), auto_now=False, auto_now_add=False)
 
     def __str__(self):
-        return f"{self.get_categoria_display()} - Monto: {self.monto}"
+        return f"categoria={self.get_categoria_display()}, monto={self.monto}"
 
     def modif_tarifa(self, nuevo_monto):
         self.monto = nuevo_monto

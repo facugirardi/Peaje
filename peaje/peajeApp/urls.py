@@ -10,6 +10,7 @@ urlpatterns = [
     path('perfil/', views.PerfilView.as_view(), name='perfil'),
     path('navbar/', views.navbar, name='navbar'),
     path('ticket/', views.ticket_view, name='ticket'),
+    path('reporte/<int:casilla_id>/', views.reporte_view, name='reporte'),
     path('gestion_turno/', views.GestionTurnoView.as_view(), name='gestion_turno'),
     path('panel/', views.PanelView.as_view(), name='panel'), 
     path('test/', views.test_view, name='test'),

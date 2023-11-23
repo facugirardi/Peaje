@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<style>
+    body {
+
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        margin: 20px;
+    }
+
+    header, section, footer {
+        margin-bottom: 20px;
+    }
+
+    header, footer {
+        text-align: center;
+        padding: 10px;
+    }
+
+    section {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+
+{% endblock %}
+
+{% block title %} Reporte - Peaje {% endblock %}
+
+{% block content %} 
+{% if user.is_authenticated %}
+
+
+
+
+<header>
+    <h1>Reporte Diario</h1>
+    <p>Fecha: {{ fecha }}</p>
+</header>
+
+<section>
+    <h2>Información de la casilla</h2>
+    <p>Estacion: {{ casilla.estacion }}</p>
+    <p>Casilla: {{ casilla.id }}</p>
+</section>
+
+<section>
+    <h2>Detalle de la factura</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Motocicletas</td>
+                <td>{{ cantidad_1 }}</td>
+                <td>${{ monto_total_1 }}</td>
+            </tr>
+            <tr>
+                <td>Automóviles</td>
+                <td>{{ cantidad_2 }}</td>
+                <td>${{ monto_total_2 }}</td>
+            </tr>
+            <tr>
+                <td>2 Ejes con Ruedas Duales</td>
+                <td>{{ cantidad_3 }}</td>
+                <td>${{ monto_total_3 }}</td>
+            </tr>
+            <tr>
+                <td>3 o 4 Ejes, Sin Ruedas Duales</td>
+                <td>{{ cantidad_4 }}</td>
+                <td>${{ monto_total_4 }}</td>
+            </tr>
+            <tr>
+                <td>3 o 4 Ejes, Con Ruedas Duales</td>
+                <td>{{ cantidad_5 }}</td>
+                <td>${{ monto_total_5 }}</td>
+            </tr>
+            <tr>
+                <td>5 o 6 Ejes</td>
+                <td>{{ cantidad_6 }}</td>
+                <td>${{ monto_total_6 }}</td>
+            </tr>
+            <tr>
+                <td>Más de 6 Ejes</td>
+                <td>{{ cantidad_7 }}</td>
+                <td>${{ monto_total_7 }}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Total</h2>
+    <p>Monto Total: ${{ monto_total }}</p>
+</section>
+
+<footer>
+    <p>Reporte Diario</p>
+</footer>
+
+
+
+<script>
+
+   window.addEventListener('load', function() {
+      setTimeout(function() {
+          window.print();
+      }, 2000);
+  });
+
+
+</script>
+
+ {% else %}
+ <script>
+     window.location.href = "{% url 'index' %}";
+ </script>
+{% endif %}
+
+ 
+{% endblock %}
+

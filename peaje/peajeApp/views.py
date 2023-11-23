@@ -15,6 +15,8 @@ import qrcode
 from qrcode.image.pure import PymagingImage
 import os
 from config.forms import CasillasFilterForm
+from datetime import date
+from decimal import Decimal
 
 
 def navbar(request):
@@ -315,7 +317,9 @@ class DetalleCasillaView(View):
     def get(self, request, casilla_id):
         casilla = get_object_or_404(Casilla, id=casilla_id)
         try:
-            turno_actual = TurnoTrabajo.objects.get(casilla_id=casilla_id)
+            turnos_actuales = TurnoTrabajo.objects.filter(casilla_id=casilla_id)
+            turno_actual = turnos_actuales.last()
+
         except TurnoTrabajo.DoesNotExist:
             turno_actual = None
 
@@ -340,3 +344,92 @@ def test_view(request):
     turnos = TurnoTrabajo.objects.all()
 
     return render(request, 'test.html', {'turnos': turnos})
+
+
+def reporte_view(request, casilla_id):
+    argentina_timezone = pytz.timezone('America/Argentina/Buenos_Aires')
+    fecha = datetime.datetime.now(argentina_timezone).date()
+    print(fecha)
+
+    casilla = Casilla.objects.get(id=casilla_id)
+    tarifas_hoy = Tarifa.objects.filter(fecha_modificacion__lte=date.today())
+
+    monto_total = Decimal(0)
+
+    cantidad_1 = 0
+    monto_total_1 = Decimal(0)
+
+    cantidad_2 = 0
+    monto_total_2 = Decimal(0)
+
+    cantidad_3 = 0
+    monto_total_3 = Decimal(0)
+
+    cantidad_4 = 0
+    monto_total_4 = Decimal(0)
+
+    cantidad_5 = 0
+    monto_total_5 = Decimal(0)
+
+    cantidad_6 = 0
+    monto_total_6 = Decimal(0)
+
+    cantidad_7 = 0
+    monto_total_7 = Decimal(0)
+
+    for tarifa in tarifas_hoy:
+        categoria = tarifa.categoria
+        monto = tarifa.monto
+
+        monto_total += monto
+
+        if categoria == '1':
+            cantidad_1 += 1
+            monto_total_1 += monto
+        elif categoria == '2':
+            cantidad_2 += 1
+            monto_total_2 += monto
+        elif categoria == '3':
+            cantidad_3 += 1
+            monto_total_3 += monto
+        elif categoria == '4':
+            cantidad_4 += 1
+            monto_total_4 += monto
+        elif categoria == '5':
+            cantidad_5 += 1
+            monto_total_5 += monto
+        elif categoria == '6':
+            cantidad_6 += 1
+            monto_total_6 += monto
+        elif categoria == '7':
+            cantidad_7 += 1
+            monto_total_7 += monto
+
+    try:
+        datos_render = {
+            'fecha': fecha,
+            'casilla': casilla,
+            'monto_total': monto_total,
+            'cantidad_1': cantidad_1,
+            'monto_total_1': monto_total_1,
+            'cantidad_2': cantidad_2,
+            'monto_total_2': monto_total_2,
+            'cantidad_3': cantidad_3,
+            'monto_total_3': monto_total_3,
+            'cantidad_4': cantidad_4,
+            'monto_total_4': monto_total_4,
+            'cantidad_5': cantidad_5,
+            'monto_total_5': monto_total_5,
+            'cantidad_6': cantidad_6,
+            'monto_total_6': monto_total_6,
+            'cantidad_7': cantidad_7,
+            'monto_total_7': monto_total_7,
+        }
+
+        print(datos_render)
+
+        return render(request, 'reporte.html', datos_render)
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return render(request, 'reporte.html')
