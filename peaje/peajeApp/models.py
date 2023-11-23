@@ -140,7 +140,7 @@ class TurnoTrabajo(models.Model):
     usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, default=0)
 
     def __str__(self):
-        return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, Operador: {self.id_usuario.nombre} {self.id_usuario.apellido}"
+        return f"Turno ID: {self.pk}, Inicio: {self.fh_inicio}, Final: {self.fh_fin}, a: {self.usuario.nombre} {self.usuario.apellido}"
 
     def iniciar_turno(self):
         self.estado = True
