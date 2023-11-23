@@ -352,7 +352,7 @@ def reporte_view(request, casilla_id):
     print(fecha)
 
     casilla = Casilla.objects.get(id=casilla_id)
-    tarifas_hoy = Tarifa.objects.filter(fecha_modificacion__lte=date.today())
+    tarifas_hoy = Tarifa.objects.filter(fecha_modificacion__gte=date.today())
 
     monto_total = Decimal(0)
 
