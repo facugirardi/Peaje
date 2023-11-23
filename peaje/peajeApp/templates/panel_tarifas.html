@@ -16,7 +16,7 @@
     <div class="container"><br>
 
         <div>
-            <h1 class="text-center">ADMINISTRACION DE CASILLAS</h1><br>
+            <h1 class="text-center">ADMINISTRACION DE TARIFAS</h1><br>
         </div>
         <div class="row">
             <div class="col-md-5">
@@ -33,25 +33,19 @@
             <thead>
                 <tr>
                     <th scope="col" class="text-center">ID</th>
-                    <th scope="col" class="text-center">Número de Casilla</th>
-                    <th scope="col" class="text-center">Estación</th>
-                    <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Acciones</th>
+                    <th scope="col" class="text-center">Categorias De Vehiculo</th>
+                    <th scope="col" class="text-center">Monto</th>
+                    <th scope="col" class="text-center">Fecha</th>
                 </tr>
             </thead>
             <tbody>
-                {% for casilla in casillas %}
+                {% for tarifa in tarifas %}
                     <tr>
-                        <td class="text-center">{{ casilla.id }}</td>
-                        <td class="text-center">{{ casilla.num_casilla }}</td>
-                        <td class="text-center">Estación N° {{ casilla.estacion.id }}</td>
-                        {% if casilla.estado %}
-                            <td class="text-center">Abierta</td>
-                        {% else %}
-                            <td class="text-center">Cerrada</td>
-                        {% endif %}
+                        <td class="text-center">{{ tarifa.id }}</td>
+                        <td class="text-center">{{ tarifa.categoria }}</td>
+                        <td class="text-center">{{ tarifa.monto }}</td>
                         <td class="text-center">
-                            <a class="btn btn-outline-primary" href="{% url 'detalle_casilla' casilla.id %}">Administrar</a>
+                            <a class="btn btn-outline-primary" href="{% url 'detalle_casilla' tarifa.id %}">Ver</a>
                         </td>
                     </tr>
                 {% endfor %}

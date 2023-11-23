@@ -334,3 +334,9 @@ class DetalleCasillaView(View):
                 return HttpResponseBadRequest("No puedes cerrar la casilla mientras haya un turno en curso.")
 
         return render(request, self.template_name, {'casilla': casilla})
+    
+
+class PanelTarifasView(View):
+    def get(self, request):
+        tarifas = Tarifa.objects.all()
+        return render(request, 'panel_tarifas.html', {'tarifas': tarifas})

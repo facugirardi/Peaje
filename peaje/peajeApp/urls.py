@@ -13,5 +13,5 @@ urlpatterns = [
     path('gestion_turno/', views.GestionTurnoView.as_view(), name='gestion_turno'),
     path('panel/', views.PanelView.as_view(), name='panel'), 
     path('detalle_casilla/<int:casilla_id>/', views.DetalleCasillaView.as_view(), name='detalle_casilla'),
-
+    path('panel_tarifas/', views.PanelTarifasView.as_view(), name='panel_tarifas'),
 ]
