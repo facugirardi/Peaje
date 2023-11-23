@@ -14,7 +14,6 @@ import pytz
 import qrcode
 from qrcode.image.pure import PymagingImage
 import os
-from django.conf import settings
 from config.forms import CasillasFilterForm
 
 

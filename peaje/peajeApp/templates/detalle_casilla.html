@@ -1,32 +1,333 @@
-{% extends "base.html" %}
+{% extends "navbar.html" %}
+{% load static %}
 
-{% block title %} Detalle de Casilla {% endblock %}
+{% block title %} Panel Administrador {% endblock %}
 
-{% block content %}
+{% block content %} 
+{% if user.is_authenticated %}
+{% if user.permisos == True %}
 
-    <h1>Detalles de la Casilla N°{{ casilla.num_casilla }} De La {{ casilla.estacion }}</h1>
-    <p>ID: {{ casilla.id }}</p>
-    <p>Número de Casilla: {{ casilla.num_casilla }}</p>
-    <p>Estado: {% if casilla.estado %}Abierta{% else %}Cerrada{% endif %}</p>
+<section class="site-section" id="contact-section">
 
-    {% if turno_actual %}
-        <p>Operador a Cargo: {{ turno_actual.usuario.nombre }} {{ turno_actual.usuario.apellido }}</p>
-        <p>Fecha de Inicio: {{ turno_actual.fh_inicio }}</p>
-        <p>Fecha de Fin: {{ turno_actual.fh_fin }}</p>
-        {% else %}
-        <p style="font-weight: bold;">No hay turno asociado a esta casilla</p>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          
+          .btn {
+            margin: 10px;
+            position: relative;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            background: #21325E;
+            cursor: pointer;
+            transition: .5s;
+            overflow: hidden;
+          }
+          
+          .btn:hover {
+            background:  #3a518d;
+          }
+          
+          .btn span {
+            position: absolute;
+            background: #3a518d;
+            transition: .5s;
+          }
+          
+          .btn span:nth-child(1) {
+            width: 100%;
+            height: 1px;
+            top: 0;
+            left: -100%;
+          }
+          
+          .btn span:nth-child(2) {
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            right: -100%;
+          }
+          
+          .btn span:nth-child(3) {
+            width: 1px;
+            height: 100%;
+            bottom: -100%;
+            left: 0;
+          }
+          
+          .btn span:nth-child(4) {
+            width: 1px;
+            height: 100%;
+            top: -100%;
+            right: 0;
+          }
+          
+          .btn:hover span:nth-child(1) {
+            left: 0;
+          }
+          
+          .btn:hover span:nth-child(2) {
+            right: 0;
+          }
+          
+          .btn:hover span:nth-child(3) {
+            bottom: 0;
+          }
+          
+          .btn:hover span:nth-child(4) {
+            top: 0;
+          }
+          
+          body {
+            line-height: 1.7;
+            font-weight: 300;
+            font-size: 15px;
+            background: #E5E5E5
+            ; } 
+          
+          ::-moz-selection {
+            background: #000;
+           }
+
+          a {
+            -webkit-transition: .3s all ease;
+            -o-transition: .3s all ease;
+            transition: .3s all ease; }
+            a:hover {
+              text-decoration: none; 
+          }
+          
+          h1, h2, h3, h4, h5,
+          .h1, .h2, .h3, .h4, .h5 {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            color: #21325E; 
+          }
+          
+          .site-section-heading {
+              color:#21325E ;
+          }
+          
+          .formulario{
+            margin-top: 5%;
+          }
+        
+        
+          .btn:hover, .btn:active, .btn:focus {
+              outline: none;
+              -webkit-box-shadow: none !important;
+              box-shadow: none !important;   
+          }
+          
+          .btn.btn-md {
+              padding: 12.5px 25px;
+              font-size: 14px;
+              text-transform: uppercase;
+              letter-spacing: 2px; 
+              margin-top: 20px;
+          }
+          
+          
+          
+          /* Blocks */
+          .top-bar {
+            background: transparent !important;
+            font-size: 13px;
+            position: absolute;
+            top: 0;
+            width: 100%; 
+          }
+          
+          .top-bar a {
+            color: #000; 
+          }
+          
+          .typed-words {
+            font-weight: 700; 
+          }
+          
+          .site-blocks-cover {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-position: center center;
+            background: #E5E5E5; 
+          }
+          
+          
+          .site-blocks-cover.overlay {
+            position: relative; 
+          }
+          
+          
+          .site-blocks-cover.overlay:before {
+            position: absolute;
+            content: "";
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.4); 
+          }
+          
+          
+          .site-blocks-cover .player {
+            position: absolute;
+            bottom: -250px;
+            width: 100%; 
+          }
+          
+          
+          .site-blocks-cover, .site-blocks-cover > .container > .row {
+            min-height: 600px;
+            height: calc(100vh); 
+          }
+          
+          
+          .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover > .container > .row {
+              min-height: 400px;
+              height: calc(20vh); 
+          }
+          
+          .login-title{
+            margin-top: -65px !important;
+            font-weight: 500 !important;
+            margin-bottom: 30px !important;
+          }
+          
+          .site-blocks-cover h1 {
+            font-size: 3rem;
+            font-weight: 400;
+            color: #21325E;
+            text-transform: uppercase; 
+          }
+            
+          @media (max-width: 991.98px) {
+            .site-blocks-cover h1 {
+              font-size: 2rem; 
+            } 
+          }
+            .site-blocks-cover p {
+              font-size: 1.2rem;
+              line-height: 1.5; 
+            }
+            .site-blocks-cover .intro-text {
+              font-size: 16px;
+              line-height: 1.5; 
+            }
+          @media (max-width: 991.98px) {
+            .site-blocks-cover .display-1 {
+              font-size: 3rem; 
+            } 
+          }
+          
+          
+          
+        html{
+            scroll-behavior: smooth;
+        }
+        
+        nav{
+            display: flex;
+            padding: 2% 6%;
+            justify-content: space-between;
+            align-items: center;  
+        
+        }
+        nav img{
+            width: 100px;
+        }
+        .nav-links{
+            flex: 1;
+            text-align: left;
+        }
+        .nav-links ul li{
+            list-style: none;
+            display: inline-block;
+            padding: 8px 12px;
+        }
+        .nav-links ul li a{
+            color: rgb(8, 8, 8);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .nav-links ul li::after{
+            content: '  ';
+            width: 0%;
+            height: 2px;
+            background: #21325E ;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+        .nav-links ul li:hover::after{
+            width: 100%;
+        }
+        </style>
+
+    <div class="container">
+        <div class="row mb-5">
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-5">
+
+
+            <form action="#" class="formulario p-5 bg-white" method="POST">
+                {% csrf_token %}
+                <h2>Detalles de la Casilla N°{{ casilla.num_casilla }} De La {{ casilla.estacion }}</h2>
+
+                <div class="row form-group">
+
+                    <p>ID: {{ casilla.id }}</p>
+                    <p>Número de Casilla: {{ casilla.num_casilla }}</p>
+                    <p>Estado: {% if casilla.estado %}Abierta{% else %}Cerrada{% endif %}</p>
+
+                {% if turno_actual %}
+                    <p>Operador a Cargo: {{ turno_actual.usuario.nombre }} {{ turno_actual.usuario.apellido }}</p>
+                    <p>Fecha de Inicio: {{ turno_actual.fh_inicio }}</p>
+                    <p>Fecha de Fin: {{ turno_actual.fh_fin }}</p>
+                    {% else %}
+                    <p style="font-weight: bold;">No hay turno asociado a esta casilla</p>
+                {% endif %}
+
+                <form method="post" action="{% url 'detalle_casilla' casilla.id %}">
+                    {% csrf_token %}
+                    {% if casilla.estado %}
+                        <button type="submit" name="cerrar_casilla" class="btn btn-danger" style = "background-color:#FA8072; width:20%" >Cerrar Casilla</button>
+                    {% else %}
+                        <button type="submit" name="abrir_casilla" class="btn btn-success" style = "background-color:#71bc78; width:20%">Abrir Casilla</button>
+                    {% endif %}
+                </form>
+            
+                <a href="{% url 'panel' %}" class="btn btn-outline-primary" style = "width:20%;">Volver al Panel</a>
+                </div>
+            </form>
+            
+            <script src="{% static 'js/main.js' %}"></script>
+        
+        </div>
+
+    </div>
+    </div>
+</section>
+
+    {% else %}
+    <script>
+        window.location.href = "{% url 'operador' %}";
+    </script>
     {% endif %}
 
 
+    {% else %}
+    <script>
+        window.location.href = "{% url 'index' %}";
+    </script>
+{% endif %}
 
-    <form method="post" action="{% url 'detalle_casilla' casilla.id %}">
-        {% csrf_token %}
-        {% if casilla.estado %}
-            <button type="submit" name="cerrar_casilla" class="btn btn-danger">Cerrar Casilla</button>
-        {% else %}
-            <button type="submit" name="abrir_casilla" class="btn btn-success">Abrir Casilla</button>
-        {% endif %}
-    </form>
 
-    <a href="{% url 'panel' %}" class="btn btn-outline-primary">Volver al Panel</a>
+
 {% endblock %}
