@@ -4,9 +4,7 @@
 
 [Instalacion](#instalacion)
 
-[Diagrama Entidad-Relacion](#diagrama-entidad-relacion-del-sistema)
-
-[Diagrama Clases](#diagrama-de-clases-del-sistema)
+[Imagenes](#diagrama-entidad-relacion-del-sistema)
 
 
 
@@ -74,3 +72,9 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 ## Diagrama De Clases Del Sistema
 ![Imagen Diagrama Entidad-Relacion](docs/DiagramaUML.jpeg)
 
+## Capturas de Pantalla
+![Captura de pantalla](docs/imgs/imag3e.png)
+![Captura de pantalla](docs/imgs/image4.png)
+![Captura de pantalla](docs/imgs/imag56e.png)
+![Captura de pantalla](docs/imgs/image2.png)
+![Captura de pantalla](docs/imgs/image.png)
