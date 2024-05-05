@@ -74,6 +74,6 @@ Una vez que estamos dentro del entorno virtual, debemos instalar todos los paque
 ## Capturas de Pantalla
 ![Captura de pantalla](docs/imgs/imag3e.png)
 ![Captura de pantalla](docs/imgs/image4.png)
-![Captura de pantalla](docs/imgs/imag56e.png)
 ![Captura de pantalla](docs/imgs/image2.png)
 ![Captura de pantalla](docs/imgs/image.png)
+![Captura de pantalla](docs/imgs/imag56e.png)
