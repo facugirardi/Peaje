@@ -1,11 +1,10 @@
-# Sistema de Peaje - Programación III
+# Sistema de Peaje
 
 [Introduccion](#introduccion)
 
 [Instalacion](#instalacion)
 
 [Imagenes](#diagrama-entidad-relacion-del-sistema)
-
 
 
 ## Introduccion
@@ -36,8 +35,8 @@ Django requerido:
     pip install Django
 ```
 <hr>
-Pipenv requerido:
 
+Pipenv requerido:
 
 *input:*
 ```bash
