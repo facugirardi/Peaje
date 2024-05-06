@@ -1,21 +1,21 @@
-# Sistema de Peaje
+# Toll System
 
-[Introduccion](#introduccion)
+[Introduction](#Introduction)
 
-[Instalacion](#instalacion)
+[Installation](#Installation)
 
-[Imagenes](#diagrama-entidad-relacion-del-sistema)
-
-
-## Introduccion
-Este proyecto consiste en implementar un sistema de gestión y control de peaje con el propósito de administrar de manera eficiente la recaudación en todas las estaciones de las rutas de la provincia de Córdoba.
+[Images](#Entity-Relationship-Diagram-of-the-System)
 
 
-## Instalacion
+## Introduction
+This project aims to implement a toll management and control system with the purpose of efficiently managing revenue at all stations on the roads of the province of Córdoba.
 
-### Requisitos Previos
 
-Python 3.10 requerido:
+## Installation
+
+### Prerequisites
+
+Python 3.10 required:
 
 *input:*
 ```bash
@@ -24,11 +24,11 @@ Python 3.10 requerido:
 
 *output:*
 ```bash
-    Python <numeroVersion>
+    Python <versionNumber>
 ```
 <hr>
 
-Django requerido:
+Django required:
 
 *input:*
 ```bash
@@ -36,7 +36,7 @@ Django requerido:
 ```
 <hr>
 
-Pipenv requerido:
+Pipenv required:
 
 *input:*
 ```bash
@@ -45,33 +45,34 @@ Pipenv requerido:
 
 <hr>
 
-#### Primer paso: Creacion Entorno Virtual
+#### Step 1: Creating a Virtual Environment
 
-Va a ser muy importante trabajar con entornos virtuales ya que nos ayudará a evitar problemas relacionados con dependencias de bibliotecas y paquetes.
+Working with virtual environments is crucial as it helps to avoid issues related to library and package dependencies.
 
 ```bash
     pipenv install //Creacion
     pipenv shell //Ejecucion
 ```
 
-#### Segundo paso: Instalacion de los modulos requeridos para su ejecucion
+#### Step 2: Installation of Required Modules for Execution
 
-Una vez que estamos dentro del entorno virtual, debemos instalar todos los paquetes que se necesitaran para desarrollar/ejecutar el proyecto
+Once inside the virtual environment, we need to install all the packages needed to develop/execute the project.
 
 ```bash
     pipenv install -r requirements.txt
 ```
 
->Una vez hayas seguido estos pasos, podrás ejecutar y/o trabajar en el proyecto sin ningún problema.
+>After following these steps, you should be able to execute and/or work on the project without any issues.
 
-## Diagrama Entidad-Relacion Del Sistema
+
+## Entity-Relationship Diagram of the System
 ![Imagen Diagrama Entidad-Relacion](docs/DiagramaER.jpeg)
 
 
-## Diagrama De Clases Del Sistema
+## Class Diagram of the System
 ![Imagen Diagrama Entidad-Relacion](docs/DiagramaUML.jpeg)
 
-## Capturas de Pantalla
+## Screenshots
 ![Captura de pantalla](docs/imgs/imag3e.png)
 ![Captura de pantalla](docs/imgs/image4.png)
 ![Captura de pantalla](docs/imgs/image2.png)
